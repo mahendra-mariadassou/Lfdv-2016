@@ -42,7 +42,7 @@ ul {
 }
 </style>
 
-Revisions
+Révisions
 ========================================================
 author: Mahendra Mariadassou
 date: 31 Octobre 2016
