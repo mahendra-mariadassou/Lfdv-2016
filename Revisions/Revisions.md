@@ -54,7 +54,7 @@ Plan du cours (S1)
 
 - Révisions générales
     + Ensembles de nombres
-    + Manipulation standards
+    + Manipulations standards
     + Fonctions usuelles
     + Trigonométrie
 - Limite, Continuité et Dérivabilité
@@ -192,7 +192,7 @@ Soit $A$ une partie <alert>non-vide</alert> de $\mathbb{R}$, alors on dit que:
   <li> $A$ admet une <alert>borne inférieure</alert> lorsqu'il existe un réel $m_0$ tel que </li>
   <ul>
     <li> $m_0$ est un minorant de $A$ </li>
-    <li> Tout minorant $m$ de $A$ vérifie $m \geq m_0$ </li>
+    <li> Tout minorant $m$ de $A$ vérifie $m \leq m_0$ </li>
   </ul>
 </ul>
 </div>
