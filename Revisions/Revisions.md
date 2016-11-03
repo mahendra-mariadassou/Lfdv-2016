@@ -120,6 +120,13 @@ Soit $n$ un entier naturel non nul, trouver une formule close et la démontrer (
 $S_n = \frac{1}{2!} + \frac{2}{3!} + \dots + \frac{n-1}{n!} + \frac{n}{(n+1)!}$
 </div>
 
+La factorielle
+========================================================
+<div class="definition">
+L
+</div>
+
+
 Parité, imparité et division euclidienne
 ========================================================
 
@@ -455,3 +462,7 @@ Définition géométrique des fonctions trigonométriques
 ========================================================
 
 ![plot of chunk cercle-trigo](Revisions-figure/cercle-trigo-1.png)
+
+
+
+%% TODO: division des polynômes

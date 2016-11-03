@@ -120,6 +120,13 @@ Soit $n$ un entier naturel non nul, trouver une formule close et la démontrer (
 $S_n = \frac{1}{2!} + \frac{2}{3!} + \dots + \frac{n-1}{n!} + \frac{n}{(n+1)!}$
 </div>
 
+La factorielle
+========================================================
+<div class="definition">
+L
+</div>
+
+
 Parité, imparité et division euclidienne
 ========================================================
 
@@ -504,3 +511,7 @@ segments(0, 0, 0, sin(alpha), col = "blue", lwd = 3); text(0, sin(alpha)/2, labe
 ## tan
 segments(1, 0, 1, tan(alpha), col = "purple", lwd = 3); text(1, tan(alpha)/2, labels = expression(tan(alpha)), col = "purple", pos = 4, cex = 2)
 ```
+
+
+
+%% TODO: division des polynômes
