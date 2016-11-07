@@ -1,0 +1,230 @@
+\documentclass[a4paper,12pt]{article}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% ZONE ROUGE : intervention très fortement deconseillee
+\usepackage[utf8]{inputenc} % accent dans la source
+\usepackage[T1]{fontenc}
+\usepackage{times}
+\usepackage[french]{babel}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{fancybox}
+\usepackage{pstricks}
+\usepackage{pst-plot}
+%\usepackage{pst-char}
+\usepackage{pst-text}
+% \usepackage{psfig}
+\usepackage{ifthen}
+\def\R{\mathbb{R}}
+\def\C{\mathbb{C}}
+\def\Z{\mathbb{Z}}
+\def\Q{\mathbb{Q}}
+\def\N{\mathbb{N}}
+\def\F{\mathbb{F}}
+\def\P{\mathbb{P}}
+\def\A{\mathbb{A}}
+
+%%%% Théorème, Proposition et tout le reste%%%%
+\newcommand{\proofbegin}{\paragraph{Proof.}}
+\newcommand\floor[1]{\lfloor#1\rfloor}
+\newcommand{\proofend}{$\blacksquare$\bigskip}
+\newtheorem{theorem}{Théorème}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{definition}[theorem]{Définition}
+\newtheorem{lemma}[theorem]{Lemme}
+\newtheorem{corollary}[theorem]{Corollaire}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% ZONE ORANGE : intervention deconseillee
+\parindent=0pt
+\textwidth 17.0cm
+\textheight26.0cm
+\hoffset-2.0cm
+\voffset-2.0cm
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% ZONE VERTE : Intervention obligatoire
+%%% ADAPTER SUIVANT LA NATURE DE L'EPREUVE
+\def\Exam{Test ``Remise en forme'': corrigé}
+\def\Date{\today}
+\def\Classe{TS3}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% ZONE VERTE : 
+%%% ALIGNER LES EQUATIONS A GAUCHE
+\makeatletter
+\newenvironment*{fleqn}{
+    \@fleqntrue
+    \setlength\@mathmargin{0pt}%
+    \ignorespaces
+}{%
+    \ignorespacesafterend
+}
+\makeatother
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Force synctex
+\synctex=1
+
+%%% knitr
+<<include=FALSE>>=
+library(knitr)
+opts_chunk$set(
+fig.path='Figures/',cache=TRUE,echo=FALSE, fig.align = "center"
+)
+opts_knit$set(concordance = TRUE, self.contained=TRUE)
+require(patchSynctex)
+@
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+\newcounter{nexo}
+\setcounter{nexo}{1}
+\newcommand{\Exo}{\medskip
+  {\bf Exercice \arabic{nexo} : }
+  \addtocounter{nexo}{1}}
+\newcommand{\Pb}{{\bf Problème \arabic{nexo} : } 
+\addtocounter{nexo}{1} \bigskip}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% ZONE BLEUE : Intervention parfois utile mais a faire prudemment
+{\bf  \hfill \Date \quad ~}
+%
+\vskip 1cm
+%
+%%% FAIRE UN CHOIX (3 choix possibles)
+%%% 1)
+%\centerline{\psframebox[fillstyle=solid,fillcolor=lightgray]
+%\textbf{\LARGE \black \Exam}}
+%%% 2)
+%\centerline{\psframebox{\bf \LARGE  \Exam}}
+%%% 3)
+\centerline{\bf \LARGE \Exam}
+%
+\vskip 1.5cm
+%
+
+
+%%%%%%%%%%%%%%%%%%%%%%
+%%% CORPS DU SUJET %%%
+%%%%%%%%%%%%%%%%%%%%%%
+
+%% \section*{Test 1}
+
+\Exo \textbf{\'Equation}
+
+Résoudre les équations (en $x \in \R$) suivantes:
+\begin{equation*}
+  \frac{1}{\floor{x+1}} = \frac{1}{2}  
+\end{equation*}
+
+\begin{equation*}
+  \sqrt{|x+1|} = 3
+\end{equation*}
+
+On raisonne par équivalence. 
+\begin{align*}
+  \frac{1}{\floor{x+1}} = \frac{1}{2} \Leftrightarrow \floor{x+1} = 2 \Leftrightarrow 2 \leq x < 3 \Leftrightarrow 1 \leq x < 2
+\end{align*}
+
+et 
+
+\begin{align*}
+  \sqrt{|x+1|} = 3 \Leftrightarrow |x+1| = 9 \Leftrightarrow \begin{cases} x+1 & = 9 \\ x+1 & = -9 \end{cases} \Leftrightarrow \begin{cases} x & = 8 \\ x & = -10 \end{cases}
+\end{align*}
+
+
+\bigskip
+
+\Exo \textbf{Inéquations}
+
+Résoudre les inéquations (en $x \in \R$) suivantes:
+\begin{eqnarray*}
+  10^{-x} & \leq & 1/2^{10} \\
+  \exp(3x + 4) & \geq & 10 \\  
+\end{eqnarray*}
+
+
+On raisonne par équivalence en appliquant les fonctions $\log$ ou $\ln$ qui sont croissantes sur $\mathbb{R}_+^\star$. 
+\begin{align*}
+  10^{-x} \leq & 1/2^{10} \Leftrightarrow -x \leq \log(1/2^{10}) \Leftrightarrow x \geq -10\log(1/2) \Leftrightarrow x \geq 10\log(2)
+\end{align*}
+
+et 
+
+\begin{align*}
+  \exp(3x + 4) \geq  10 \Leftrightarrow 3x + 4 \geq \ln(10) \Leftrightarrow x \geq \frac{\ln(10) - 4}{3}
+\end{align*}
+
+
+\bigskip
+
+\Exo \textbf{Majorant, Minorant, etc}
+
+On considère l'ensemble $S = \left\{\frac{1}{n}, n \in \mathbb{N}^\star \right\}$. 
+
+\begin{enumerate}
+\item S est-il majoré? Si oui, donner $\sup(S)$. $\sup(S)$ est-il un élément de $S$?
+\item S est-il minoré? Si oui, donner $\inf(S)$. $\inf(S)$ est-il un élément de $S$?
+\end{enumerate}
+
+Soit $n \in \mathbb{N}^\star$, on a 
+\begin{equation*}
+1 \leq n < +\infty \Leftrightarrow 1 \geq \frac{1}{n} \geq 0
+\end{equation*}
+
+Donc $S$ est minoré par $0$ et majoré par $1$. $1 = \frac{1}{1}$ est un élément de $S$, c'est donc son maximum et aussitôt sa borne supérieure. Montrons que $\inf(S) = 0$. 
+
+Raisonnons par l'absurde et supposons que ce n'est pas le cas. Il existe alors un minorant $m$ de $S$ tel que $m > 0$. Soit $n = \floor{\frac{1}{m}}+2$. Par définition, $n \geq \frac{1}{m} - 1 + 2 > \frac{1}{m}$ et on a donc $\frac{1}{n} < m$, ce qui est absurde puisque $1/n \in S$ et $m$ est censé être un minorant de $S$. On déduit que $\inf(S) = 0$. Et $0$ n'est pas un élément de $S$ puisqu'il n'existe aucun entier $n$ tel que $\frac{1}{n} = 0$. 
+
+
+\Exo \textbf{Injection, Surjection, Bijection}
+
+On considère les ensembles 
+\begin{itemize}
+\item $E = \{ \text{Table}, \text{Chaise}, \text{Armoire}, \text{Étagère} \}$
+\item $F = \{ \text{HENSVIK}, \text{LISABO}, \text{BILLY}, \text{VILMAR} \}$. 
+\end{itemize}
+
+\begin{enumerate}
+\item Donner un exemple de bijection de $E$ dans $F$. 
+\item On enlève BILLY de $F$. Peut-on encore construire une injection, une surjection, une bijection de $E$ dans $F$?
+\item On enlève Armoire de $E$. Peut-on encore construire une injection, une surjection, une bijection de $E$ dans $F$?
+\end{enumerate}
+
+\begin{enumerate}
+\item On peut construire de nombreuses bijections de $E$ dans $F$. En voici une (on représente le graphe de la fonction).
+<<bijection, out.width="0.5\\linewidth">>=
+x <- c("Table", "Chaise", "Armoire", "Étagère")
+y <- c("HENSVIK", "LISABO", "BILLY", "VILMAR")
+df <- data.frame(x, y)
+library(ggplot2)
+ggplot(df, aes(x, y)) + geom_point(size = 5) + labs(x = "E", y = "F") + theme_bw() + theme(axis.text = element_text(size = 16))
+@
+
+\item Si on enlève BILLY de $F$, on peut encore construire des surjections (voir exemple suivant) mais plus d'injections: il y a au plus 3 images dans $F$ pour 4 antécédents dans $E$ donc 2 éléments de $E$ auront forcément la même image. 
+<<surjection, out.width="0.5\\linewidth">>=
+x <- c("Table", "Chaise", "Armoire", "Étagère")
+y <- c("HENSVIK", "LISABO", "BILLY", "VILMAR")
+df <- data.frame(x = x, y = c(y[-3], "HENSVIK"))
+library(ggplot2)
+ggplot(df, aes(x, y)) + geom_point(size = 5) + labs(x = "E", y = "F") + theme_bw() + theme(axis.text = element_text(size = 16))
+@
+
+\item Si on enlève Armoire de $E$, on peut encore construire des injections (voir exemple suivant) mais plus de surjections: les 3 éléments de $E$ ont au plus 3 images alors qu'il y a 4 éléménts dans $F$, certains ne peuvent donc pas avoir pas d'antécédents. 
+<<injection, out.width="0.5\\linewidth">>=
+x <- c("Table", "Chaise", "Étagère")
+y <- c("HENSVIK", "LISABO", "BILLY", "VILMAR")
+df <- data.frame(x = c(x, "Table"), y = sample(y), invisible = c(rep(TRUE, 3), FALSE))
+library(ggplot2)
+ggplot(df, aes(x, y, alpha = invisible)) + geom_point(size = 5) + labs(x = "E", y = "F") + theme_bw() + theme(axis.text = element_text(size = 16)) + scale_alpha_discrete(range = c(0, 1), guide="none")
+@
+
+\end{enumerate}
+
+
+
+
+\end{document}
