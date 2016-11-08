@@ -1,0 +1,145 @@
+\documentclass[a4paper,12pt]{article}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% ZONE ROUGE : intervention très fortement deconseillee
+\usepackage[utf8]{inputenc} % accent dans la source
+\usepackage[T1]{fontenc}
+\usepackage{times}
+\usepackage[french]{babel}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{fancybox}
+\usepackage{pstricks}
+\usepackage{pst-plot}
+\usepackage{pst-text}
+% \usepackage{psfig}
+\usepackage{ifthen}
+\def\R{\mathbb{R}}
+\def\C{\mathbb{C}}
+\def\Z{\mathbb{Z}}
+\def\Q{\mathbb{Q}}
+\def\N{\mathbb{N}}
+\def\F{\mathbb{F}}
+\def\P{\mathbb{P}}
+\def\A{\mathbb{A}}
+
+%%%% Théorème, Proposition et tout le reste%%%%
+\newcommand{\proofbegin}{\paragraph{Proof.}}
+\newcommand{\proofend}{$\blacksquare$\bigskip}
+\newtheorem{theorem}{Théorème}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{definition}[theorem]{Définition}
+\newtheorem{lemma}[theorem]{Lemme}
+\newtheorem{corollary}[theorem]{Corollaire}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% ZONE ORANGE : intervention deconseillee
+\parindent=0pt
+\textwidth 17.0cm
+\textheight25.0cm
+\hoffset-1.0cm
+\voffset-3.0cm
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% ZONE VERTE : Intervention obligatoire
+%%% ADAPTER SUIVANT LA NATURE DE L'EPREUVE
+\def\Exam{Exercices \og Formules trigonométriques\fg{}}
+\def\Date{\today}
+\def\Classe{TS3}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% ZONE VERTE : 
+%%% ALIGNER LES EQUATIONS A GAUCHE
+\makeatletter
+\newenvironment*{fleqn}{
+    \@fleqntrue
+    \setlength\@mathmargin{0pt}%
+    \ignorespaces
+}{%
+    \ignorespacesafterend
+}
+\makeatother
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+\newcounter{nexo}
+\setcounter{nexo}{1}
+\newcommand{\Exo}{\medskip
+  {\bf Exercice \arabic{nexo} : }
+  \addtocounter{nexo}{1}}
+\newcommand{\Pb}{{\bf Problème \arabic{nexo} : } 
+\addtocounter{nexo}{1} \bigskip}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% ZONE BLEUE : Intervention parfois utile mais a faire prudemment
+{\bf  \hfill \Date \quad ~}
+%
+\vskip 1cm
+%
+%%% FAIRE UN CHOIX (3 choix possibles)
+%%% 1)
+%\centerline{\psframebox[fillstyle=solid,fillcolor=lightgray]
+%\textbf{\LARGE \black \Exam}}
+%%% 2)
+%\centerline{\psframebox{\bf \LARGE  \Exam}}
+%%% 3)
+\centerline{\bf \LARGE \Exam}
+%
+\vskip 1.5cm
+%
+
+
+%%%%%%%%%%%%%%%%%%%%%%
+%%% CORPS DU SUJET %%%
+%%%%%%%%%%%%%%%%%%%%%%
+
+% \section*{Corrigé du devoir 1}
+
+\Exo \textbf{Formule de factorisation}
+
+Soit $\theta \in \mathbb{R}$, l'exponentielle complexe est définie de la façon suivante:
+\begin{equation*}
+e^{i\theta} = \cos(\theta) + i \sin(\theta)
+\end{equation*}
+
+On admet (pour l'instant) que l'exponentielle complexe vérifie les propriétés usuelles de l'exponentielle:
+\begin{equation*}
+\forall a, b \in \mathbb{R}, e^{i(a+b)} = e^{ia} + e^{ib}
+\end{equation*}
+
+
+\begin{enumerate}
+\item En utilisant la formule de l'exponentielle complexe, montrer que pour tout $a,b \in \mathbb{R}$: 
+  \begin{align*}
+    \cos(a+b) & = \cos(a)\cos(b) - \sin(a)\sin(b) \\
+    \sin(a+b) & = \sin(a)\cos(b) + \cos(a)\sin(b) \\
+  \end{align*}
+\item Soit $p, q, x, y$ des réels. Résoudre le système d'inconnues $x$ et $y$:
+  \begin{equation*}
+    \begin{cases}
+      p & = x + y \\
+      q & = x - y \\
+    \end{cases}
+  \end{equation*}
+\item À l'aide du système précédent, exprimer $\cos(a)\cos(b)$ en fonction de $\cos(a+b)$ et de $\cos(a-b)$. Faire de même avec $\sin(a)\sin(b)$. On pourra poser $x = \cos(a)\cos(b)$, $y = \sin(a)\sin(b)$ et choisir $p$ et $q$ astucieusement. 
+\item Exprimer $\sin(a)\cos(b)$ en fonction de $\sin(a+b)$ et de $\sin(a-b)$. Faire de même avec $\cos(a)\sin(b)$. 
+\end{enumerate}
+
+
+\Exo {$\boldsymbol{\arcsin}$}
+
+On cherche à calculer $X = \displaystyle \arcsin\left( - \sqrt{\frac{2 - \sqrt{2}}{4}}\right)$. 
+\begin{enumerate}
+\item Montrer que pour tout $x \in \mathbb{R}$
+  \begin{equation*}
+    \sin^2(x)  = \frac{1 - \cos(2x)}{2}
+  \end{equation*}
+\item Appliquer la formule précédente à $x = \frac{\pi}{8}$. 
+\item En déduire la valeur de $X$. 
+\item (Vérifier que vous n'avez pas fait de fautes, par exemple avec une calculatrice). 
+\end{enumerate}
+
+
+
+\end{document}
