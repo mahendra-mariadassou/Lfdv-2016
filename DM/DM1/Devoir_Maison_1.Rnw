@@ -1,0 +1,177 @@
+\documentclass[a4paper,12pt]{article}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% ZONE ROUGE : intervention très fortement deconseillee
+\usepackage[utf8]{inputenc} % accent dans la source
+\usepackage[T1]{fontenc}
+\usepackage{times}
+\usepackage[french]{babel}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{fancybox}
+\usepackage{pstricks}
+\usepackage{pst-plot}
+% \usepackage{pst-char}
+\usepackage{pst-text}
+% \usepackage{psfig}
+\usepackage{ifthen}
+\def\R{\mathbb{R}}
+\def\C{\mathbb{C}}
+\def\Z{\mathbb{Z}}
+\def\Q{\mathbb{Q}}
+\def\N{\mathbb{N}}
+\def\F{\mathbb{F}}
+\def\P{\mathbb{P}}
+\def\A{\mathbb{A}}
+
+%%%% Théorème, Proposition et tout le reste%%%%
+\newcommand{\proofbegin}{\paragraph{Proof.}}
+\newcommand{\proofend}{$\blacksquare$\bigskip}
+\newtheorem{theorem}{Théorème}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{definition}[theorem]{Définition}
+\newtheorem{lemma}[theorem]{Lemme}
+\newtheorem{corollary}[theorem]{Corollaire}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% ZONE ORANGE : intervention deconseillee
+\parindent=0pt
+\textwidth 17.0cm
+\textheight26.0cm
+\hoffset-2.0cm
+\voffset-2.0cm
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% ZONE VERTE : Intervention obligatoire
+%%% ADAPTER SUIVANT LA NATURE DE L'EPREUVE
+\def\Exam{Devoir Maison \og Binôme de Newton \fg{}}
+\def\Date{29 novembre 2016}
+\def\Classe{TS3}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% ZONE VERTE : 
+%%% ALIGNER LES EQUATIONS A GAUCHE
+\makeatletter
+\newenvironment*{fleqn}{
+    \@fleqntrue
+    \setlength\@mathmargin{0pt}%
+    \ignorespaces
+}{%
+    \ignorespacesafterend
+}
+\makeatother
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% knitr
+<<include=FALSE>>=
+library(knitr)
+opts_chunk$set(
+fig.path='Figures/',cache=TRUE,echo=FALSE
+)
+@
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+\newcounter{nexo}
+\setcounter{nexo}{1}
+\newcommand{\Exo}{\medskip
+  {\bf Exercice \arabic{nexo} : }
+  \addtocounter{nexo}{1}}
+\newcommand{\Pb}{{\bf Problème \arabic{nexo} : } 
+\addtocounter{nexo}{1} \bigskip}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% ZONE BLEUE : Intervention parfois utile mais a faire prudemment
+{\bf  \hfill \Date \quad ~}
+%
+\vskip 1cm
+%
+%%% FAIRE UN CHOIX (3 choix possibles)
+%%% 1)
+%\centerline{\psframebox[fillstyle=solid,fillcolor=lightgray]
+%\textbf{\LARGE \black \Exam}}
+%%% 2)
+%\centerline{\psframebox{\bf \LARGE  \Exam}}
+%%% 3)
+\centerline{\bf \LARGE \Exam}
+%
+\vskip 1.5cm
+%
+
+
+%%%%%%%%%%%%%%%%%%%%%%
+%%% CORPS DU SUJET %%%
+%%%%%%%%%%%%%%%%%%%%%%
+
+Le but de ce devoir maison est de vous familiariser avec la formule du binôme de Newton et les notions qui tournent autour: Triangle de Pascal et coefficients binomiaux. On reverra les coefficients binomiaux en combinatoire (une branche des mathématiques qui sert à "compter"). \textbf{À l'issue du DM, la formule du triangle de Pascal et celle du binôme de Newton sont à connaître}. 
+
+\begin{definition}
+Soit $n$ et $k$ deux entiers. On appelle coefficients binômial $(n, k)$ le nombre:
+\begin{equation*}
+{n \choose k} = \begin{cases} \frac{n!}{k!(n-k)!} & \text{si} \quad 0 \leq k \leq n \\ 0 & \text{si } k < 0 \text{ ou } k > n \end{cases}
+\end{equation*}
+\end{definition}  
+
+% \section{Exercices}
+
+\begin{proposition}
+On verra plus tard que ${n \choose k}$ est le nombre de façons de choisir $k$ éléments parmi $n$. Autrement dit, si $E$ est un ensemble à $n$ éléments, il existe ${n \choose k}$ sous-ensembles de $E$ à $k$ éléments. 
+\end{proposition}  
+
+On rappelle la conviention $0! = 1$.  
+
+\begin{theorem} \textbf{Binôme de Newton}
+Soit $n$ un entier et $a$ et $b$ deux nombres complexes. On a 
+\begin{equation*}
+(a+b)^n = \sum_{k=0}^n {n \choose k} a^k b^{n-k}
+\end{equation*}
+\end{theorem}  
+
+\Exo \textbf{Triangle de Pascal}
+
+Montrer l'égalité suivante dite du triangle de Pascal (directement, une récurrence n'est pas nécessaire):
+\begin{enumerate}
+\item $\forall n, k \in \mathbb{N}$, ${n \choose k} + {n \choose k+1} = {n+1 \choose k+1}$
+\end{enumerate}
+
+
+\Exo \textbf{Quelques propriétés des coefficients binômiaux}
+
+Montrer les égalités suivantes (directement, une récurrence n'est pas nécessaire).
+\begin{enumerate}
+\item $\forall n, k \in \mathbb{N}$, ${n \choose n-k} = {n \choose k}$
+\item $\forall n, k \in \mathbb{N}$, $k {n \choose k} = n {n-1 \choose k-1}$
+\end{enumerate}
+
+\Exo \textbf{Valeurs particulières}
+
+Montrer les égalités suivantes
+\begin{enumerate}
+\item $\forall n \in \mathbb{N}$, ${n \choose 0} = {n \choose n} = 1$
+\item $\forall n \in \mathbb{N}$, ${n \choose 1} = {n \choose n-1} = n$
+\item $\forall n \in \mathbb{N}$, ${n \choose 2} =  {n \choose n-2} = \frac{n(n-1)}{2}$
+\end{enumerate}
+
+\Exo \textbf{Démonstration de de la formule du binôme de Newton}
+
+On va démontrer la formule du binôme de Newton par récurrence. On note $P(n)$ la proposition $\forall (a, b) \in \mathbb{R}, \quad (a+b)^n = \sum_{k = 0}^n {n \choose k} a^kb^{n-k}$
+\begin{enumerate}
+\item \textbf{Initialisation} Montrer que $P(0)$ est vraie. On rappelle la convention $a^0 = 1$. 
+\item \textbf{Hérédité} On suppose $P(n)$ et on veut montrer $P(n+1)$. En utilisant l'hypothèse de récurrence, montrer que 
+$$ \quad (a+b)^{n+1} = \sum_{k = 0}^n {n \choose k} a^{k+1} b^{n-k} + \sum_{k = 0}^n {n \choose k} a^{k} b^{n+1-k} $$
+\item Montrer que 
+$$\sum_{k = 0}^n {n \choose k} a^{k+1} b^{n-k} = \sum_{j = 1}^{n+1} {n \choose j-1} a^{j} b^{n+1-j}$$ 
+\item En déduire le coefficient de $a^{k}b^{n+1-k}$ dans $(a+b)^{n+1}$. On pourra traiter séparément les cas $a^{n+1}$ et $b^{n+1}$ d'un côté et le cas général $a^{k}b^{n+1-k}$ ($1 \leq k \leq n$) de l'autre. Le triangle de Pascal et les valeurs particulières des coefficients binômiaux peuvent s'avérer utiles. 
+\item Conclure
+\end{enumerate}
+
+\Exo \textbf{Applications}
+
+Soit $n, p$ deux entiers naturels tels que $p \leq n$
+\begin{enumerate}
+\item $\displaystyle \sum_{k = 0}^n {n \choose k} \quad$ On pourra essayer de reconnaître un binôme de Newton. 
+\item $\displaystyle \sum_{k = p}^n {k \choose p} \quad$ (difficile) 
+\end{enumerate}
+
+
+\end{document}

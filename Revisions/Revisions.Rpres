@@ -852,7 +852,7 @@ Décalage d'indices
 
 <div class="proposition">
 Soit $(a_i)_i$ une famille indexée par $\mathbb{N}$. On a pour tout entier $n$
-$$ \sum_{i = 1}^n a_i = \sum_{i = 2}^{n+1} a_{i-1} + \sum_{i = 0}^{n-1} a_{i+1} $$
+$$ \sum_{i = 1}^n a_i = \sum_{i = 2}^{n+1} a_{i-1} - \sum_{i = 0}^{n-1} a_{i+1} $$
 
 Ou tout autre décalage du même style, le but étant généralement de se ramener à une somme connue. 
 </div>
