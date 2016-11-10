@@ -674,7 +674,111 @@ Résoudre les équations suivantes, dans $\mathbb{R}$ puis dans $[0, 2\pi]$:
 * $\cos(x) + \sin(x) = 1$
 * $\sqrt{3}\cos(2x) + \sin(2x) > 0$
 
+Notations Somme et Produit
+========================================================
 
+On utilise les signes $\sum$ et $\prod$ pour désigner des sommes et des produits
+
+$$ \sum_{i = 0}^n u_i = u_0 + u_1 + \dots + u_{n-1} + u_n$$
+
+$$ \prod_{i = 0}^n u_i = u_0 \times u_1 \times \dots \times u_{n-1} \times u_n$$
+
+L'ensemble des valeurs prises par l'indice $î$ est ici $\{0, 1, \dots, n-1, n\}$ mais il peut bien sûr être différent. Par exemple, on peut remarquer que pour tout $n \geq 1$, on a $n! = \prod_{i=1}^n i$. 
+
+Variable muette 
+========================================================
+
+La variable $i$ dans la notation précédente est dite **muette**, elle n'a de sens qu'à l'intérieur de CE symbole $\sum$ (ou $\prod$). 
+
+Autrement dit les $î$ situés à l'**extérieur** du symbole $\sum$ sont complétement sans indépendants des $i$ situés à l'**intérieur** du symbole $\sum$. 
+
+On peut donc remplacer le symbole $i$ par un autre, par exemple $j$, à condition de rester **cohérent**:
+$$ \sum_{i = 0}^n u_i = \sum_{j = 0}^n u_j$$
+
+Exemples
+========================================================
+
+Calculer
+
+* $\sum_{i=1}^n 1$  
+* $\sum_{i=1}^n i \quad$  (voir exercice de récurrence)
+* $\sum_{i=1}^n n$  
+* $\sum_{i=1}^n (-1)^i$
+* $\sum_{i=1}^n (-1)^n$
+
+Linéarité des sommes
+========================================================
+
+<div class="proposition">
+Soit $n$ un entier, $(a_i)_i$ et $(b_i)_i$ deux familles indexées par $i \in \{1, \dots, n\}$ et $\lambda$ un réel. On a 
+$$ \sum_{i = 0}^n (a_i + b_i) = \sum_{i = 0}^n a_i + \sum_{i = 0}^n b_i \quad \text{et} \quad \sum_{i = 0}^n (\lambda \times a_i) = \lambda \times \sum_{i = 0}^n a_i$$
+</div>
+
+Décalage d'indices
+========================================================
+
+<div class="proposition">
+Soit $(a_i)_i$ une famille indexée par $\mathbb{N}$. On a pour tout entier $n$
+$$ \sum_{i = 1}^n a_i = \sum_{i = 2}^{n+1} a_{i-1} + \sum_{i = 0}^{n-1} a_{i+1} $$
+
+Ou tout autre décalage du même style, le but étant généralement de se ramener à une somme connue. 
+</div>
+
+<br> 
+
+Conseil: Posez clairement le *changement de variable* et faites le en 3 étapes
+* **Variable** Posons $j = i+1$
+* **Bornes** Lorsque $i$ vaut $1$, $j$ vaut $2$ et lorsque $i$ vaut $n$, $j$ vaut $n+1$.
+* **Corps de la somme** Remplaçons tous les $i$ par des $j-1$
+
+Exemple
+========================================================
+
+<div class="exercice">
+</div>
+Montrer que pour tout $n \in \mathbb{N}$, on a 
+$$\sum_{k=1}^n k^2 = n + 2\sum_{k=1}^{n-1}k + \sum_{k=0}^{n-1} k^2$$
+<br> 
+
+Résultats classique (à connaître)
+========================================================
+
+On peut démontrer tous ces résultats par récurrence.
+
+* $\sum_{i=1}^n i = \frac{n(n+1)}{2}$
+* $\sum_{i=1}^n i^2 = \frac{n(n+1)(2n+1)}{6}$
+* $\sum_{i=1}^n i^3 = \frac{n^2(n+1)^2}{4}$
+
+Somme des premiers termes d'une suite géométrique
+========================================================
+
+Cette formule sert dans tous les chapitres. Vous la connaissez en général avec $n = 1$.
+
+<div class="proposition">
+Soit $a \in \mathbb{C}$ et $n \in \mathbb{N}$, alors $a^{n+1} - 1 = (a-1)\sum_{i=0}^n a^i$. <br>
+On peut la réécrire pour $a \in \mathbb{C}-\{1\}$ en 
+$$\sum_{i=0}^n a^i = \frac{1 - a^{n+1}}{1-a}$$
+</div>
+
+Téléscopage
+========================================================
+
+<div class="proposition">
+Soit $(u_i)_{i \in \mathbb{N}}$, alors 
+$$\sum_{i=0}^n (u_{i+1} - u_i) = u_{n+1} - u_0$$
+</div>
+
+<br>
+
+<div class="Exercice">
+Calculer <br>
+
+<ul>
+  <li> $\sum_{i=1}^n \frac{1}{i(i+1)}$ </li>
+  <li> $\prod_{i=1}^n \frac{i}{i+1}$ </li>
+  <li> $\sum_{i=1}^n \ln \left( \frac{i}{i+1} \right)$ </li>
+</ul>
+</div>
 
 TODO
 ========================================================
