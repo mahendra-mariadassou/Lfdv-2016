@@ -1,54 +1,10 @@
-<style>
-large {font-size:larger}
-alert {color:SteelBlue; font-weight:bold}
-ul {
-}
-.theorem {
-  content: "Théorème";
-}
-.theorem:before {
-  display: block;
-  content: inherit;
-  font-weight: bold;
-  font-style: normal;
-}
-.proposition {
-  display: block;
-  background-color: LightGreen;
-  content: "Proposition";
-}
-.proposition:before {
-  content: inherit;
-  font-weight: bold;
-  font-style: normal;
-}
-.definition {
-  display:block;
-  content: "Définition";
-}
-.definition:before {
-  content: inherit;
-  font-weight: bold;
-  font-style: normal;
-}
-.exercice {
-  display:block;
-  background-color: LightGray;
-  content: "Exercice";
-}
-.exercice:before {
-  content: inherit;
-  font-weight: bold;
-  font-style: normal;
-}
-</style>
-
 Révisions
 ========================================================
 author: Mahendra Mariadassou
 date: 31 Octobre 2016
 width: 1280
 height: 720
+css: ../CSS/custom_licence_fdv.css
 
 
 
@@ -779,9 +735,3 @@ Calculer <br>
   <li> $\sum_{i=1}^n \ln \left( \frac{i}{i+1} \right)$ </li>
 </ul>
 </div>
-
-TODO
-========================================================
-
-TODO: division des polynômes
-
