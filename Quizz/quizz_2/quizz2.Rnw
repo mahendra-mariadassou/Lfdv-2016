@@ -124,43 +124,32 @@ require(patchSynctex)
   z_2 = \exp(0.5\ln(2) + i\pi/4)
 \end{equation*}
 
-
-
 \bigskip
 
-\Exo \textbf{Module}
+\Exo \textbf{Module et argument}
 
-Calculer le module des nombres complexes suivants:
+Calculer le module (et pour $z_2$ seulement un argument) des nombres complexes suivants:
 \begin{eqnarray*}
   z_1 = 3 + 4i \\
-  z_2 = (1+i)^{2016} \\  
+  z_2 = (1+i)^{8} \\  
 \end{eqnarray*}
 
 \bigskip
 
-\Exo \textbf{Majorant, Minorant, etc}
+\Exo \textbf{Géométrie}
 
-On considère l'ensemble $S = \left\{\frac{1}{n}, n \in \mathbb{N}^\star \right\}$. 
+Trouver l'ensemble des nombres complexes $z$ tels que $|z + 1 - i| = |z - 1 + i|$. 
 
-\begin{enumerate}
-\item S est-il majoré? Si oui, donner $\sup(S)$. $\sup(S)$ est-il un élément de $S$?
-\item S est-il minoré? Si oui, donner $\inf(S)$. $\inf(S)$ est-il un élément de $S$?
-\end{enumerate}
+\bigskip
 
+\Exo \textbf{Linéarisation}
 
-\Exo \textbf{Injection, Surjection, Bijection}
+Linéariser $\cos^4(x)$. 
 
-On considère les ensembles 
-\begin{itemize}
-\item $E = \{ \text{Table}, \text{Chaise}, \text{Armoire}, \text{Étagère} \}$
-\item $F = \{ \text{HENSVIK}, \text{LISABO}, \text{BILLY}, \text{VILMAR} \}$. 
-\end{itemize}
+\bigskip
 
+\Exo \textbf{Racine carrée}
 
-\begin{enumerate}
-\item Donner un exemple de bijection de $E$ dans $F$. 
-\item On enlève BILLY de $F$. Peut-on encore construire une injection, une surjection, une bijection de $E$ dans $F$?
-\item On enlève Armoire de $E$. Peut-on encore construire une injection, une surjection, une bijection de $E$ dans $F$?
-\end{enumerate}
+Calculer les 2 racines carrés $z_1$ et $z_2$ de $Z = 1+i\sqrt{3}$. On pourra d'abord écrire $Z$ sous forme exponentielle mais on prendra soin de donner $z_1$ et $z_2$ sous forme algébrique. 
 
 \end{document}

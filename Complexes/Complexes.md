@@ -507,9 +507,45 @@ Linéarisation, transformation: exemples
 </ul>
 </div>
 
-
-
 Calcul d'une racine carrée complexe
 ========================================================
 
-En classe
+Soit $Z$ un nombre complexe, on cherche à calculer une racine carrée de $Z$ c'est à dire **un** nombre complexe $z$ tel que $z^2 = Z$. 
+
+Comme dans $\mathbb{R}$, si $z$ est solution, alors $-z$ mais contrairement à $\mathbb{R}$, on ne peut pas parler de **la** racine carrée puisque la condition $z > 0$ n'a **pas de sens** pour un complexe. 
+
+<div class="proposition">
+Soit $Z$ un nombre complexe <alert>quelconque</alert>. L'équation d'inconnue complexe $z$:
+$$z^2 = Z$$
+a <alert>toujours</alert> deux solutions (éventuellement confondues). 
+<br>
+Si $Z = \rho e^{i\theta}$ avec $\rho \geq 0$, ces deux solutions sont:
+$$z_1 = \sqrt{\rho}e^{i\theta/2} \text{ et } z_2 = -z_1 = -\sqrt{\rho}e^{i\theta/2}$$
+</div>
+<br>
+Si $Z$ est donné sous forme algébrique, il faut faire plus d'efforts...
+
+Calcul d'une racine carrée complexe: exemple
+========================================================
+
+Si $Z$ est donné sous forme algébrique $Z = A + iB$ (avec $A, B$ réels), on va chercher les racines carrés $z$ sous forme algébrique $z = a + ib$ en utilisant 2 propriétés:
+* $z^2 = Z$
+* $|z|^2 = |Z|$
+
+La première donne:
+$$z^2 = A + iB \Leftrightarrow (a^2-b^2) + 2iab = A + iB \Leftrightarrow \begin{cases} a^2 - b^2 & = & A \\ 2ab & = & B \end{cases}$$
+
+La deuxième donne 
+$$a^2 + b^2 = \sqrt{A^2 + B^2}$$
+
+
+
+
+Spirale logarithmique
+========================================================
+
+Équation (en coordonnées exponentielles): $z(\theta) = a e^{b\theta}$ avec $a, b$ réels.
+![plot of chunk nautilus-shell](Complexes-figure/nautilus-shell-1.png)
+
+
+
