@@ -559,7 +559,7 @@ $$z_1 = \sqrt{\rho}e^{i\theta/2} \text{ et } z_2 = -z_1 = -\sqrt{\rho}e^{i\theta
 <br>
 Si $Z$ est donné sous forme algébrique, il faut faire plus d'efforts...
 
-Calcul d'une racine carrée complexe: exemple
+Calcul d'une racine carrée complexe: forme algébrique
 ========================================================
 
 Si $Z$ est donné sous forme algébrique $Z = A + iB$ (avec $A, B$ réels), on va chercher les racines carrés $z$ sous forme algébrique $z = a + ib$ en utilisant 2 propriétés:
@@ -572,8 +572,13 @@ $$z^2 = A + iB \Leftrightarrow (a^2-b^2) + 2iab = A + iB \Leftrightarrow \begin{
 La deuxième donne 
 $$a^2 + b^2 = \sqrt{A^2 + B^2}$$
 
+Calcul d'une racine carrée complexe: forme algébrique
+========================================================
 
+On peut résoudre le premier système:
+$$\begin{cases} a^2 - b^2 & = & A \\ a^2 + b^2 & = & \sqrt{A^2 + B^2} \end{cases} \Leftrightarrow \begin{cases} 2a^2 & = & \sqrt{A^2 + B^2} + A \\ 2b^2 & = & \sqrt{A^2 + B^2} - A\end{cases} \Leftrightarrow \begin{cases} a & = & \pm \sqrt{\frac{\sqrt{A^2 + B^2} + A}{2}} \\ b & = & \pm \sqrt{\frac{\sqrt{A^2 + B^2} - A}{2}} \end{cases}$$
 
+On a donc $4$ possibilités pour $(a, b)$. Le signe de $B = 2ab$ permet de n'en conserver que deux des 4. 
 
 Spirale logarithmique
 ========================================================
