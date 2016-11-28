@@ -140,8 +140,8 @@ $$z_\vec{AB} = z_B - z_A$$
 <div class="proposition">
 Avec les notation des deux propositions précédentes
 <ul>
-<li> $z \in \mathbb{R} \Leftrightarrow M(z)$ est sur l'axe des ordonnées </li>
-<li> $z \in i\mathbb{R} \Leftrightarrow M(z)$ est sur l'axe des abscisses </li>
+<li> $z \in \mathbb{R} \Leftrightarrow M(z)$ est sur l'axe des abscisses </li>
+<li> $z \in i\mathbb{R} \Leftrightarrow M(z)$ est sur l'axe des ordonnées </li>
 <li> Soit $\vec{\alpha}$ et $\vec{\beta}$ d'affixes respectives $z_\alpha$ et $z_\beta$. Le complexe $z_\alpha + z_\beta$ est l'affixe de $\vec{\alpha} + \vec{\beta}$. Autrement dit, $z_{\alpha + \beta} = z_{\alpha} + z_{\beta}$. </li>
 <li> Soit $z \in \mathbb{C}$ et $M(z)$ son point image. Alors le point $M(\bar{z})$, image de $\bar{z}$ est l'image de $M(z)$ par la symmétrie d'axe $(Ox)$</li>
 </ul>
@@ -335,7 +335,7 @@ $$\overline{\rho e^{i\theta}} = \rho e^{-i\theta}$$
 <br>
 
 <div class="proposition">
-Soit $z$ un complexe non nul et $b$ un réel. $b$ est un argument de $z$ si et seulement $z = |z|e^{i\theta}$
+Soit $z$ un complexe non nul et $\theta$ un réel. $\theta$ est un argument de $z$ si et seulement $z = |z|e^{i\theta}$
 </div>
 
 <br>
@@ -469,7 +469,7 @@ $$\begin{align}
 \cos^3(x) & = \left( \frac{e^{ix} + e^{-ix}}{2}\right)^3 \\
  & = \frac{1}{8}\left(e^{i3x} + 3e^{i2x}e^{-ix} + 3e^{ix}e^{-i2x} + e^{-i3x}\right) \\
  & = \frac{1}{8} \left(e^{i3x} + 3e^{ix} + 3e^{-ix} + e^{-i3x}\right) \\
- & = \frac{1}{8} \left(e^{i3x} + e^{i3x} + 3(e^{ix} + e^{-ix})\right) \\
+ & = \frac{1}{8} \left(e^{i3x} + e^{-i3x} + 3(e^{ix} + e^{-ix})\right) \\
  & = \frac{1}{8} \left(2\cos(3x) + 6\cos(x)\right) = \frac{1}{4}(3\cos(x) + \cos(3x)) \\
 \end{align}$$
 
