@@ -119,9 +119,9 @@ require(patchSynctex)
 \Exo \textbf{Forme algébrique}
 
 Écrire sous forme algébrique les complexes suivants:
-\begin{equation*}
-  z_1 = \frac{2+i}{3-i}
-\end{equation*}
+% \begin{equation*}
+%   z_1 = \frac{2+i}{3-i}
+% \end{equation*}
 
 \textcolor{gray}{
 \begin{equation*}
@@ -129,9 +129,9 @@ require(patchSynctex)
 \end{equation*}
 }
 
-\begin{equation*}
-  z_2 = \exp(0.5\ln(2) + i\pi/4)
-\end{equation*}
+% \begin{equation*}
+%   z_2 = \exp(0.5\ln(2) + i\pi/4)
+% \end{equation*}
 
 \textcolor{gray}{
 \begin{equation*}
@@ -141,7 +141,7 @@ require(patchSynctex)
 
 \Exo \textbf{Module et argument}
 
-Calculer le module (et pour $z_2$ seulement un argument) des nombres complexes suivants:
+Calculer le module (et pour $z_2$ également un argument) des nombres complexes suivants:
 \begin{eqnarray*}
   z_1 = 3 + 4i \\
   z_2 = (1+i)^{8} \\  
@@ -195,5 +195,17 @@ En détails:
 \Exo \textbf{Racine carrée}
 
 Calculer les 2 racines carrés $z_1$ et $z_2$ de $Z = 1+i\sqrt{3}$. On pourra d'abord écrire $Z$ sous forme exponentielle mais on prendra soin de donner $z_1$ et $z_2$ sous forme algébrique. 
+
+\textcolor{gray}{
+On commence par écrire $Z$ sous forme exponentielle. $|Z| = \sqrt{1 + 3} = 2$ donc 
+$$Z = 2\left(\frac{1}{2} + i\frac{\sqrt{3}}{2}\right) = 2(\cos(\pi/3) + i\sin(\pi/3)) = 2e^{i\pi/3}$$
+D'où on déduit que les racines $z_1$ et $z_2$ sont 
+\begin{align*}
+z_1 & = \sqrt{2}e^{i\pi/6} = \sqrt{2} \left( \frac{\sqrt{3}}{2} + i\frac{1}{2} \right) = \frac{1}{\sqrt{2}} (\sqrt{3} + i) \\
+z_2 & = -z_1 = -\frac{1}{\sqrt{2}} (\sqrt{3} + i)
+\end{align*}
+}
+
+
 
 \end{document}

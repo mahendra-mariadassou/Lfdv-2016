@@ -446,7 +446,7 @@ $$\begin{align}
 \end{align}$$
 
 On montre de même que 
-$$ \sin(a-b) = \cos(a)\sin(b) + \sin(a)\cos(b)$$
+$$ \sin(a+b) = \cos(a)\sin(b) + \sin(a)\cos(b)$$
 
 Toutes les autres formules en découlent.
 
@@ -542,7 +542,12 @@ Calcul d'une racine carrée complexe: forme algébrique
 ========================================================
 
 On peut résoudre le premier système:
-$$\begin{cases} a^2 - b^2 & = & A \\ a^2 + b^2 & = & \sqrt{A^2 + B^2} \end{cases} \Leftrightarrow \begin{cases} 2a^2 & = & \sqrt{A^2 + B^2} + A \\ 2b^2 & = & \sqrt{A^2 + B^2} - A\end{cases} \Leftrightarrow \begin{cases} a & = & \pm \sqrt{\frac{\sqrt{A^2 + B^2} + A}{2}} \\ b & = & \pm \sqrt{\frac{\sqrt{A^2 + B^2} - A}{2}} \end{cases}$$
+$$
+\begin{align*}
+\begin{cases} a^2 - b^2 & = & A \\ a^2 + b^2 & = & \sqrt{A^2 + B^2} \end{cases} & \Leftrightarrow \begin{cases} 2a^2 & = & \sqrt{A^2 + B^2} + A \\ 2b^2 & = & \sqrt{A^2 + B^2} - A\end{cases} \\ 
+& \Leftrightarrow \begin{cases} a & = & \pm \sqrt{\frac{\sqrt{A^2 + B^2} + A}{2}} \\ b & = & \pm \sqrt{\frac{\sqrt{A^2 + B^2} - A}{2}} \end{cases}
+\end{align*}
+$$
 
 On a donc $4$ possibilités pour $(a, b)$. Le signe de $B = 2ab$ permet de n'en conserver que deux des 4. 
 
@@ -567,7 +572,7 @@ Trinôme de degré 2 dans C
 Soit $(a, b, c) \in \mathbb{C}$ avec <alert>$a \neq 0$</alert>. On considère l'équation $(E)$:
 $$ az^2 + bz + c = 0$$. 
 Cette équation est équivalente à l'équation suivante
-$$ \left(z + \frac{b}{2a} \right) = \frac{\Delta}{4a^2}$$
+$$ \left(z + \frac{b}{2a} \right)^2 = \frac{\Delta}{4a^2}$$
 où $\Delta = b^2 - 4ac$. 
 <br>
 En notant $\alpha$ une racine carrée de $\Delta$ (qui existe toujours), les solutions de $(E)$ sont:
@@ -593,10 +598,17 @@ Avec les notations précédentes, on a $z_1 z_2 = c/a$ et $z_1 + z_2 =  - b/a$
 Exercice
 ========================================================
 
+<div class="exercice">
 La Places des Vosges a une superficie de 19600 m$^2$ et un périmètre de 560 mètres. Quelles sont ses dimensions?
+</div>
 
-
-
+<br> On note $l$ et $L$ les dimensions la place. D'après l'énoncé $lL = 19600$ et $2(l+L) = 560$ donc $l+L = 280$. On sait que $l$ et $L$ sont solutions de l'équation (d'inconnue $x$):
+$$(x-l)(x-L) = 0$$
+Cette équation peut se réécrire 
+$$x^2 - (l+L)x +lL = 0$$
+En substituant avec les valeurs de l'énoncé, $l$ et $L$ sont solutions de l'équation
+$$x^2 - 280x + 19600 = 0$$ 
+En résolvant, on obtient $l=L=140$. On pourrait pu aller plus vite en utilisant l'information que la place des Vosges est carrée...
 
 
 Spirale logarithmique

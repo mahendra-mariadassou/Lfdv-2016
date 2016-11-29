@@ -128,7 +128,7 @@ require(patchSynctex)
 
 \Exo \textbf{Module et argument}
 
-Calculer le module (et pour $z_2$ seulement un argument) des nombres complexes suivants:
+Calculer le module (et pour $z_2$ également un argument) des nombres complexes suivants:
 \begin{eqnarray*}
   z_1 = 3 + 4i \\
   z_2 = (1+i)^{8} \\  
