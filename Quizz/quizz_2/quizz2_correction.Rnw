@@ -34,6 +34,8 @@
 \newtheorem{lemma}[theorem]{Lemme}
 \newtheorem{corollary}[theorem]{Corollaire}
 
+%%% Correction
+\newcommand{\correction[1]}{\textcolor{gray}{#1}}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%% ZONE ORANGE : intervention deconseillee
@@ -113,118 +115,85 @@ require(patchSynctex)
 
 %% \section*{Test 1}
 
-\Exo \textbf{\'Equation}
 
-Résoudre les équations (en $x \in \R$) suivantes:
+\Exo \textbf{Forme algébrique}
+
+Écrire sous forme algébrique les complexes suivants:
 \begin{equation*}
-  \frac{1}{\floor{x+1}} = \frac{1}{2}  
+  z_1 = \frac{2+i}{3-i}
 \end{equation*}
 
+\textcolor{gray}{
 \begin{equation*}
-  \sqrt{|x+1|} = 3
+  z_1 = \frac{2+i}{3-i} = \frac{(2+i)(3+i)}{(3-i)(3+i)} = \frac{5 + 5i}{|3+i|^2} = \frac{5(1+i)}{10} = \frac{1+i}{2}
+\end{equation*}
+}
+
+\begin{equation*}
+  z_2 = \exp(0.5\ln(2) + i\pi/4)
 \end{equation*}
 
-On raisonne par équivalence. 
-\begin{align*}
-  \frac{1}{\floor{x+1}} = \frac{1}{2} \Leftrightarrow \floor{x+1} = 2 \Leftrightarrow 2 \leq x < 3 \Leftrightarrow 1 \leq x < 2
-\end{align*}
+\textcolor{gray}{
+\begin{equation*}
+  z_2 = \exp(0.5\ln(2) + i\pi/4) = e^{0.5\ln(2)} \times e^{i\pi/4} = 2^{0.5} (\cos(\pi/4) + i\sin(\pi/4)) = \sqrt{2} \left(\frac{\sqrt{2}}{2} + i\frac{\sqrt{2}}{2}\right)  = 1+i
+\end{equation*}
+}
 
-et 
+\Exo \textbf{Module et argument}
 
-\begin{align*}
-  \sqrt{|x+1|} = 3 \Leftrightarrow |x+1| = 9 \Leftrightarrow \begin{cases} x+1 & = 9 \\ x+1 & = -9 \end{cases} \Leftrightarrow \begin{cases} x & = 8 \\ x & = -10 \end{cases}
-\end{align*}
-
-
-\bigskip
-
-\Exo \textbf{Inéquations}
-
-Résoudre les inéquations (en $x \in \R$) suivantes:
+Calculer le module (et pour $z_2$ seulement un argument) des nombres complexes suivants:
 \begin{eqnarray*}
-  10^{-x} & \leq & 1/2^{10} \\
-  \exp(3x + 4) & \geq & 10 \\  
+  z_1 = 3 + 4i \\
+  z_2 = (1+i)^{8} \\  
 \end{eqnarray*}
 
+\textcolor{gray}{
+$$|z_1| = |3+4i| = \sqrt{3^2 + 4^2} = \sqrt{9+16} = 5$$
+Pour $z_2$, on commence par écrire $1+i$ sous forme exponentielle, $|1+i| = \sqrt{2}$ donc 
+$$|1+i| = \sqrt{2} \left(\frac{\sqrt{2}}{2} + i\frac{\sqrt{2}}{2}\right) = \sqrt{2}(\cos(\pi/4) + i\sin(\pi/4)) = \sqrt{2}e^{i\pi/4}$$
+On peut aussi utiliser l'exercice précédent pour arriver au même résultat. On alors 
+$$z_2 = (1+i)^8 = \left[ \sqrt{2}e^{i\pi/4} \right]^8 = 2^4 e^{8\times i\pi/4} = 16 e^{i2\pi} = 16$$
+On en déduit que $|z_2| = 16$ et qu'\textbf{un} argument de $z_2$ est $0$ (\textbf{un} autre est $2\pi$.)
+}
 
-On raisonne par équivalence en appliquant les fonctions $\log$ ou $\ln$ qui sont croissantes sur $\mathbb{R}_+^\star$. 
+\Exo \textbf{Géométrie}
+
+Trouver l'ensemble des nombres complexes $z$ tels que $|z + 1 - i| = |z - 1 + i|$. 
+
+\textcolor{gray}{On adopte une résolution géométrique. Soit $z$ un nombre complexe. On note $M$ le point d'affixe $z$, $A$ le point d'affixe $-1+i$ et $B$ le point d'affixe $1-i$. On note que $|z + 1 - i| = AM$ et $|z - 1 + i| = BM$. On a donc: 
+$$|z + 1 - i| = |z - 1 + i| \Leftrightarrow AM = BM \Leftrightarrow M \text{ est sur la médiatrice de } A \text{ et } B$$ 
+La médiatrice de $AB$ est la droite d'équation $y = x$. L'ensemble solution est donc $S = \{ z \in \mathbb{C} \text{ tels que } Re(z) = Im(z) \}$.
+}
+
+<<mediatrice, out.width = "0.5\\linewidth">>=
+par(cex = 1.4)
+plot(x = c(-1, 1), y = c(1, -1), pch = 19, xlim=c(-1.1, 1.1), ylim = c(-1.1, 1.1), axes = F, xlab = NA, ylab = NA, asp = 1)
+abline(h = 0, v = 0)
+abline(a = 0, b = 1, col = "red", lwd = 3)
+text(x = c(-1, 1), y = c(1, -1), labels = c("A (-1+i)", "B (1-i)"), pos = c(1, 2))
+points(0.8, 0.8, pch = 19, col = "red"); text(0.8, 0.8, labels = "M (x + iy)", pos = 4, col = "red")
+segments(x0 = c(-1, 1), x1 = 0.8, y0 = c(1, -1), y1 = 0.8, col = "red")
+text(-1, -1, "S", col = "red", pos = 3)
+@
+
+\Exo \textbf{Linéarisation}
+
+Linéariser $\cos^4(x)$. 
+
+\textcolor{gray}{On répond à la consigne comme vu en cours: on utilise (1) la formule d'Euler pour écrire $\cos$ comme une somme, (2) la formule du binôme de Newton pour développer cette somme à la puissance $4$, (3) on trie les termes pour les apparier et (4) on utilise la formule d'Euler (dans l'autre sens) pour faire apparaître de nouveau des $\cos$. On rappelle juste la formule du binôme pour $n = 4$
+$$(a+b)^4 = a^4 + 4a^3b + 6a^2b^2 + 4ab^3 + b^4$$.
+En détails:
 \begin{align*}
-  10^{-x} \leq & 1/2^{10} \Leftrightarrow -x \leq \log(1/2^{10}) \Leftrightarrow x \geq -10\log(1/2) \Leftrightarrow x \geq 10\log(2)
+  \cos^4(x) & =  \left( \frac{e^{ix} + e^{-ix}}{2} \right)^4 \tag{Euler} \\
+  & = \frac{1}{16}\left( e^{i4x} + 4e^{i2x} + 6 + 4e^{-i2x} + e^{-i4x}\right) \tag{Binôme} \\
+  & = \frac{1}{16}\left( \textcolor{red}{e^{i4x} + e^{-i4x}} + 4(\textcolor{blue}{e^{i2x} + e^{-i2x}}) + \textcolor{green}{6} \right) \tag{Tri} \\
+  & = \frac{1}{16}\left( \textcolor{red}{2\cos(4x)} + 4\times \textcolor{blue}{2\cos(2x)} + \textcolor{green}{6} \right) \tag{Euler} \\
+  & = \frac{1}{8}(\cos(4x) + 4\cos(2x) + 3) \tag{Simplification}
 \end{align*}
+}
 
-et 
+\Exo \textbf{Racine carrée}
 
-\begin{align*}
-  \exp(3x + 4) \geq  10 \Leftrightarrow 3x + 4 \geq \ln(10) \Leftrightarrow x \geq \frac{\ln(10) - 4}{3}
-\end{align*}
-
-
-\bigskip
-
-\Exo \textbf{Majorant, Minorant, etc}
-
-On considère l'ensemble $S = \left\{\frac{1}{n}, n \in \mathbb{N}^\star \right\}$. 
-
-\begin{enumerate}
-\item S est-il majoré? Si oui, donner $\sup(S)$. $\sup(S)$ est-il un élément de $S$?
-\item S est-il minoré? Si oui, donner $\inf(S)$. $\inf(S)$ est-il un élément de $S$?
-\end{enumerate}
-
-Soit $n \in \mathbb{N}^\star$, on a 
-\begin{equation*}
-1 \leq n < +\infty \Leftrightarrow 1 \geq \frac{1}{n} \geq 0
-\end{equation*}
-
-Donc $S$ est minoré par $0$ et majoré par $1$. $1 = \frac{1}{1}$ est un élément de $S$, c'est donc son maximum et aussitôt sa borne supérieure. Montrons que $\inf(S) = 0$. 
-
-Raisonnons par l'absurde et supposons que ce n'est pas le cas. Il existe alors un minorant $m$ de $S$ tel que $m > 0$. Soit $n = \floor{\frac{1}{m}}+2$. Par définition, $n \geq \frac{1}{m} - 1 + 2 > \frac{1}{m}$ et on a donc $\frac{1}{n} < m$, ce qui est absurde puisque $1/n \in S$ et $m$ est censé être un minorant de $S$. On déduit que $\inf(S) = 0$. Et $0$ n'est pas un élément de $S$ puisqu'il n'existe aucun entier $n$ tel que $\frac{1}{n} = 0$. 
-
-
-\Exo \textbf{Injection, Surjection, Bijection}
-
-On considère les ensembles 
-\begin{itemize}
-\item $E = \{ \text{Table}, \text{Chaise}, \text{Armoire}, \text{Étagère} \}$
-\item $F = \{ \text{HENSVIK}, \text{LISABO}, \text{BILLY}, \text{VILMAR} \}$. 
-\end{itemize}
-
-\begin{enumerate}
-\item Donner un exemple de bijection de $E$ dans $F$. 
-\item On enlève BILLY de $F$. Peut-on encore construire une injection, une surjection, une bijection de $E$ dans $F$?
-\item On enlève Armoire de $E$. Peut-on encore construire une injection, une surjection, une bijection de $E$ dans $F$?
-\end{enumerate}
-
-\begin{enumerate}
-\item On peut construire de nombreuses bijections de $E$ dans $F$. En voici une (on représente le graphe de la fonction).
-<<bijection, out.width="0.5\\linewidth">>=
-x <- c("Table", "Chaise", "Armoire", "Étagère")
-y <- c("HENSVIK", "LISABO", "BILLY", "VILMAR")
-df <- data.frame(x, y)
-library(ggplot2)
-ggplot(df, aes(x, y)) + geom_point(size = 5) + labs(x = "E", y = "F") + theme_bw() + theme(axis.text = element_text(size = 16))
-@
-
-\item Si on enlève BILLY de $F$, on peut encore construire des surjections (voir exemple suivant) mais plus d'injections: il y a au plus 3 images dans $F$ pour 4 antécédents dans $E$ donc 2 éléments de $E$ auront forcément la même image. 
-<<surjection, out.width="0.5\\linewidth">>=
-x <- c("Table", "Chaise", "Armoire", "Étagère")
-y <- c("HENSVIK", "LISABO", "BILLY", "VILMAR")
-df <- data.frame(x = x, y = c(y[-3], "HENSVIK"))
-library(ggplot2)
-ggplot(df, aes(x, y)) + geom_point(size = 5) + labs(x = "E", y = "F") + theme_bw() + theme(axis.text = element_text(size = 16))
-@
-
-\item Si on enlève Armoire de $E$, on peut encore construire des injections (voir exemple suivant) mais plus de surjections: les 3 éléments de $E$ ont au plus 3 images alors qu'il y a 4 éléménts dans $F$, certains ne peuvent donc pas avoir pas d'antécédents. 
-<<injection, out.width="0.5\\linewidth">>=
-x <- c("Table", "Chaise", "Étagère")
-y <- c("HENSVIK", "LISABO", "BILLY", "VILMAR")
-df <- data.frame(x = c(x, "Table"), y = sample(y), invisible = c(rep(TRUE, 3), FALSE))
-library(ggplot2)
-ggplot(df, aes(x, y, alpha = invisible)) + geom_point(size = 5) + labs(x = "E", y = "F") + theme_bw() + theme(axis.text = element_text(size = 16)) + scale_alpha_discrete(range = c(0, 1), guide="none")
-@
-
-\end{enumerate}
-
-
-
+Calculer les 2 racines carrés $z_1$ et $z_2$ de $Z = 1+i\sqrt{3}$. On pourra d'abord écrire $Z$ sous forme exponentielle mais on prendra soin de donner $z_1$ et $z_2$ sous forme algébrique. 
 
 \end{document}

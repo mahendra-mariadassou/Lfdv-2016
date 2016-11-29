@@ -546,6 +546,59 @@ $$\begin{cases} a^2 - b^2 & = & A \\ a^2 + b^2 & = & \sqrt{A^2 + B^2} \end{cases
 
 On a donc $4$ possibilités pour $(a, b)$. Le signe de $B = 2ab$ permet de n'en conserver que deux des 4. 
 
+Calcul d'une racine carrée complexe: Exemple
+========================================================
+
+On essaie de calculer les racines carrés de $5 - 12i$. Il n'y a pas de forme exponentielle intéressante pour ce complexe donc on passe par la forme algébrique. On cherche une racine carré $z = a + ib$ sous forme algébrique. On a d'une part:
+$$ \begin{eqnarray*}
+z^2 = 5 - 12i & \Leftrightarrow &  (a^2 - b^2) + 2iab = 5 - 12i \\
+& \Leftrightarrow & \begin{cases} a^2 - b^2 & = & 5 \\ 2ab & = & -12 \end{cases}
+\end{eqnarray*}$$
+Et d'autre part $|z|^2 = a^2 + b^2 = |5 - 12i| = \sqrt{25 + 144} = \sqrt{169} = 13$. On doit donc résoudre le système:
+$$\begin{cases} a^2 - b^2 & = & 5 \\ a^2 + b^2 & = & 13 \end{cases} \Leftrightarrow \begin{cases} a^2 & = & 9 \\ b^2 & = & 4 \end{cases}$$
+
+Qui donne $a = \pm 3$ et $b = \pm 2$. Comme $ab = 6 < 0$, les deux solutions sont:
+$$z_1 = 3-2i \text{ et } z_2 = -3 + 2i$$. 
+
+Trinôme de degré 2 dans C
+========================================================
+
+<div class="proposition">
+Soit $(a, b, c) \in \mathbb{C}$ avec <alert>$a \neq 0$</alert>. On considère l'équation $(E)$:
+$$ az^2 + bz + c = 0$$. 
+Cette équation est équivalente à l'équation suivante
+$$ \left(z + \frac{b}{2a} \right) = \frac{\Delta}{4a^2}$$
+où $\Delta = b^2 - 4ac$. 
+<br>
+En notant $\alpha$ une racine carrée de $\Delta$ (qui existe toujours), les solutions de $(E)$ sont:
+$$ z_1 = \frac{-b + \alpha}{2a} \text{ et } z_1 = \frac{-b - \alpha}{2a}$$
+</div>
+<br>
+**Remarque** Contrairement aux équations de degré 2 dans $\mathbb{R}$, les équations de degré $2$ dans $\mathbb{C}$ ont **toujours** deux solutions (potentiellement confondues). 
+
+Trinôme de degré 2 dans C: racines
+========================================================
+
+<div class="proposition">
+Avec les notations précédentes, on a $z_1 z_2 = c/a$ et $z_1 + z_2 =  - b/a$
+</div>
+
+<br>
+
+**Remarques** 
+- La proposition précédente est utile pour trouver des nombres dont on connaît la **somme** $S$ et le **produit** $P$: il suffit de trouver les racines du polynôme $X^2 -SX + P$. 
+- Un usage plus pragmatique consiste à vérifier vos calculs: une fois trouvées les deux racines d'un trinôme en passant par le discriminant, vous pouvez vérifier leur cohérence avec la proposition précédente. 
+- Un autre usage pragmatique consiste à accélérer les calculs: si vous trouvez une racine évidente $z_1$, l'autre est forcément égale à $c/(az_1)$. Par exemple $1$ est racine évidente de $X^2 - 3X + 2$, l'autre est forcément $2$. 
+
+Exercice
+========================================================
+
+La Places des Vosges a une superficie de 19600 m$^2$ et un périmètre de 560 mètres. Quelles sont ses dimensions?
+
+
+
+
+
 Spirale logarithmique
 ========================================================
 
