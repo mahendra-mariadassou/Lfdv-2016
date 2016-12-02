@@ -1,0 +1,161 @@
+\documentclass[a4paper,12pt]{article}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% ZONE ROUGE : intervention très fortement deconseillee
+\usepackage[utf8]{inputenc} % accent dans la source
+\usepackage[T1]{fontenc}
+\usepackage{times}
+\usepackage[french]{babel}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{fancybox}
+\usepackage{pstricks}
+\usepackage{pst-plot}
+% \usepackage{pst-char}
+\usepackage{pst-text}
+% \usepackage{psfig}
+\usepackage{ifthen}
+\def\R{\mathbb{R}}
+\def\C{\mathbb{C}}
+\def\Z{\mathbb{Z}}
+\def\Q{\mathbb{Q}}
+\def\N{\mathbb{N}}
+\def\F{\mathbb{F}}
+\def\P{\mathbb{P}}
+\def\A{\mathbb{A}}
+
+%%%% Théorème, Proposition et tout le reste%%%%
+\newcommand{\proofbegin}{\paragraph{Proof.}}
+\newcommand{\proofend}{$\blacksquare$\bigskip}
+\newtheorem{theorem}{Théorème}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{definition}[theorem]{Définition}
+\newtheorem{lemma}[theorem]{Lemme}
+\newtheorem{corollary}[theorem]{Corollaire}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% ZONE ORANGE : intervention deconseillee
+\parindent=0pt
+\textwidth 17.0cm
+\textheight26.0cm
+\hoffset-2.0cm
+\voffset-2.0cm
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% ZONE VERTE : Intervention obligatoire
+%%% ADAPTER SUIVANT LA NATURE DE L'EPREUVE
+\def\Exam{Devoir Maison \og Complexes \fg{}}
+\def\Date{2 décembre 2016}
+\def\Classe{TS3}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% ZONE VERTE : 
+%%% ALIGNER LES EQUATIONS A GAUCHE
+\makeatletter
+\newenvironment*{fleqn}{
+    \@fleqntrue
+    \setlength\@mathmargin{0pt}%
+    \ignorespaces
+}{%
+    \ignorespacesafterend
+}
+\makeatother
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% knitr
+<<include=FALSE>>=
+library(knitr)
+opts_chunk$set(
+fig.path='Figures/',cache=TRUE,echo=FALSE
+)
+@
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+\newcounter{nexo}
+\setcounter{nexo}{1}
+\newcommand{\Exo}{\medskip
+  {\bf Exercice \arabic{nexo} : }
+  \addtocounter{nexo}{1}}
+\newcommand{\Pb}{{\bf Problème \arabic{nexo} : } 
+\addtocounter{nexo}{1} \bigskip}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% ZONE BLEUE : Intervention parfois utile mais a faire prudemment
+{\bf  \hfill \Date \quad ~}
+%
+\vskip 1cm
+%
+%%% FAIRE UN CHOIX (3 choix possibles)
+%%% 1)
+%\centerline{\psframebox[fillstyle=solid,fillcolor=lightgray]
+%\textbf{\LARGE \black \Exam}}
+%%% 2)
+%\centerline{\psframebox{\bf \LARGE  \Exam}}
+%%% 3)
+\centerline{\bf \LARGE \Exam}
+%
+\vskip 1.5cm
+%
+
+
+%%%%%%%%%%%%%%%%%%%%%%
+%%% CORPS DU SUJET %%%
+%%%%%%%%%%%%%%%%%%%%%%
+
+Ce devoir maison est \textbf{faculatif}. Il a vocation à \emph{rattraper} les notes un peu basses du quizz sur les complexes selon des modalités à l'étude (choix entre note du quizz et moyenne du quizz et du DM, note du quizz augmenté de X points en fonction des résultats du DM, etc). 
+
+Les exercices 1 à 3 ont une cohérence thématique (autour de l'astuce du demi-angle) et ont vocation à vous faire travailler l'exponentielle complexe et manipulation de puissances. Il est \textbf{vivement} recommandé de les faire dans l'ordre (le 3 est le plus difficile du point de vue \emph{calculatoire}). Le 4 est indépendant. 
+
+\Exo \textbf{Astuce du demi-angle}
+
+\begin{enumerate}
+\item Soit $\theta \in \mathbb{R}$ un nombre complexe. En factorisant par $e^{i\theta/2}$, donner un argument et le module de 
+$$z_1 = 1 + e^{i\theta} = e^{i\theta/2} (e^{-i\theta/2} + e^{i\theta/2})$$
+On rappelle que le module d'un nombre complexe est $\textbf{positif}$.
+\item Donner de même un argument et un module de 
+$$z_2 = 1 - e^{i\theta}$$
+\end{enumerate}
+
+\Exo \textbf{Complexes et binôme}
+
+Soit $\theta \in \mathbb{R}$ un nombre et $n$ un entier naturel. On veut calculer les quantités $R_n$ et $I_n$ définies par 
+\begin{equation*}
+I_n  = \sum_{k=0}^n {n \choose k} \cos(k\theta) \text{ et } R_n  = \sum_{k=0}^n {n \choose k} \sin(k\theta)
+\end{equation*}
+
+\begin{enumerate}
+\item Montrer que $\displaystyle S_n = R_n + i I_n = (1+e^{i\theta})^n$
+\item En utlisant l'astuce du demi-angle, simplifier l'expression précédente. On cherchera à faire apparaître le produit d'un nombre réel (pas forcément le module) et d'un nombre complexe de module 1. 
+\item En déduire $R_n$ et $I_n$
+\end{enumerate}
+
+\Exo \textbf{Complexes et suites}
+
+Soit $\theta \in \mathbb{R}$ un nombre et $n$ un entier naturel. On veut calculer les quantités $R_n$ et $I_n$ définies par 
+\begin{equation*}
+I_n  = \sum_{k=0}^n \cos(k\theta) \text{ et } R_n  = \sum_{k=0}^n \sin(k\theta)
+\end{equation*}
+
+\begin{enumerate}
+\item Montrer que $\displaystyle S_n = R_n + i I_n = \frac{1 - e^{i(n+1)\theta}}{1 - e^{i\theta}}$
+\item En utlisant l'astuce du demi-angle, simplifier l'expression précédente. On cherchera à faire apparaître le produit d'un nombre réel (pas forcément le module) et d'un nombre complexe de module 1. 
+\item En déduire 
+$$ R_n = \frac{\cos\left(\frac{n\theta}{2}\right)\sin\left(\frac{(n+1)\theta}{2}\right)}{\sin\left(\frac{\theta}{2}\right)} \text{ et } I_n = \frac{\sin\left(\frac{n\theta}{2}\right)\sin\left(\frac{(n+1)\theta}{2}\right)}{\sin\left(\frac{\theta}{2}\right)} $$
+\end{enumerate}
+
+NB: Ces quantités interviennent quand on superpose plusieurs courants qui ont des fréquences croissantes (par exemple $10$ Hz, $20$ Hz, $30$ Hz, etc) et qu'on veut connaître le courant résultant.
+
+\Exo \textbf{Complexes et crustacés}
+
+Soit $\displaystyle A = \exp\left( \frac{1 + 2i}{100} \right)$. On considère la suite complexe $(z_n)$ définie par $z_0 = 0.1$ et $z_{n+1} = A z_n$ pour tout $n \geq 0$.
+On cherche à exprimer $x_n = Re(z_n)$ et $y_n = Im(z_n)$ en fonction de $n$. 
+\begin{enumerate}
+\item Exprimer $z_n$ en fonction de $n$, $z_0$ et $A$ uniquement. 
+\item En déduire $x_n$ et $y$ (sous forme simple!). 
+\end{enumerate}
+
+
+Bonus: si vous avez un grapheur, vous pouvez essayer d'afficher la trajectoire de la suite dans le plan complexe (de $n=0$ à $n=300$ par exemple). 
+
+\end{document}
