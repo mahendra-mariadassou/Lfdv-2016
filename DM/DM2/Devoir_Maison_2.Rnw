@@ -105,7 +105,7 @@ fig.path='Figures/',cache=TRUE,echo=FALSE
 
 Ce devoir maison est \textbf{faculatif}. Il a vocation à \emph{rattraper} les notes un peu basses du quizz sur les complexes selon des modalités à l'étude (choix entre note du quizz et moyenne du quizz et du DM, note du quizz augmenté de X points en fonction des résultats du DM, etc). 
 
-Les exercices 1 à 3 ont une cohérence thématique (autour de l'astuce du demi-angle) et ont vocation à vous faire travailler l'exponentielle complexe et manipulation de puissances. Il est \textbf{vivement} recommandé de les faire dans l'ordre (le 3 est le plus difficile du point de vue \emph{calculatoire}). Le 4 est indépendant. 
+Les exercices 1 à 3 ont une cohérence thématique (autour de l'astuce du demi-angle) et ont vocation à vous faire travailler l'exponentielle complexe et manipulation de puissances. Il est \textbf{vivement} recommandé de les faire dans l'ordre (le 3 est le plus difficile du point de vue \emph{calculatoire}, il ne sera pas noté et est uniquement là pour les gens qui veulent s'entraîner). Les exercices 4 à 7 sont indépendants et de difficultés comparables. 
 
 \Exo \textbf{Astuce du demi-angle}
 
@@ -117,7 +117,7 @@ On rappelle que le module d'un nombre complexe est $\textbf{positif}$.
 $$z_2 = 1 - e^{i\theta}$$
 \end{enumerate}
 
-\Exo \textbf{Complexes et binôme}
+\Exo \textbf{Complexes et Binôme}
 
 Soit $\theta \in \mathbb{R}$ un nombre et $n$ un entier naturel. On veut calculer les quantités $R_n$ et $I_n$ définies par 
 \begin{equation*}
@@ -130,7 +130,7 @@ I_n  = \sum_{k=0}^n {n \choose k} \cos(k\theta) \text{ et } R_n  = \sum_{k=0}^n 
 \item En déduire $R_n$ et $I_n$
 \end{enumerate}
 
-\Exo \textbf{Complexes et suites}
+\Exo \textbf{Complexes et Courants (facultatif, non noté)}
 
 Soit $\theta \in \mathbb{R}$ un nombre et $n$ un entier naturel. On veut calculer les quantités $R_n$ et $I_n$ définies par 
 \begin{equation*}
@@ -146,7 +146,19 @@ $$ R_n = \frac{\cos\left(\frac{n\theta}{2}\right)\sin\left(\frac{(n+1)\theta}{2}
 
 NB: Ces quantités interviennent quand on superpose plusieurs courants qui ont des fréquences croissantes (par exemple $10$ Hz, $20$ Hz, $30$ Hz, etc) et qu'on veut connaître le courant résultant.
 
-\Exo \textbf{Complexes et crustacés}
+\Exo \textbf{Complexes et Linéarisation}
+
+Linéariser $\sin(x)\cos^3(x)$
+
+\Exo \textbf{Complexes et Plan Local d'Urbanisme}
+
+En consultant le Plan Local d'Urbanisme, on a trouvé une maison en forme de parallélépipède rectangle (boîte à chaussure) de volume $504$m$^3$, de surface au sol $168$m$^2$ et de périmétre au sol $52$m. Quelles sont ses dimensions?
+
+\Exo \textbf{Complexes et Racine Carrée}
+
+Trouver une racine carré de $Z = 3+4i$. Il \textbf{faut} passer par la méthode algébrique ($Z$ n'a pas de forme exponentielle simple).
+
+\Exo \textbf{Complexes et Crustacés}
 
 Soit $\displaystyle A = \exp\left( \frac{1 + 2i}{100} \right)$. On considère la suite complexe $(z_n)$ définie par $z_0 = 0.1$ et $z_{n+1} = A z_n$ pour tout $n \geq 0$.
 On cherche à exprimer $x_n = Re(z_n)$ et $y_n = Im(z_n)$ en fonction de $n$. 
