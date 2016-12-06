@@ -1,0 +1,144 @@
+---
+title: "Analyse de fonctions (II)"
+author: "Mahendra Mariadassou"
+date: "6 décembre 2016"
+output:
+  ioslides_presentation:
+    css: ../CSS/custom_licence_fdv.css
+    toc: yes
+  beamer_presentation: default
+height: 720
+width: 1280
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+# Introduction 
+
+## Plan du cours 
+
+- Domaine d'étude
+- Limites, continuité, dérivabilité et variations
+- Comparaison locale de fonction
+- Etude locale des fonctions
+- Retour sur la limite
+
+## Objectifs
+
+- Savoir étudier les variations d'une fonctions
+- Résoudre problèmes d'optimisation
+- Savoir trier des ordres de grandeur
+- Approfondir la notion de limite
+
+## Domaine d'étude d'une fonction: parité
+
+En général une fonction $f$ est donnée par son expression $f(x)$. Pour se ramener à une application il faut détérminer le domaine de définition $D_f$ de $f$, c'est à dire l'ensemble des $x$ pour lesquels l'expression $f(x)$ a du sens. 
+
+<div class = "definition">
+une fonction $f$ est dite paire (resp. impaire) lorsque 
+<ul>
+<li>$D_f$ est stable par passage à l'opposé, c'est à dire que si $x \in D_f$, alors $-x \in D_f$.</li>
+<li>$\forall x \in D_f f(-x) = f(x)$ (resp. $\forall x \in D_f f(-x) = -f(x)$) </li>
+</ul>
+</div>
+
+<b>Exemples</b>
+
+- L'application $\cos(x)$ est paire, l'application $\sin(x)$ est impaire. 
+
+## Domaine d'étude d'une fonction: parité
+
+<div class = "definition">
+<ul>
+<li>Si $f$ est paire, le graphe $C_f$ de $f$ est symétrique par rapport à l'axe $(Oy)$. Si $f$ est dérivable, sa dérivée est impaire.</li>
+<li>Si $f$ est impaire, le graphe $C_f$ de $f$ est symétrique par rapport au point $(0, 0)$. De plus, si $0 \in D_f$, alors $f(0) = 0$. Si $f$ est dérivable, sa dérivée est paire.</li>
+</ul>
+</div>
+
+## Fonction paire {.center}
+
+```{r paire}
+curve(cos, from = -pi, to = pi, lwd = 2, col = "red", cex.axis = 1.5, cex.lab = 2, asp = 1)
+abline(h = 0, v = 0)
+abline(v = 0, col = "blue", lwd = 2)
+text(0, -0.75, labels = "Axe de symétrie", adj = c(-0.05, 0.5), cex = 1.5, col = "blue")
+abline(a = pi/2, b = -1, col = "green", lwd = 2)
+abline(a = pi/2, b = 1, col = "green", lwd = 2)
+text(-(pi/2 + 0.1), 0, labels = "tangente", srt = 45, cex = 2, col = "green")
+text( (pi/2 + 0.1), 0, labels = "tangente", srt = -45, cex = 2, col = "green")
+```
+
+## Fonction impaire {.center}
+
+```{r impaire}
+curve(sin, from = -pi, to = pi, lwd = 2, col = "red", cex.axis = 1.5, cex.lab = 2, asp = 1)
+abline(h = 0, v = 0)
+points(0, 0,  pch = 19, cex = 2, col = "blue")
+text(0 , 0, labels = "Centre de symétrie", adj = c(-0.05, 1.5), cex = 1.5, col = "blue")
+abline(a = -pi, b = -1, col = "green", lwd = 2)
+abline(a = +pi, b = -1, col = "green", lwd = 2)
+offset <- 0.5
+text(+pi + 0.1 - offset, 0 + offset, labels = "tangente", srt = -45, cex = 2, col = "green")
+text(-(pi + 0.1 - offset), -(0 + offset), labels = "tangente", srt = -45, cex = 2, col = "green")
+```
+
+
+## Fonction nulle {.center}
+
+Une fonction est dite <em>identiquement nulle sur un ensemble $I$</em> lorsque 
+$$\forall x \in I, f(x) = 0$$
+
+```{r nulle, fig.width = 6, fig.height=4}
+par(mar = c(5, 5, 1, 1))
+f <- function(x) { rep(0, length(x)) }
+curve(f, from = -pi, to = pi, lwd = 2, col = "red", cex.axis = 1.5, cex.lab = 2, asp = 1)
+abline(h = 0, v = 0)
+lines(c(-4, 4), c(0, 0), col = "red", lwd = 3)
+```
+
+## Périodicité
+
+<div class = "definition">
+une fonction $f$ est dite périodique de période $T > 0$ lorsque  
+<ul>
+<li>$D_f$ est stable par translation, c'est à dire que si $x \in D_f$, alors $x + T \in D_f$.</li>
+<li>$\forall x \in D_f f(x + T) = f(x)$</li>
+</ul>
+</div>
+
+En général, on utilise la périodicité pour n'étudier $f$ que sur une période et la parité pour ne l'étudier que sur une moitité du domaine de définition (par exemple $D_f \cap   \mathbb{R}_+$). 
+
+## Fonction périodique {.center}
+
+```{r perodique}
+curve(sin, from = -3*pi, to = 3*pi, lwd = 2, col = "red", cex.axis = 1.5, cex.lab = 2, asp = 1)
+abline(h = 0, v = 0)
+curve(sin, from = -pi, to = pi, lwd = 3, col = "blue", cex.axis = 1.5, cex.lab = 2, asp = 1, add = TRUE)
+arrows(x0 = -3*pi/2, x1 = pi/2, y0 = 2, code = 3, col = "green", lwd = 2); segments(x0 = c(-3, 1)*pi/2, y0 = 1, y1 = 2, lwd = 2, col = "green"); text(-pi/2, 2, label = "T", col = "green", pos = 3 ,cex = 2)
+arrows(x0 = -pi/2, x1 = 3*pi/2, y0 = -2, code = 3, col = "darkgreen", lwd = 2); segments(x0 = c(-1, 3)*pi/2, y0 = -1, y1 = -2, lwd = 2, col = "darkgreen"); text(pi/2, -2, label = "T", col = "darkgreen", pos = 1 ,cex = 2)
+```
+
+## Exercices
+
+Donner le doaine de définition et les éventuelles (im)parité/périodicité des fonctions suivantes:
+
+- $f(x) = e^x + e^{-x}$
+- $f(x) = e^x - e^{-x}$
+- $f(x) = x + \ln(x)$
+- $f(x) = e^{x}\frac{x+1}{x -1}$
+- $f(x) = \ln\left|\frac{x+1}{x-1} \right|$
+- $f(x) = \ln(\cos(x))$
+- $f(x) = \ln|\cos(x)|$
+- $f(x) = e^{\tan(x)} - \tan(x)$
+
+# Limites
+
+## $\bar{\mathbb{R}}$ et la notion de voisinage
+
+<div class = "definition">
+Dans la suite, $a \in \bar{\mathbb{R}}$ signifie que $a$ est un réel, ou $+\infty$ ou $-infty$. 
+</div>
+
+Soit $P(x)$ un propriété portant sur $x \in \mathbb{R}$, (par exemple $P(x) = "$x > 10$"). On dit que la propriété est vraie <alert>au voisinage</alert> de $a \in \bar{\mathbb{R}}$ si 
