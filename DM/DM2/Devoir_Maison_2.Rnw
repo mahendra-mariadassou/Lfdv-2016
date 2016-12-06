@@ -167,7 +167,6 @@ On cherche à exprimer $x_n = Re(z_n)$ et $y_n = Im(z_n)$ en fonction de $n$.
 \item En déduire $x_n$ et $y$ (sous forme simple!). 
 \end{enumerate}
 
-
 Bonus: si vous avez un grapheur, vous pouvez essayer d'afficher la trajectoire de la suite dans le plan complexe (de $n=0$ à $n=300$ par exemple). 
 
 \end{document}

@@ -1,0 +1,280 @@
+---
+title: "Analyse de fonctions (Introduction)"
+author: "Mahendra Mariadassou"
+date: "6 décembre 2016"
+output:
+  ioslides_presentation:
+    css: ../CSS/custom_licence_fdv.css
+    toc: yes
+  beamer_presentation: default
+height: 720
+width: 1280
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+## Plan du cours 
+
+- Généralités sur les fonctions
+- Fonctions en Analyse
+- Image réciproque / Image directe
+- Composée
+- Un peu de terminologie
+
+## Objectifs
+
+- Connaître le vocabulaire des fonctions
+- Différencier une application et une fonction
+- Reconnaître une injection/surjection/bijection
+
+## Généralités
+
+<div class = "definition">
+Soit $A$ et $B$ deux ensembles. Une <em>fonction</em> $f$ est une application qui à <alert>certains</alert> éléments de $A$ associe un élément de $B$. On la note $f: A \to B$
+</div>
+
+<b>Exemples</b>
+
+- L'application qui à chaque Français associe son numéro de carte bancaire n'est pas une fonction. <b>Pourquoi</b>?
+- L'application qui à chaque Français associe son numéro de Sécurité Sociale est une fonction. 
+- On considère $A$ l'ensemble des élèves de la classe et $B=[0, 20]$. L'application qui à chaque élève associe sa note au DM de maths est une fonction. 
+
+## Vocabulaire
+
+- $A$ est l'<em>ensemble de départ</em> de $f$
+- $B$ est l'<em>ensemble d'arrivée</em> de $f$
+- Si $a \in A$, on note $f(a)$ son <em>image</em> par $f$ s'<alert>il en a une</alert>
+- Si $b \in B$, on appelle <em>antécédents</em> de $b$ tout élément $a \in A$ tel que $f(a)=b$
+- L'<em>ensemble de définition</em> de $f$, noté $D_f$, est l'ensemble des éléments de $A$ qui ont une image par $f$.
+
+## Remarques sur image et antécédent
+
+- Attention à ne pas confondre la <em>fonction</em> $f$ et son <em>expression</em> $f(x)$.
+- Certains éléments de $A$ peuvent ne pas avoir d'image.
+- Un élément de $A$ <b>ne peut pas</b> avoir plusieurs images.
+- Un élément de $B$ peut avoir $0$, $1$ ou plusieurs antécédents. 
+
+## Les fonctions en Analyse
+
+<div class = "definition">
+On appelle <em>suite numérique</em> les fonctions de $\mathbb{N}$ dans $\mathbb{R}$. 
+</div>
+<br>
+
+<div class = "definition">
+Soit $u$ une suite et $k \in \mathbb{N}$, on note $u_k$ l'image de $k$ par $u$ (si elle existe). On note généralement $(u_k)$ la suite $u$. 
+</div>
+<br>
+
+<div class = "definition">
+On appelle <em>fonction numérique d'une variable réelle</em> (souvent abrégée en fonction d'une variable ou tout simplement fonction quand le nombre de variable est explicite) les fonctions de $A \subset \mathbb{R}$ dans $B \subset \mathbb{R}$. On les note:
+$f: \begin{cases} A & \to & B \\ x & \mapsto & f(x) \end{cases}$
+</div>
+
+## Les fonctions de deux variables
+
+<div class = "definition">
+On note $\mathbb{R}^2$ l'ensemble des couples réels. On appelle <em>fonction numérique de deux variables (réelles)</em>les fonctions de $A \subset \mathbb{R}^2$ dans $B \subset \mathbb{R}$. On les note:
+$f: \begin{cases} A & \to & B \\ (x, y) & \mapsto & f(x, y) \end{cases}$
+</div>
+
+<b>Exemples</b>
+
+- On peut naturellement étendre cette définition aux fonctions de 3, 4 et plus généralement $n$ variables. 
+
+## Suite numérique: exemple de $u_n = 1/n$
+
+```{r suite}
+n<-15
+plot(1:n, 1/(1:n), pch = 19, xlab = "n", ylab = "u", cex = 1, cex.axis = 1.5, cex.lab = 2)
+```
+
+## Fonction numérique: exemple de $f(x) = 1/x$
+
+```{r fonction}
+par(mar = c(5, 5, 0, 0))
+f <- function(x) { 1/x }
+curve(f, from = 0.1, 10, col = "red", cex.axis = 1.5, cex.lab = 2, lwd = 2)
+```
+
+## Fonction numérique: exemple de $f(x, y) = x^2+y^2$ {.centered}
+```{r 3d-fonction, fig.width=5, fig.height=5}
+par(mar = c(0, 0, 0, 0))
+x <- seq(-1, 1, length.out = 101)
+y <- seq(-1, 1, length.out = 101)
+z <- outer(x, y, FUN = function(x, y) { x^2 + y^2 } )
+nrz <- nrow(z)
+ncz <- ncol(z)
+jet.colors <- colorRampPalette((c("blue", "green")))
+nbcol <- 100; color = jet.colors(nbcol);
+# Compute the z-value at the facet centres
+zfacet <- z[-1, -1] + z[-1, -ncz] + z[-nrz, -1] + z[-nrz, -ncz]
+# Recode facet z-values into color indices
+facetcol <- cut(zfacet, nbcol)
+persp(x, y, z, xlab = "x", ylab = "y", zlab = "f(x,y)", col = color[facetcol], phi = 30, theta = 30)
+```
+
+## Exercice
+
+Soit $f$ la fonction définie par $f(x) = x^2\ln(x)$. 
+
+- Quel est le domaine de définition $D_f$?
+- Quels sont les images par $f$ de $e$, $1/e$, $\sqrt{e}$, $e^2$, $e\sqrt{e}$, $1/e^2$, $1/\sqrt{e}$?
+- $0$ a-t-il un antécédent par $f$? 
+
+## Image directe / Image réciproque
+
+Soit $f: A \to B$ une fonction. 
+
+<div class = "definition">
+Soit $E \subset A$. On appelle <alert>image directe de $E$ par $f$</alert> l'ensemble des images des éléments de $E$, c'est à dire:
+$$\begin{align}
+f(E) & = \{f(e) \text{ avec } e \in E\} \\ 
+& = \{b \in B \text{ tel qu'il existe } e \in E \text{ avec }  f(e) = b\}
+\end{align}$$
+</div>
+
+<br>
+
+<div class = "definition">
+Soit $F \subset B$. On appelle <alert>image réciproque de $F$ par $f$</alert> l'ensemble des antécédents des éléments de $F$, c'est à dire:
+$$f^{-1}(E) = \{a \in A \text{ tel que } f(a) \in F\}$$
+</div>
+
+## Remarques
+
+<b>Attention</b>
+
+- $f^{-1}(\{b\})$ est l'<em>ensemble</em> des antécédents de $b$ et non <b>l'antécédent</b> qui peut ne pas exister et ne pas être unique. 
+- $f^{-1}(\{b\})$ est  un <alert>ensemble</alert> et pas un simple <em>élément</em> de $A$. On rappelle que $1$ et $\{1\}$ ne représentent pas le même objet mathématique. 
+
+Pour trouver l'image réciproque, on revient à la définition. 
+
+- $$ x \in f^{-1}(F) \Leftrightarrow f(x) \in F $$ 
+- $$ y \in f(E) \Leftrightarrow \exists x \in E: f(x) = y $$ 
+
+## Exercices
+
+On considère la fonction $f$ définie par $f(x) = x - \lfloor x \rfloor$. 
+
+- Quelle est l'image de $0$, $1$, $28.5$, $[0, 1)$, $[0, 1]$, $\mathbb{R}$?
+- Quels sont les antécédents de $0$? de $1$? de $28.5$? 
+- Quelles sont les images réciproques de $[0, 1)$? de $[0, 1]$? de $\mathbb{R}$? de $\mathbb{N}$?
+
+## Composée de fonctions
+
+<div class = "definition">
+Considérons 3 ensembles $A$, $B$, $C$ et deux fonctions $f: A \to B$ et $g: B \to C$. La composée de $g$ par $f$ est la fonction:
+$$g\circ f : \begin{cases} A & \to & C \\ a & \mapsto & (g\circ f)(a) = g(f(a)) \end{cases}$$
+</div>
+
+## Exemples
+
+Soit $f : \begin{cases} \mathbb{R} & \to & \mathbb{R} \\ x & \mapsto & 1+x^2 \end{cases}$ et $g : \begin{cases} \mathbb{R} & \to & \mathbb{R} \\ x & \mapsto & 1/x \end{cases}$. Alors 
+$$g \circ f : \begin{cases} \mathbb{R} & \to & \mathbb{R} \\ x & \mapsto & \frac{1}{1+x^2} \end{cases}$$
+
+Soit $A$ l'ensemble des humains ayant un jour foulé la Terre. On considère $f : \begin{cases} A & \to & A \\ x & \mapsto & \text{mère de } x \end{cases}$ et $g : \begin{cases} A & \to & \mathbb{R} \\ x & \mapsto & \text{poids à la naissance de } x \end{cases}$. 
+
+Que vaut $g\circ f \circ f$? 
+
+## Applications 
+
+<div class = "definition">
+Soit $f: A \to B$ une fonction. $f$ est une <alert>application</alert> si seulement $D_f = A$.
+</div>
+
+<b>Exemple</b>
+
+- La fonction qui à un humain associe le prénom de son premier enfant n'est pas une application.
+- $f : \begin{cases} \mathbb{R} & \to & \mathbb{R} \\ x & \mapsto & \sqrt{x} \end{cases}$ n'est pas une application.
+- $f : \begin{cases} \mathbb{R}_+ & \to & \mathbb{R} \\ x & \mapsto & \sqrt{x} \end{cases}$ est pas une application.
+
+## Restriction d'une application
+
+<div class = "definition">
+Soit $f: A \to B$ une application et $C \subset A$ une partie de $A$. On appelle restriction de $f$ à $C$ l'application:
+$$f_{|C} : \begin{cases} C & \to & B \\ x & \mapsto & f_{|C}(x) = f(x) \end{cases}$$
+</div>
+
+<b>Remarques</b>
+
+- $f_{|C}$ est bien une application
+- la restriction est un mécanisme simple pour ne s'intéresser qu'à une partie de l'ensemble de départ sur laquelle $f$ peut avoir de bonnes propriétés (injectivité, surjectivité, etc.) ou qui corespondent à des contraintes (le volume d'une bactérie doit être positif). 
+
+## Injection, Surjection, Bijection (le retour...)
+
+<div class = "definition">
+Une application $f: A \to B$ est une 
+<ul>
+<li>injection si et seulement tout élément $b \in B$ admet <alert>au plus</alert> un antécédent</li>
+<li>surjection si et seulement tout élément $b \in B$ admet <alert>au moins</alert> un antécédent</li>
+<li>bijection si et seulement tout élément $b \in B$ admet <alert>exactement</alert> un antécédent</li>
+</ul>
+</div>
+
+<b>Remarques</b>
+
+Une bijection est une application qui est <b>à la fois</b> injective et surjective. 
+
+## Exemples
+
+- $f_1 : \begin{cases} \mathbb{R} & \to & \mathbb{R} \\ x & \mapsto & x^2 \end{cases}$ n'est ni injective, ni surjective
+- $f_2 : \begin{cases} \mathbb{R} & \to & \mathbb{R}_+ \\ x & \mapsto & x^2 \end{cases}$ est surjective mais pas injective
+- $f_3 : \begin{cases} \mathbb{R}_+ & \to & \mathbb{R} \\ x & \mapsto & x^2 \end{cases}$ est injective mais pas surjective
+- $f_4 : \begin{cases} \mathbb{R}_+ & \to & \mathbb{R}_+ \\ x & \mapsto & x^2 \end{cases}$ est bijective
+
+- Le code génétique (vu comme une application des codons dans les acides aminés) est surjectif mais pas injectif. 
+
+<b>Remarques</b>
+Le caractère injective/surjective <b>dépend</b> des ensembles d'arrivée et de départ, attention à les préciser.
+
+## Fonction réciproque
+
+<div class = "definition">
+Soit $f: A \to B$ une application. $f$ est bijective si et seulement si il existe une application $g: B \to A$, appelée réciproque de $f$ et souvent noté $f^{-1}$, telle que 
+$$ \forall a \in A, g\circ f(a) = a \quad \text{ et } \quad \forall b \in B, f\circ g(b) = b $$
+</div>
+
+<br> 
+
+<div class = "definition">
+Soit $A$ un ensemble. On note $Id_A$ l'application <alert>identité de $A$</alert>: $f : \begin{cases} A & \to & A \\ a & \mapsto & a \end{cases}$
+</div>
+
+<br> 
+<div class = "proposition">
+$f: A \to B$ est une bijection si et seulement si il existe une application $g: B \to A$ telle que $g\circ f = Id_A$ et $f\circ g = Id_B$
+</div>
+
+## Fonctions monotones
+
+<br> 
+<div class = "proposition">
+Soit $f: A \subset \mathbb{R} \to \mathbb{R}$ une application. Si $f$ est strictement croissante (ou strictement décroissante), alors $f$ est injective. Elle est aussitôt bijective de $A$ sur $f(A)$. 
+</div>
+
+
+<b>Remarques</b>
+Les bijections ont un intérêt particulier en mathématiques, elles permettent sur des éléments de $A$ (élèves scolarisés à Paris Descartes) ou $B$ (numéro d'étudiant) indifféremment et <b>sans perte d'information</b>. En particulier, il y <em>autant</em> d'éléments dans $A$ que dans $B$ et $f$ (respectivement $f^{-1}$) fournit une façon non ambigüe de passer de $A$ à $B$ (de $B$ à $A$)
+
+## Exercice récapitulatifs (I)
+
+Soit $f: \begin{cases} \mathbb{R} & \to & \mathbb{R} \\ x & \mapsto & e^{x^2+x+1} \end{cases}$. 
+
+- $f$ est-elle une application?
+- Déterminer $f(\mathbb{R})$, $f^{-1}(\mathbb{R})$, $f^{-1}(\mathbb{R}_+^\star)$, $f^{-1}([0, 1)$
+- $f$ est-elle une bijection de $\mathbb{R}$ sur $\mathbb{R}$?
+- $f$ est-elle une bijection de $\mathbb{R}$ sur $f(\mathbb{R})$?
+- Montrer que $f$ est une bijection de $\mathbb{R}_+$ sur un intervalle $I$ à préciser. 
+
+## Exercice récapitulatifs (II)
+
+```{r exercice-1}
+f <- function(x) { exp(x^2 + x + 1)}
+par(mar = c(5, 5, 0, 0))
+curve(f, from = -2, 1, col = "red", cex.axis = 1.5, cex.lab = 2, lwd = 2, ylim = c(0, max(f(-2), f(1))))
+abline(h = 0, v = 0)
+```
+
