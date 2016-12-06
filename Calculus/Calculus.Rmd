@@ -189,7 +189,7 @@ Soit $f: A \to B$ une fonction. $f$ est une <alert>application</alert> si seulem
 
 - La fonction qui à un humain associe le prénom de son premier enfant n'est pas une application.
 - $f : \begin{cases} \mathbb{R} & \to & \mathbb{R} \\ x & \mapsto & \sqrt{x} \end{cases}$ n'est pas une application.
-- $f : \begin{cases} \mathbb{R}_+ & \to & \mathbb{R} \\ x & \mapsto & \sqrt{x} \end{cases}$ est pas une application.
+- $f : \begin{cases} \mathbb{R}_+ & \to & \mathbb{R} \\ x & \mapsto & \sqrt{x} \end{cases}$ est une application.
 
 ## Restriction d'une application
 
@@ -257,9 +257,9 @@ Soit $f: A \subset \mathbb{R} \to \mathbb{R}$ une application. Si $f$ est strict
 
 
 <b>Remarques</b>
-Les bijections ont un intérêt particulier en mathématiques, elles permettent sur des éléments de $A$ (élèves scolarisés à Paris Descartes) ou $B$ (numéro d'étudiant) indifféremment et <b>sans perte d'information</b>. En particulier, il y <em>autant</em> d'éléments dans $A$ que dans $B$ et $f$ (respectivement $f^{-1}$) fournit une façon non ambigüe de passer de $A$ à $B$ (de $B$ à $A$)
+Les bijections ont un intérêt particulier en mathématiques, elles permettent de travailler sur des éléments de $A$ (élèves scolarisés à Paris Descartes) ou $B$ (numéro d'étudiant) indifféremment et <b>sans perte d'information</b>. En particulier, il y <em>autant</em> d'éléments dans $A$ que dans $B$ et $f$ (respectivement $f^{-1}$) fournit une façon non ambigüe de passer de $A$ à $B$ (de $B$ à $A$)
 
-## Exercice récapitulatifs (I)
+## Exercice récapitulatif (I)
 
 Soit $f: \begin{cases} \mathbb{R} & \to & \mathbb{R} \\ x & \mapsto & e^{x^2+x+1} \end{cases}$. 
 
@@ -269,7 +269,7 @@ Soit $f: \begin{cases} \mathbb{R} & \to & \mathbb{R} \\ x & \mapsto & e^{x^2+x+1
 - $f$ est-elle une bijection de $\mathbb{R}$ sur $f(\mathbb{R})$?
 - Montrer que $f$ est une bijection de $\mathbb{R}_+$ sur un intervalle $I$ à préciser. 
 
-## Exercice récapitulatifs (II)
+## Exercice récapitulatif (II)
 
 ```{r exercice-1}
 f <- function(x) { exp(x^2 + x + 1)}
