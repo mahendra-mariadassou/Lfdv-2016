@@ -12,7 +12,7 @@ width: 1280
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = FALSE)
+knitr::opts_chunk$set(echo = FALSE, cache = TRUE)
 ```
 
 # Introduction 
@@ -46,7 +46,7 @@ une fonction $f$ est dite paire (resp. impaire) lorsque
 
 <b>Exemples</b>
 
-- L'application $\cos(x)$ est paire, l'application $\sin(x)$ est impaire. 
+- $\cos(x)$ est paire, $\sin(x)$ est impaire. 
 
 ## Domaine d'étude d'une fonction: parité
 
@@ -133,12 +133,151 @@ Donner le doaine de définition et les éventuelles (im)parité/périodicité de
 - $f(x) = \ln|\cos(x)|$
 - $f(x) = e^{\tan(x)} - \tan(x)$
 
-# Limites
+# Limite: Définition
 
 ## $\bar{\mathbb{R}}$ et la notion de voisinage
 
 <div class = "definition">
-Dans la suite, $a \in \bar{\mathbb{R}}$ signifie que $a$ est un réel, ou $+\infty$ ou $-infty$. 
+Dans la suite, $a \in \bar{\mathbb{R}}$ signifie que $a$ est un réel, ou $+\infty$ ou $-\infty$. 
 </div>
 
-Soit $P(x)$ un propriété portant sur $x \in \mathbb{R}$, (par exemple $P(x) = "$x > 10$"). On dit que la propriété est vraie <alert>au voisinage</alert> de $a \in \bar{\mathbb{R}}$ si 
+En analyse, beaucoup de notions sont <alert>locales</alert>: il suffit de connaître $f$ "autour" de $a$ pour savoir si elle est continue/dérivable/de classe $\mathcal{C}^k$ en $a$. Pour formaliser cette notion de proximité, on va définir la notion de "voisinage de $a$". 
+
+Soit $P(x)$ un propriété portant sur $x \in \mathbb{R}$, (par exemple $P(x)$ = "$x > 10$") et $a \in \bar{\mathbb{R}}$.
+
+## Voisinage d'un point
+
+- $P(x)$ est vraie au voisinage de $+\infty$ si il existe $A \in \mathbb{R}$ tel que $P(x)$ est vraie pour tout $x \in [A, +\infty[$. Autrement dit, $P(x)$ est vraie pour $x$ suffisamment grand. 
+
+- $P(x)$ est vraie au voisinage de $-\infty$ si il existe $A \in \mathbb{R}$ tel que $P(x)$ est vraie pour tout $x \in ]-\infty, A]$. Autrement dit, $P(x)$ est vraie pour $x$ suffisamment petit. 
+
+- $P(x)$ est vraie au voisinage de $a \in \mathbb{R}$ si il existe $\delta > 0$ tel que $P(x)$ est vraie pour tout $x \in ]a-\delta, a + \delta[$. Autrement dit, $P(x)$ est vraie pour $x$ suffisamment proche de $a$. 
+
+## Voisinage à gauche, à droite
+
+- $P(x)$ est vraie au voisinage de $a \in \mathbb{R}$ <alert>à droite</alert> si il existe $\delta > 0$ tel que $P(x)$ est vraie pour tout $x \in ]a, a + \delta[$. Autrement dit, $P(x)$ est vraie pour $x$ suffisamment proche de $a$ tout étant strictement supérieur à $a$. 
+
+- $P(x)$ est vraie au voisinage de $a \in \mathbb{R}$ <alert>à gauche</alert> si il existe $\delta > 0$ tel que $P(x)$ est vraie pour tout $x \in ]a-\delta, a[$. Autrement dit, $P(x)$ est vraie pour $x$ suffisamment proche de $a$ tout étant strictement inférieur à $a$. 
+
+<b>Remarques</b>
+
+Les notions de voisinage à droite de $+\infty$ et à gauche de $-\infty$ n'ont pas de sens (pourquoi?). La notion de voisinage permet de mettre en évidence le caractère local d'une propriété. 
+
+## Voisinage illustration 
+
+Au tableau 
+
+## Limite infinie à l'infini. 
+
+Soit $f: A \to B$ une fonction numérique. On suppose que $f$ est définie au voisinage de $+\infty$ (resp. $-\infty$). 
+
+<b>Limite infinie en $\pm \infty$</b>
+
+On dit que $f$ tend vers $+\infty$ en $+\infty$, noté $\lim_{+\infty} f = +\infty$, si pour tout réel $M$ (arbitrairement grand), $f(x)$ est plus grand que $M$ pour $x$ assez grand  (proche de $\infty$). 
+$$\forall M \in \mathbb{R}, \exists A \in \mathbb{R} \text{ tel que } \forall x \in D_f, x \in ]A, +\infty[ \Rightarrow f(x) > M$$
+
+
+On dit que $f$ tend vers $-\infty$ en $+\infty$, noté $\lim_{+\infty} f = +\infty$,  si pour tout réel $M$ (arbitrairement petit), $f(x)$ est plus petit que $M$ pour $x$ assez grand (proche de $\infty$)
+$$\forall M \in \mathbb{R}, \exists A \in \mathbb{R} \text{ tel que } \forall x \in D_f, x \in ]A, +\infty[ \Rightarrow f(x) < M$$
+
+## Limite finie à l'infini. 
+
+Soit $l \in \mathbb{R}$. 
+
+On dit que $f$ tend vers $l$ en $+\infty$, noté $\lim_{+\infty} f = l$, si pour tout réel $\varepsilon > 0$ (arbitrairement proche de $0$), $f(x)$ est proche de $l$ à moins de $\varepsilon$ pour $x$ assez grand  (proche de $\infty$). 
+$$\forall \varepsilon > 0, \exists A \in \mathbb{R} \text{ tel que } \forall x \in D_f, x \in ]A, +\infty[ \Rightarrow | f(x) - l | \leq \varepsilon$$
+
+## Exemple
+
+```{r limite-finie-infinie, fig.keep = "all", fig.show = "animate"}
+par(mar = c(5, 5, 1, 1))
+curve(atan, -10, 10, col = "red", lwd = 2, ylab = "f(x)", cex.axis = 1.5, cex.lab = 2, ylim = c(-2.5, 2.5))
+abline(v = 0, h = 0)
+abline(h = pi/2, col = "grey30", lwd = 2, lty = 2)
+vareps <- pi/2 - atan(3)
+abline(h = pi/2 + vareps * c(-1, 1), col = "grey60", lwd = 2, lty = 2)
+text(x = 0, y = pi/2 + vareps * c(-1, 0, 1), labels = c(expression(l-epsilon, l, l + epsilon)), pos = c(1, 2, 3), cex = 2, col = c("grey30", "grey60")[c(2, 1, 2)])
+abline(v = 3, col = "blue")
+text(x = 3, y = 0, labels = "A", adj = c(0, 1), cex = 2, col = "blue")
+polygon(x = c(12, 3, 3, 12), y = pi/2 + vareps*c(-1, -1, 1, 1), col = scales::alpha("grey80", alpha = 0.5), border = NA)
+```
+
+## Exercices 
+
+Écrire la définition formelle (avec des quantificateurs) de 
+
+- $\lim_{-\infty} f = +\infty$ 
+- $\lim_{-\infty} f = -\infty$
+- $\lim_{-\infty} f = l$
+
+## Limite infinie en un point
+
+Soit $f$ une fonction et $D_f$ son domaine de définition. Soit $a \in \mathbb{R}$ tel que 
+
+- $a \in D_f$ ($f$ est alors définie en $a$)
+- $a$ est une borne de $a$ ($f$ est définie sur un voisinage de $a$ mais pas en $a$)
+
+Pour la limite infinie, $a \notin D_f$. On dit que $f$ tend vers $+\infty$ en $a$, noté $\lim_{a} f = +\infty$, si pour tout réel $M$ (arbitrairement grand), $f(x)$ est plus grand que $M$ pour $x$ assez proche de $a$). 
+$$\forall M \in \mathbb{R}, \exists \delta > 0 \text{ tel que } \forall x \in D_f, |x - a| \leq \delta \Rightarrow f(x) > M$$
+
+## Limite finie en un point
+
+On dit que $f$ tend vers $l$ en $a$, noté $\lim_{a} f = l$, si pour tout réel $\varepsilon > 0$ (arbitrairement proche de $0$), $f(x)$ est proche de $l$ (à $\varepsilon$ près) pour $x$ assez proche de $a$). 
+$$\forall \varepsilon > 0, \exists \delta > 0 \text{ tel que } \forall x \in D_f, |x - a| \leq \delta \Rightarrow | f(x) - l | \leq \varepsilon$$
+
+## Exemple
+
+```{r limite-finie-finie, fig.keep = "all", fig.show = "animate"}
+par(mar = c(5, 5, 1, 1))
+curve(atan, -10, 10, col = "red", lwd = 2, ylab = "f(x)", cex.axis = 1.5, cex.lab = 2, ylim = c(-2.5, 2.5))
+abline(v = 0, h = 0)
+abline(v = 1, col = "blue")
+abline(h = pi/4, col = "grey30", lwd = 2, lty = 2)
+text(x = c(0, 1), y = c(pi/4, 0), labels = c("l", "a"), pos = c(2, 1), cex = 2, col = c("grey60", "blue"))
+vareps <- max(atan(1) - atan(1/2), atan(3/2) - atan(1)) 
+abline(h = pi/4 + vareps * c(-1, 1), col = "grey60", lwd = 2, lty = 2)
+text(x = 0, y = pi/4 + vareps * c(-1, 0, 1), labels = c(expression(l-epsilon, l, l + epsilon)), pos = c(1, 2, 3), cex = 2, col = c("grey30", "grey60")[c(2, 1, 2)])
+delta <- min(3/2- 1, 1 - 1/2)
+abline(v = 1 + delta * c(-1, 0, 1), col = c("blue", scales::alpha("blue", 0.5))[c(2, 1, 2)])
+text(x = 1 + delta * c(-1, 1), y = 0, labels = expression(a - delta, a + delta), pos = c(2, 4), cex = 2, col = scales::alpha("blue", 0.5))
+polygon(x = 1 + delta*c(1, -1, -1, 1), y = pi/4 + vareps*c(-1, -1, 1, 1), col = scales::alpha("grey80", alpha = 0.5), border = NA)
+```
+
+## Limite à gauche/à droite en un point
+
+Soit $f$ définie au voisinage à gauche de $a$. On dit que $f$ tend vers $l$ à gauche en $a$, noté $\lim_{a^-} f = l$, si pour tout réel $\varepsilon > 0$ (arbitrairement proche de $0$), $f(x)$ est proche de $l$ (à $\varepsilon$ près) pour $x$ assez proche de $a$ par valeurs inférieures). 
+$$\forall \varepsilon > 0, \exists \delta > 0 \text{ tel que } \forall x \in D_f, x \in ]a-\delta, a[ \Rightarrow | f(x) - l | \leq \varepsilon$$
+
+On a une définition similaire pour $\lim_{a^+} f$, la limite à droite en $a$ (voir exercices).
+
+## Exercices
+
+Écrire la définition formelle (avec des quantificateurs) de 
+
+- $\lim_{a} f = -\infty$ 
+- $\lim_{a^-} f = +\infty$ 
+- $\lim_{a^+} f = +\infty$ 
+- $\lim_{a^+} f = l$ 
+
+
+## Unicité de la limite
+
+<div class = "proposition">
+Soit $a \in \bar{\mathbb{R}}$. Si $f$ admet une limite en $a$ (resp. une limite à gauche ou une limite à droite), alors cette limite est unique.  
+</div>
+
+<div class = "proposition">
+Soit $a \in \mathbb{R}$. Si $f$ admet une limite en $a$ et est définie en $a$, alors cette limite est forcément $f(a)$. 
+</div>
+
+<div class = "theorem">
+Soit $a \in \mathbb{R}$ et $f$ définie au voisinage de $a$ (sauf peut-être en $a$). 
+<ul>
+<li>Si $f$ n'est pas définie en $a$,  $f$ admet une limite en $a$ si et seulement si elle admet une limite à gauche et une limite à droite en $a$ et que ces limites sont égales.</li>
+<li>Si $f$ est définie en $a$,  $f$ admet une limite en $a$ si et seulement si elle admet une limite à gauche et une limite à droite en $a$ et que ces limites sont égales à $f(a)$.</li>
+</ul>
+</div>
+
+# Opération sur les limites
+
+
