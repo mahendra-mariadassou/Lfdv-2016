@@ -189,7 +189,7 @@ $$\forall \varepsilon > 0, \exists A \in \mathbb{R} \text{ tel que } \forall x \
 
 ## Exemple
 
-```{r limite-finie-infinie, fig.keep = "all", fig.show = "animate"}
+```{r limite-finie-infinie, fig.keep = "all", fig.show = "animate", aniopts="controls"}
 par(mar = c(5, 5, 1, 1))
 curve(atan, -10, 10, col = "red", lwd = 2, ylab = "f(x)", cex.axis = 1.5, cex.lab = 2, ylim = c(-2.5, 2.5))
 abline(v = 0, h = 0)
@@ -227,7 +227,7 @@ $$\forall \varepsilon > 0, \exists \delta > 0 \text{ tel que } \forall x \in D_f
 
 ## Exemple
 
-```{r limite-finie-finie, fig.keep = "all", fig.show = "animate"}
+```{r limite-finie-finie, fig.keep = "all", fig.show = "animate", aniopts="controls"}
 par(mar = c(5, 5, 1, 1))
 curve(atan, -10, 10, col = "red", lwd = 2, ylab = "f(x)", cex.axis = 1.5, cex.lab = 2, ylim = c(-2.5, 2.5))
 abline(v = 0, h = 0)
