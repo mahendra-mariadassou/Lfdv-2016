@@ -1,0 +1,279 @@
+\documentclass[a4paper,12pt]{article}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% ZONE ROUGE : intervention très fortement deconseillee
+\usepackage[utf8]{inputenc} % accent dans la source
+\usepackage[T1]{fontenc}
+\usepackage{times}
+\usepackage[french]{babel}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{fancybox}
+\usepackage{pstricks}
+\usepackage{pst-plot}
+%\usepackage{pst-char}
+\usepackage{pst-text}
+% \usepackage{psfig}
+\usepackage{ifthen}
+\def\R{\mathbb{R}}
+\def\C{\mathbb{C}}
+\def\Z{\mathbb{Z}}
+\def\Q{\mathbb{Q}}
+\def\N{\mathbb{N}}
+\def\F{\mathbb{F}}
+\def\P{\mathbb{P}}
+\def\A{\mathbb{A}}
+
+%%%% Théorème, Proposition et tout le reste%%%%
+\newcommand{\proofbegin}{\paragraph{Proof.}}
+\newcommand\floor[1]{\lfloor#1\rfloor}
+\newcommand{\proofend}{$\blacksquare$\bigskip}
+\newtheorem{theorem}{Théorème}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{definition}[theorem]{Définition}
+\newtheorem{lemma}[theorem]{Lemme}
+\newtheorem{corollary}[theorem]{Corollaire}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% ZONE ORANGE : intervention deconseillee
+\parindent=0pt
+\textwidth 17.0cm
+\textheight26.0cm
+\hoffset-2.0cm
+\voffset-2.0cm
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% ZONE VERTE : Intervention obligatoire
+%%% ADAPTER SUIVANT LA NATURE DE L'EPREUVE
+\def\Exam{Partiel de Mathématiques}
+\def\Date{\today}
+\def\Classe{TS3}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% ZONE VERTE : 
+%%% ALIGNER LES EQUATIONS A GAUCHE
+\makeatletter
+\newenvironment*{fleqn}{
+    \@fleqntrue
+    \setlength\@mathmargin{0pt}%
+    \ignorespaces
+}{%
+    \ignorespacesafterend
+}
+\makeatother
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Force synctex
+\synctex=1
+
+%%% knitr
+<<include=FALSE>>=
+library(knitr)
+opts_chunk$set(
+fig.path='Figures/',cache=TRUE,echo=FALSE
+)
+opts_knit$set(concordance = TRUE, self.contained=TRUE)
+require(patchSynctex)
+@
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+\newcounter{nexo}
+\setcounter{nexo}{1}
+\newcommand{\Exo}{\medskip
+  {\bf Exercice \arabic{nexo} : }
+  \addtocounter{nexo}{1}}
+\newcommand{\Pb}{{\bf Problème \arabic{nexo} : } 
+\addtocounter{nexo}{1} \bigskip}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% ZONE BLEUE : Intervention parfois utile mais a faire prudemment
+{\bf  \hfill \Date \quad ~}
+%
+\vskip 1cm
+%
+%%% FAIRE UN CHOIX (3 choix possibles)
+%%% 1)
+%\centerline{\psframebox[fillstyle=solid,fillcolor=lightgray]
+%\textbf{\LARGE \black \Exam}}
+%%% 2)
+%\centerline{\psframebox{\bf \LARGE  \Exam}}
+%%% 3)
+\centerline{\bf \LARGE \Exam}
+%
+\vskip 1.5cm
+%
+
+
+%%%%%%%%%%%%%%%%%%%%%%
+%%% CORPS DU SUJET %%%
+%%%%%%%%%%%%%%%%%%%%%%
+
+Sauf \textbf{mention explicite du contraire}, les réponses doivent être justifiées (éventuellement de façon concise). Pour les exercices sans justification, les réponses erronées donnent lieu des points négatifs. 
+
+%% \section*{Test 1}
+
+\Exo \textbf{3 points}
+
+Vérifier si l'assertion suivante est une tautologie
+
+\begin{equation*}
+(\;(A \Rightarrow B) \text{ et } (B \Rightarrow C)\;) \Rightarrow (B \Rightarrow A)
+\end{equation*}
+
+\Exo \textbf{3 points}
+
+Montrer par récurrence que pour tout $n \geq 1$, 
+
+\begin{equation*}
+S_n = \sum_{i = 1}^n i^2 = \frac{n(n+1)(2n+1)}{6}
+\end{equation*}
+
+\Exo \textbf{2 points}
+
+Trouver l'ensemble des nombres complexes $z$ tels que $|e^z| < e$.
+
+\Exo \textbf{3 points}
+
+On considère la fonction $f(x) = \sqrt{3}\cos(x) + \sin(x)$. Trouver toutes les solutions de l'équation $f(x) = 0$. (Indication: on pourra essayer de se ramener à une équation de la forme $R\cos(x - \phi) = 0$ avec $R$ et $\phi$ bien choisis). 
+
+\Exo \textbf{2 points}
+
+Un commerçant annonce une remise de 50\% sur tout le magasin à l'ouverture des soldes. Malhonnête, le commerçant a augmenté subrepticement ses prix de 25\% puis de 20\% quelques jours avant l'ouverture des soldes. Quelle est la remise effectivement consentie aux consommateurs (sur le prix normal)? 
+
+\Exo \textbf{2 points}
+
+Un lac abrite une population de nénuphars. La surface de lac couverte par les nénuphars double chaque jour. Au bout de 15 jours, les nénuphars couvrent la moitié du lac. Combien de temps faut-il pour recouvrir tout le lac?
+
+\Exo \textbf{2 points} 
+
+On met en compétition dans un tube à essai deux populations ($A$ et $B$) de bactéries. La population $A$ démarre à une concentration initiale de $A_0 = 10^8$ UFC par mL, la population $B$ à $B_0 = 4 \times 10^8$ UFC par mL. Le temps de division de $A$ est $t_A = 20$ minutes, celui de $B$ est $t_B = 40$ minutes. On admet que la concentration de $A$ au temps $t$ vaut $A(t) = A_0 \exp(t \ln(2) / t_A )$. De même, la concentration de $B$ au temps $t$ vaut $B(t) = B_0 \exp(t \ln(2) / t_B )$. 
+
+À quel moment les deux populations ont-elles la même concentration dans le tube?
+
+\Exo \textbf{5 points}
+
+On rappelle le code génétique:
+\begin{center}
+\includegraphics[width = 0.5\linewidth]{./Figures_externes/codeG.jpg}
+\end{center}
+
+On note $E = \{U, C, A, G\}^3$ l'ensemble des codons, $F = \{\text{Alanine}, \dots, \text{Valine}\}$ l'ensemble des 20 acides aminés standards et $Tr: E \to F$ (comme \emph{traduction}) la fonction qui à un codon associe l'acide aminé correspondant. 
+
+\begin{enumerate}
+\item $Tr$ est-elle une application? Si oui, justifier. Si non, que faut-il faire pour la tranformer en application?
+\item $Tr$ est-elle une surjection? une injection?
+\item On considère une bactérie mutante qui utilise systématiquement la guanine en 3ème position du codon et $\overline{Tr}$ la restriction de $Tr$ aux codons observés chez cette bactérie. $\overline{Tr}$ est-elle une injection? une surjection?
+\end{enumerate}
+
+
+\Exo \textbf{5 points}
+
+On mesure avec un spectrophotomètre la densité optique (DO) d'une population de bactéries dans un tube à essai. La relation en concentration de bactérie ($c$ en  $10^8$ UFC par mL) et DO ($d$) est donnée par:
+\begin{equation*}
+d = \begin{cases} 1.5 c & \text{si } 0 \leq c \leq 1 \\ 1.5 + (c-1)^2 & \text{si } 1 \leq c \leq 1.5 \\ 1.75 & \text{sinon} \end{cases}
+\end{equation*}
+
+\begin{enumerate}
+\item Tracer sommairement le graphe de $d$ en fonction de $c$ (pour $c$ dans $[0, 2]$)
+\item Le spectrophotomètre donne une DO comprise entre $1.54$ et $1.59$. Dans quelle gamme de valeurs la concentration $c$ est-elle comprise?
+\item Pour des concentrations comprises entre $0.8$ et $1.1$, dans quelle plage sont les DO mesurées par le spectrophotomètre?
+\end{enumerate}
+
+\Exo \textbf{3 points, pas de justification}
+
+Indiquer, parmi les graphes suivants, celui qui correspond à la fonction $\arccos(x)$ (si vous êtes I), $\arcsin(x)$ (si vous êtes II) ou $\arctan(x)$ (si vous êtes III)
+
+\begin{center}
+  % \begin{tabular}{p{0.33\linewidth}p{0.33\linewidth}p{0.33\linewidth}}
+  \begin{tabular}{ccc}
+<<label = arctan, echo = FALSE, include = TRUE, fig.width=3, fig.height=2.5, out.width = "0.33\\linewidth">>=
+par(mar = c(0, 0, 0, 0))
+x <- seq(-7, 7, length.out = 200)
+plot(x, atan(x), col = "red", type = "l", 
+     axes = FALSE, xlab = "", ylab = "", lwd = 3, asp = 1, 
+     ylim = c(-pi/2, pi/2))
+abline(h = 0, v = 0)
+abline(h = c(-1, 1)*pi/2, col = "grey80", lwd = 1.5)
+segments(x0 = rep(0, 2), x1 = rep(-0.2, 2), 
+         y0 = c(-1, 1)*pi/2,  y1 = c(-1, 1)*pi/2)
+text(x = rep(-0.25, 2), y = c(-1, 1)*pi/2, labels  = expression(-pi/2, pi/2), adj = c(1, 0.5))
+text(par("usr")[ 1 ], par("usr")[ 4 ], "A", adj = c( 0, 1 ), col = "red", cex = 2)
+@ 
+&
+<<arccos, fig.width = 3, fig.height = 2.5, out.width = '0.33\\linewidth'>>=
+par(mar = c(0, 0, 0, 0))
+x <- seq(-1, 1, length.out = 200)
+plot(x, acos(x), col = "red", type = "l", 
+     axes = FALSE, xlab = "", ylab = "", lwd = 3, asp = 1, 
+     ylim = c(-0.25, pi))
+abline(h = 0, v = 0)
+segments(x0 = seq(-1,1, by = 0.5), x1 = seq(-1,1, by = 0.5), 
+         y0 = rep(0, 5),  y1 = rep(-0.1, 5))
+text(x = seq(-1,1, by = 0.5), y = rep(-0.15, 5), labels =  seq(-1,1, by = 0.5), adj = c(0.5, 1))
+segments(x0 = rep(0, 2), x1 = rep(-0.2, 2), 
+         y0 = c(1/2, 1)*pi,  y1 = c(1/2, 1)*pi)
+text(x = rep(-0.25, 2), y = c(0.5, 1)*pi, labels  = expression(pi/2, pi), adj = c(1, 0.5))
+text(par("usr")[ 1 ], par("usr")[ 4 ], "B", adj = c( 0, 1 ), col = "red", cex = 2)
+@    
+&
+<<arcsin, fig.width = 3, fig.height = 2.5, out.width = '0.33\\linewidth'>>=
+par(mar = c(0, 0, 0, 0))
+x <- seq(-1, 1, length.out = 200)
+plot(x, asin(x), col = "red", type = "l", 
+     axes = FALSE, xlab = "", ylab = "", lwd = 3, asp = 1, 
+     ylim = c(-pi/2, pi/2))
+abline(h = 0, v = 0)
+segments(x0 = seq(-1,1, by = 0.5), x1 = seq(-1,1, by = 0.5), 
+         y0 = rep(0, 5),  y1 = rep(-0.1, 5))
+text(x = seq(-1,1, by = 0.5), y = rep(-0.15, 5), labels =  seq(-1,1, by = 0.5), adj = c(0.5, 1))
+segments(x0 = rep(0, 2), x1 = rep(-0.2, 2), 
+         y0 = c(-1, 1)*pi/2,  y1 = c(-1, 1)*pi/2)
+text(x = rep(-0.25, 2), y = c(-1, 1)*pi/2, labels  = expression(-pi/2, pi/2), adj = c(1, 0.5))
+text(par("usr")[ 1 ], par("usr")[ 4 ], "C", adj = c( 0, 1 ), col = "red", cex = 2)
+@    
+  \end{tabular}
+\end{center}
+
+\Exo \textbf{4 points, pas de justification}
+
+On considère les fonctions suivantes, données par leur expression:
+
+\begin{equation*}
+f(x) = 
+\begin{cases} 
+\arccos(x) & \text{si type I} \\
+\arcsin(x) & \text{si type II} \\
+\arctan(x) & \text{si type III} \\
+\end{cases} 
+\quad 
+g(x) = 
+\begin{cases} 
+\cos(x) & \text{si type I} \\
+\sin(x) & \text{si type II} \\
+\tan(x) & \text{si type III} \\
+\end{cases} 
+\end{equation*}
+
+Indiquer parmi les fonctions suivantes, celle qui correspond à $f \circ g$ et celle qui correspond à $g \circ f$. Si aucune fonction ne correspond, indiquer \emph{aucune}. 
+
+\begin{equation*}
+\begin{array}{ccc}
+f_1 = Id_{\mathbb{R}} & f_2 = Id_{[-\pi/2, \pi/2]} & f_3 = Id_{[0, \pi]} \\
+f_4 = Id_{]-1, 1[} & f_5 = Id_{[-1, 1]} & f_6 = Id_{]-\pi/2, \pi/2[} 
+\end{array}
+\end{equation*}
+
+\Exo \textbf{6 points}
+
+\emph{Dans cet exercice, toutes les durées, vitesses et distances sont entendues pour des trajets "à vol d'oiseau".}
+
+Matthieu (avec 2 \emph{t}), Roxanne (avec 2 \emph{n}) et Emmeline (avec 2 \emph{m}) habitent dans la même commune. La maison de Matthieu enjambe un petit ruisseau qui s'écoule d'Est en Ouest et Emmeline et Roxanne habitent de part et d'autre du ruisseau. Il faut 1h à Emmeline pour rejoindre le ruisseau depuis chez elle contre 1h30 pour Roxanne (les deux marchent à la même vitesse). Le triangle formé par les 3 maisons $M$ (de Matthieu), $R$ (de Roxanne) et $E$ (d'Emmeline) est rectangle en $M$. Enfin, on sait qu'Emmeline habite à 4 km au Sud et 3 km à l'Est de Matthieu. 
+
+Où est située la maison de Roxanne par rapport à celle de Matthieu (on donnera la réponse sous la forme \emph{$X$ kilomètres dans la direction $\dots$ et $Y$ dans la direction $\dots$})
+
+On pourra se placer dans le plan complexe (en prenant par exemple la maison de Matthieu comme origine) et traduire les informations de l'énoncé sous forme mathématique. 
+
+\end{document}

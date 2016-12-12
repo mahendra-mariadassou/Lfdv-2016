@@ -1,0 +1,6 @@
+*.tex
+cache
+Figures
+partiel_S1.log
+partiel_S1.pdf
+partiel_S1.synctex.gz

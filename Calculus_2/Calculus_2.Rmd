@@ -5,6 +5,7 @@ date: "6 décembre 2016"
 output:
   ioslides_presentation:
     css: ../CSS/custom_licence_fdv.css
+    keep_md: yes
     toc: yes
   beamer_presentation: default
 height: 720
@@ -167,6 +168,14 @@ Les notions de voisinage à droite de $+\infty$ et à gauche de $-\infty$ n'ont 
 
 Au tableau 
 
+<b>Exercices</b>
+
+Écrire avec des quantificateurs que 
+
+- $f$ est définie au voisinage de $2$
+- $g$ est positive au voisiange de $+\infty$
+- $h$ est proche de $3$ à $10^{-6}$ près au voisinage de 4
+
 ## Limite infinie à l'infini. 
 
 Soit $f: A \to B$ une fonction numérique. On suppose que $f$ est définie au voisinage de $+\infty$ (resp. $-\infty$). 
@@ -279,5 +288,181 @@ Soit $a \in \mathbb{R}$ et $f$ définie au voisinage de $a$ (sauf peut-être en 
 </div>
 
 # Opération sur les limites
+
+## Théorèmes d'opérations
+
+En pratique, on revient rarement à la définition formelle de la limite. On se sert plutôt des "théorèmes d'opérations"" qui permettent de calculer des limites complexes en combinant des limites élémentaires. 
+
+```{r, out.width = "720px", fig.align="center"}
+knitr::include_graphics("Images_externes/lego-assembled-disassembled.jpg")
+```
+
+## Somme de limite 
+
+Soit $a \in \bar{\mathbb{R}}$ et deux fonctions $f$ et $g$ telles que $\lim_a f = l$ et $\lim_a g = m$, alors la limite éventuelle de $f+g$ en $a$ est donnée par
+
+$$
+  \begin{array}{|c|c|c|c|}
+    \hline
+    &  l = -\infty & l \in \mathbb{R} & l = +\infty \hspace{1.5em} \\
+    \hline
+    m = -\infty              & -\infty & -\infty & Ind \\
+    \hline
+    m \in \mathbb{R} & -\infty & l + m & +\infty \\
+    \hline
+    m = +\infty                    & Ind & +\infty & +\infty \\
+    \hline
+  \end{array}
+$$
+
+Où Ind indique une forme indéterminée (ici $\infty -\infty$)
+
+## Produit de limite
+
+Soit $a \in \bar{\mathbb{R}}$ et deux fonctions $f$ et $g$ telles que $\lim_a f = l$ et $\lim_a g = m$, alors la limite éventuelle de $f\times g$ en $a$ est donnée par
+
+$$
+  \begin{array}{|c|c|c|c|c|c|}
+    \hline
+    &  l = -\infty & l \in \mathbb{R}_{-}^\star & l = 0 & l \in \mathbb{R}_+^\star & l = +\infty \hspace{1.5em} \\
+    \hline
+    m = -\infty              & +\infty & +\infty & Ind & -\infty & -\infty \\
+    \hline
+    m \in \mathbb{R}_-^\star & +\infty & ml & 0 & ml & -\infty \\
+    \hline
+    m = 0 & Ind & 0 & 0 & 0 & Ind \\
+    \hline
+    m \in \mathbb{R}_+^\star & -\infty & ml & 0 & ml & +\infty \\
+    \hline
+    m = +\infty              & -\infty & -\infty & Ind & +\infty & +\infty \\
+    \hline
+  \end{array}
+$$
+
+Les formes indéterminées correspondent à $0 \times \infty$
+
+## Quotient de limite
+
+Soit $a \in \bar{\mathbb{R}}$ et $f$ ne s'annulant pas au voisinage de $a$ telle que $\lim_a f = l$. Alors 
+
+- Si $l = \pm \infty$, alors $\lim_a \frac{1}{f} = 0$
+- Si $l \in \mathbb{R}^\star$, alors $\lim_a \frac{1}{f} = \frac{1}{l}$
+- Si $l = 0$, il y a plusieurs cas.
+    + si $f > 0$ sur un voisinage de $a$, on a $\lim_a \frac{1}{f} = +\infty$
+    + si $f < 0$ sur un voisinage de $a$, on a $\lim_a \frac{1}{f} = -\infty$
+    + si $f$ change de signe sur tous les voisinages de $a$, la limite est une forme indéterminée. 
+    
+Pour la limite de f/g$, on remarque que $f/g = f \times (1/g)$ et on se ramène à un produit.
+  
+## Composée de fonctions 
+
+Soit $a, b \in \bar{\mathbb{R}}$. Soient $f$ et $g$ telles que $\lim_a f = b$ et $\lim_b g = l$ avec ($l \in \bar{\mathbb{R}}$). On alors 
+$\lim_a (g\circ f) = l$. 
+
+```{r composee-limite, fig.show = "animate", fig.keep='high', anipots = "controls"}
+f <- function(x) {x^2}
+a <- 2
+g <- function(x) {sqrt(x)}
+b <- f(a)
+n <- 1:10
+for (i in n) {
+  par(mfrow = c(1, 2))
+  ai <- a + 1/i
+  curve(f, 0, 3, col = "red", lwd = 2); abline(v = 0, h = 0); 
+  abline(v = a, h = f(a)); 
+  text(a, 0, labels = "a", col = "grey60", adj = c(1, 0), cex = 1.5)
+  text(0, f(a), labels = expression(f(a) == b), col = "grey60", adj = c(0, 1), cex = 1.5)
+  ## text(x = c(a, 0), y = c(0, f(a)), labels = c(expression(a, f(a) == b)), col = "grey60", pos = c(3, 4), cex = 2)
+  points(x = a, y = f(a), pch = 19, col = "grey60", cex = 2)
+  points(x = ai, y = 0, pch = 19, col = "blue")
+  segments(x0 = ai, y0 = 0, y1 = f(ai), col = "blue")
+  points(x = ai, y = f(ai), pch = 19, col = "black")
+  segments(x0 = ai, x1 = 0, y0 = f(ai), col = "green")
+  points(x = 0, y = f(ai), pch = 19, col = "green")
+  text(x = ai, y = 0, labels = "x", col = "blue", pos = 3, cex = 1.5)
+  text(x = 0, y = f(ai), labels = expression(f(x)), col = "green", pos = 4, cex = 1.5)
+  bi <- f(ai)
+  ## Second panel
+  curve(g, 0, 9, col = "red", lwd = 2); abline(v = 0, h = 0)
+  abline(v = b, h = g(b)); 
+  text(b, 0, labels = "a", col = "grey60", adj = c(1, 0), cex = 1.5)
+  text(0, g(b), labels = expression(g(b) == l), col = "grey60", adj = c(0, 1), cex = 1.5)
+  points(x = b, y = g(b), pch = 19, col = "grey60", cex = 2)
+  points(x = bi, y = 0, pch = 19, col = "green")
+  segments(x0 = bi, y0 = 0, y1 = g(bi), col = "green")
+  points(x = bi, y = g(bi), pch = 19, col = "black")
+  segments(x0 = bi, x1 = 0, y0 = g(bi), col = "purple")
+  points(x = 0, y = g(bi), pch = 19, col = "purple")
+  text(x = bi, y = 0, labels = "f(x)", col = "green", pos = 3, cex = 1.5)
+  text(x = 0, y = g(bi), labels = expression(g(f(x))), col = "purple", pos = 4, cex = 1.5)
+}
+```
+
+## Fonctions de la forme $u(x)^{v(x)}$
+
+Dans le cas de fonctions de la forme $u(x)^{v(x)}$ on repasse toujours à la forme exponentielle $u(x)^{v(x)} = e^{v(x) \ln(u(x))}$ et on étudie la limite de $v(x) \ln(u(x))$ et on déduit la limite recherché par composition avec l'exponentielle. 
+
+<b>Attention</b>
+La forme $1^{\infty}$ est <alert>indéterminée</alert>
+
+- $\lim_0 \cos(x)^{1/x} = 1$
+- $\lim_{0+} (1 + \sin(x))^{1/x^2} = +\infty$
+
+## Théorème d'encadrement (des gendarmes)
+
+<div class = "theorem">
+Soit $a, l \in \mathbb{R}$ et $f, g, h$ 3 fonctions définies au voisinage de $a$ (sauf peut-être en $a$). 
+<ul>
+<li>Si pour tout $x$ au voisinage de $a$, $f(x) \leq g(x)$ alors 
+$$
+\begin{align*}
+\lim_a f = +\infty & \Rightarrow \lim_a g = +\infty \\ 
+\lim_a g = -\infty & \Rightarrow \lim_a f = -\infty
+\end{align*}
+$$</li>
+<li>Si pour tout $x$ au voisinage de $a$, $f(x) \leq g(x) \leq h(x)$ et $\lim_a f = \lim_a h = l$, alors $\lim_a g = l$.</li>
+</ul>
+</div>
+
+
+## Illustration
+
+$g(x) = x^2\sin(1/x)$ est compris entre $f(x) = -x^2$ et $h(x) = x^2$ au voisinage de $0$ (en fait sur tout $\mathbb{R}$) et $\lim_0 -x^2 = \lim_0 x^2 = 0$ donc $\lim_0 x^2\sin(1/x) = 0$
+
+```{r gendarmes, fig.align = "center"}
+par(mar = c(5, 5, 1, 1))
+g <- function(x) { x^2 * sin(1/x) }
+f <- function(x) { -x^2 }
+h <- function(x) { x^2 }
+curve(g, -0.01, 0.01, lwd = 2, col = "red", n = 1000, ylab = expression(paste(x^2, "sin(", 1/x, ")")))
+curve(f, -0.01, 0.01, lwd = 2, col = "green", n = 1000, add = TRUE); text(0, 0, pos = 1, labels = "f(x)", cex = 2, col = "green")
+curve(h, -0.01, 0.01, lwd = 2, col = "blue", n = 1000, add = TRUE); text(0, 0, pos = 3, labels = "h(x)", cex = 2, col = "blue")
+```
+
+## Limites classiques (à savoir)
+
+Voir la feuille sur les fonctions usuelles ainsi que les limites suivantes en $0$
+
+- $\lim_0 \frac{\sin(x)}{x} = 1$
+- $\lim_0 \frac{\tan(x)}{x} = 1$
+- $\lim_0 \frac{e^x - 1}{x} = 1$
+- $\lim_0 \frac{\ln(1+x)}{x} = 1$
+- $\lim_0 \frac{1 - \cos(x)}{x^2} = \frac{1}{2}$
+
+
+## Exercices {.smaller}
+
+Calculer les limites suivantes
+
+$$
+  \begin{array}{ccc}
+  \lim_{+\infty} x^4 e^{-\sqrt{x}} & \lim_{-\infty} e^{3x^2}/x^5 & \lim_{+\infty} x\ln(1 + 1/x) \\
+  \lim_{0+} \frac{\ln(1+4x)}{x} & \lim_{0+} \frac{\ln(1+x^2)}{x\sqrt{x}} & \lim_{0+} \frac{x}{e^{x^2} - 1} \\
+  \lim_{0+} \frac{\sqrt{1+x} - \sqrt{1-x}}{e^{x} - 1} & \lim_{0+} \frac{x - (1+x)\ln(1+x)}{x} & \lim_{0+} \frac{x}{2} \lfloor \frac{3}{x} \rfloor \\
+  \lim_{1} \frac{x^n - 1}{x^p - 1} & \lim_{0} \frac{\cos(x) - \sqrt{\cos(2x)}}{\sin^2(x)} & \lim_{+\infty} \left(1 + \frac{1}{x}\right)^x \\
+  \lim_{0+} \frac{\ln(x)}{x} & \lim_{+\infty} x^3\ln(1+ 1/x\sqrt{x}) & \lim_{+\infty} \sqrt{x^2 + x + 1} - x \\
+  \end{array}
+$$
+
 
 
