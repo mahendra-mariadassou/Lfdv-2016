@@ -39,14 +39,14 @@
 %%% ZONE ORANGE : intervention deconseillee
 \parindent=0pt
 \textwidth 17.0cm
-\textheight26.0cm
+\textheight 25.0cm
 \hoffset-2.0cm
 \voffset-2.0cm
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%% ZONE VERTE : Intervention obligatoire
 %%% ADAPTER SUIVANT LA NATURE DE L'EPREUVE
 \def\Exam{Partiel de Mathématiques}
-\def\Date{\today}
+\def\Date{14 décembre 2016}
 \def\Classe{TS3}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
