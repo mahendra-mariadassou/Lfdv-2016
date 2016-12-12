@@ -1,0 +1,192 @@
+\documentclass[a4paper,12pt]{article}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% ZONE ROUGE : intervention très fortement deconseillee
+\usepackage[utf8]{inputenc} % accent dans la source
+\usepackage[T1]{fontenc}
+\usepackage{times}
+\usepackage[french]{babel}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{fancybox}
+\usepackage{pstricks}
+\usepackage{pst-plot}
+\usepackage{pst-char}
+\usepackage{pst-text}
+% \usepackage{psfig}
+\usepackage{ifthen}
+\def\R{\mathbb{R}}
+\def\C{\mathbb{C}}
+\def\Z{\mathbb{Z}}
+\def\Q{\mathbb{Q}}
+\def\N{\mathbb{N}}
+\def\F{\mathbb{F}}
+\def\P{\mathbb{P}}
+\def\A{\mathbb{A}}
+
+%%%% Théorème, Proposition et tout le reste%%%%
+\newcommand{\proofbegin}{\paragraph{Proof.}}
+\newcommand{\proofend}{$\blacksquare$\bigskip}
+\newtheorem{theorem}{Théorème}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{definition}[theorem]{Définition}
+\newtheorem{lemma}[theorem]{Lemme}
+\newtheorem{corollary}[theorem]{Corollaire}
+
+%%%% debut macro %%%%
+\newenvironment{disarray}%
+ {\everymath{\displaystyle\everymath{}}\array}%
+ {\endarray}
+%%%% fin macro %%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% ZONE ORANGE : intervention deconseillee
+\parindent=0pt
+\textwidth 17.0cm
+\textheight25.0cm
+\hoffset-1.0cm
+\voffset-3.0cm
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% ZONE VERTE : Intervention obligatoire
+%%% ADAPTER SUIVANT LA NATURE DE L'EPREUVE
+\def\Exam{Exercices \og Limite et Continuité\fg{}}
+\def\Date{\today}
+\def\Classe{TS3}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% ZONE VERTE : 
+%%% ALIGNER LES EQUATIONS A GAUCHE
+\makeatletter
+\newenvironment*{fleqn}{
+    \@fleqntrue
+    \setlength\@mathmargin{0pt}%
+    \ignorespaces
+}{%
+    \ignorespacesafterend
+}
+\makeatother
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+\newcounter{nexo}
+\setcounter{nexo}{1}
+\newcommand{\Exo}{\medskip
+  {\bf Exercice \arabic{nexo} : }
+  \addtocounter{nexo}{1}}
+\newcommand{\Pb}{{\bf Problème \arabic{nexo} : } 
+\addtocounter{nexo}{1} \bigskip}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% ZONE BLEUE : Intervention parfois utile mais a faire prudemment
+{\bf  \hfill \Date \quad ~}
+%
+\vskip 1cm
+%
+%%% FAIRE UN CHOIX (3 choix possibles)
+%%% 1)
+%\centerline{\psframebox[fillstyle=solid,fillcolor=lightgray]
+%\textbf{\LARGE \black \Exam}}
+%%% 2)
+%\centerline{\psframebox{\bf \LARGE  \Exam}}
+%%% 3)
+\centerline{\bf \LARGE \Exam}
+%
+\vskip 1.5cm
+%
+
+
+%%%%%%%%%%%%%%%%%%%%%%
+%%% CORPS DU SUJET %%%
+%%%%%%%%%%%%%%%%%%%%%%
+
+% \section*{Corrigé du devoir 1}
+
+\Exo \textbf{Limite}
+
+\begin{itemize}
+\item En utilisant des calculs d'aires, montrer que $\forall  x \in [0, \pi/2[, \sin(x) \leq x \leq \tan(x)$ puis que $\forall  x \in ]-\pi/2, 0], \tan(x) \leq x \leq \sin(x)$
+\item En déduire que $\displaystyle \lim_{x \to 0} \frac{\sin(x)}{x} = 1$ (avec le théorème d'encadrement) 
+\end{itemize}
+
+\Exo \textbf{A propos de $x^n$}
+
+Soit $x$, $a$ deux nombres réels et $n \in \mathbb{N}^*$ un nombre entier non nul. 
+
+\begin{itemize}
+\item Montrer que $x^n - x^a = (x - a)(x^{n-1} + ax^{n-2} + a^2x^{n-3} + \dots + a^{n-3}x^{2} + a^{n-2}x + a^{n-1})$
+\item En déduire $\displaystyle \lim_{x \to a} \frac{x^{n} - a^n}{x - a}$ (on retrouve de cette façon la dérivée de $x \mapsto x^n$ en $a$)
+\end{itemize}
+
+On rappelle quelques limites classiques (les deux dernières sont dites de \textbf{croissance comparée}): 
+\begin{itemize}
+\item $\displaystyle \lim_{x \to 0} \frac{\sin(x)}{x} = 1$ 
+\item $\displaystyle \lim_{x \to 0} \frac{\ln(1+x)}{x} = 1$ 
+\item $\displaystyle \lim_{x \to 0} \frac{e^x - 1}{x} = 1$ 
+\item $\displaystyle \lim_{x \to +\infty} \frac{\exp(x)}{x^n} = +\infty$ pour tout $n \in \mathbb{N}$. 
+\item $\displaystyle \lim_{x \to +\infty} \frac{\ln(x)}{x} = 0$. 
+\end{itemize}
+
+
+\Exo \textbf{Théorèmes d'opérations}
+
+En utilisant les théorèmes d'opérations sur les limites, montrer que:
+
+\begin{itemize}
+\item $\displaystyle \lim_{x \to \infty} x^4e^{-\sqrt{x}} = 0$
+\item $\displaystyle \lim_{x \to \infty} \frac{\exp(2x^2)}{x^4} = +\infty$
+\item $\displaystyle \lim_{x \to \infty} \frac{\exp(2x^2)}{x^4} = +\infty$
+\item $\displaystyle \lim_{x \to \infty} x\ln\left(1 + \frac{1}{x}\right) = 1$
+\item $\displaystyle \lim_{x \to 0^+} \frac{x}{e^{x^2} - 1} = +\infty$
+\item $\displaystyle \lim_{x \to \infty}  x^2\ln\left(1 + \frac{1}{x\sqrt{x}}\right) = 1 $
+\item $\displaystyle \lim_{x \to 0^+} \frac{2\sqrt{x}}{\sin(x^2)} = +\infty$
+\item $\displaystyle \lim_{x \to 0^+} \left( 1 + \frac{1}{x}\right)^x = e$
+\item $\displaystyle \lim_{x \to 0^+} \left( 1 + \frac{a}{x}\right)^{bx} = e^{ba}$ pour tout $a,b > 0$. 
+\end{itemize}
+
+\Exo \textbf{Théorèmes d'opérations (bis)}
+
+Montrer les limites suivantes
+
+\begin{equation*}
+  \begin{disarray}{ccc}
+    \lim_{+\infty} x^4 e^{-\sqrt{x}} = 0 & \lim_{-\infty} e^{3x^2}/x^5 = +\infty & \lim_{+\infty} x\ln(1 + 1/x) = 1\\
+    \lim_{0+} \frac{\ln(1+4x)}{x} = 4 & \lim_{0+} \frac{\ln(1+x^2)}{x\sqrt{x}} = 0 & \lim_{0+} \frac{x}{e^{x^2} - 1} = +\infty \\
+    \lim_{0+} \frac{\sqrt{1+x} - \sqrt{1-x}}{e^{x} - 1} = 1 & \lim_{0+} \frac{x - (1+x)\ln(1+x)}{x} = 0 & \lim_{0+} \frac{x}{2} \lfloor \frac{3}{x} \rfloor \frac{3}{2} \\
+    \lim_{1} \frac{x^n - 1}{x^p - 1} = \frac{n}{p} & \lim_{0} \frac{\cos(x) - \sqrt{\cos(2x)}}{\sin^2(x)} = 1 & \lim_{+\infty} \left(1 + \frac{1}{x}\right)^x = e \\
+    \lim_{0+} \frac{\ln(x)}{x} = -\infty & \lim_{+\infty} x^3\ln(1+ 1/x\sqrt{x}) = +\infty & \lim_{+\infty} \sqrt{x^2 + x + 1} - x = \frac{1}{2} \\
+  \end{disarray}
+\end{equation*}
+
+\Exo \textbf{Limite et fonction périodique}
+
+On considère $f$ une fonction périodique, définie sur $\mathbb{R}$ et ayant une limite finie $l$ en $+\infty$. Montrer que $f$ est constante. 
+
+\Exo \textbf{Limites en $0$}
+
+Calculer les limites des fonctions suivantes en $0$ (en distinguant limite à gauche et à droite quand nécessaire):
+
+\begin{equation*}
+  \begin{disarray}{l||l}
+    \frac{1}{x(x-1)} - \frac{1}{x} & \frac{\sqrt{x^2}}{x} \\
+    \frac{x^2}{\sqrt{1+x^2} - 1} & \frac{\sqrt{x+4} - \sqrt{3x+4}}{\sqrt{x+1} - 1} \\
+    (\ln(e+x))^{1/x} & \tan(x) \ln(\sin(x)) \\
+    \frac{\sin(x)^x - 1}{x^x - 1} & \left(x \cos\left( \frac{x}{x^2 + 1}\right) \right)^{x/(x^2+2)} \\
+    \frac{e^{1/(x^2+1)} - e^{e^x}}{\sqrt[3]{1+x} - 1} & 
+  \end{disarray}
+\end{equation*}
+
+Calculer les limites des fonctions suivantes en $+\infty$:
+
+\begin{equation*}
+  \begin{disarray}{l||l}
+    \sqrt{a+x} - \sqrt{x} & \frac{x - \sqrt{x^2+1}}{x^2 - \sqrt{x^2+1}} \\
+    \frac{x}{\sqrt{x+1}} - \frac{x}{\sqrt{x+2}} & \frac{\sqrt[4]{x+1} - \sqrt[4]{x}}{\sqrt[3]{x+1} - \sqrt[3]{x}} \\
+    x \sin(\pi/x) & \left( 1 + \frac{2}{x} \right)^{3x-2} \\
+    \left( 1 + \frac{a}{x} \right)^{bx} & \ln(3x^2 - 4) - \ln(x^2 - 1) \\
+    \left( \frac{x^2 - 2x + 1}{x^2 - 4x + 2} \right)^x & \left( \frac{\ln(x)}{x} \right)^{1/x} \\
+    \left( \frac{x+2}{x} \right)^{2x} & \sqrt{x + \sqrt{x + \sqrt{x}}} - \sqrt{x} \\
+  \end{disarray}
+\end{equation*}
+
+\end{document}
