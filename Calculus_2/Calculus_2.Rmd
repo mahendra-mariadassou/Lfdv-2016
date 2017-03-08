@@ -123,7 +123,7 @@ arrows(x0 = -pi/2, x1 = 3*pi/2, y0 = -2, code = 3, col = "darkgreen", lwd = 2); 
 
 ## Exercices
 
-Donner le doaine de définition et les éventuelles (im)parité/périodicité des fonctions suivantes:
+Donner le domaine de définition et les éventuelles (im)parité/périodicité des fonctions suivantes:
 
 - $f(x) = e^x + e^{-x}$
 - $f(x) = e^x - e^{-x}$

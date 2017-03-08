@@ -1,0 +1,321 @@
+---
+title: "Calcul Différentiel"
+author: "Mahendra Mariadassou"
+date: "8 mars 2017"
+output:
+  ioslides_presentation:
+    css: ../CSS/custom_licence_fdv.css
+    keep_md: yes
+    toc: yes
+  beamer_presentation: default
+height: 720
+width: 1280
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, cache = TRUE)
+```
+
+# Introduction 
+
+## Plan du cours 
+
+- Domaine d'étude
+- Limites, continuité, dérivabilité et variations
+- Comparaison locale de fonction
+- Etude locale des fonctions
+- Retour sur la limite
+
+## Rappel: la notion de dérivée
+
+<div class = "definition">
+La dérivée en $x_0$ d'une fonction $f$ dépendant de $x$ est notée $f'(x_0)$ et définie comme suit
+$$f'(x_0) = \lim_{h \to 0} \frac{f(x_0 + h) - f(x_0)}{h}$$
+</div>
+
+<ul>
+<li>La dérivée est la limite de deux <alert>petites</alert> quantités qui tendent chacune vers $0$. </li>
+<li>Elle est utilisée (via son <alert>signe</alert>) pour étudier les variations (<alert>locales</alert>) de $f$ et essayer de trouver les optimas (minima et maxima de $f$). </li>
+<li>Elle peut être difficile à calculer <alert>rigoureusement</alert>
+</ul>
+
+## Rappel: le "Formulaire"
+
+Pour éviter de recalculer $f'$ <em>from scratch</em> à chaque fois, on vous a invité à apprendre par coeur <alert>le formulaire</alert>
+
+$$
+  \begin{align*}
+  \forall \alpha \in \mathbb{R}, \quad (x^{\alpha})' = \alpha x^{\alpha - 1}  & &\\
+  \sin'(x) = \cos(x) & & cos'(x) = -\sin(x) \\
+  (e^x)' = e^x & & \ln'(x) = \frac{1}{x} \\
+  (u \times v)' = u'v + uv' & & \left( \frac{u}{v} \right)' = \frac{u'v - uv'}{v^2} \\
+  (g \circ f)(x) = f'(x) g'(f(x)) & & (f^{-1})'(x) = \frac{1}{f' \circ f^{-1} (x)}
+  \end{align*}
+$$
+
+## À propos du "Formulaire"
+
+- Le formulaire utilise des notations compactes et faciles à retenir mais gêne la compréhension
+- On va aussi introduire des notations légèrement plus lourdes (très courantes en physique et en sciences expérimentales) qui mettent en évidence les quantités manipulées. 
+- Il reste néanmoins nécessaire d'avoir en tête le formulaire lors du calcul "effectif" des dérivées. 
+
+## Différientielles et dérivées (I)
+
+De façon générale, si deux quantités $a$ et $b$ sont liées entre elles par une relation quelconque (algébrique, géométrique, physique, etc), une infime variation de l'une (de $a$ vers $a + \text{d}a$) va entraîner une infime variation de l'autre (de $b$ vers $b+\text{d}b$). 
+$$
+\text{Si:} \quad a \to a + \text{d}a \quad \text{alors} \quad b\to  b + \text{d}b
+$$
+
+- La notation $\text{d}$ dans $\text{d}a$ et $\text{d}b$ signale qu'on parle de variations minuscules et même <alert>infinitésimales</alert>, c'est à dire aussi petites que l'on veut. 
+- Les physiciens parlent souvent de <alert>différentielle</alert> (terme emprunté à Leibniz) pour désigner une variation infinitésimale. 
+
+## Différentielles et dérivées (II)
+
+- La dérivée peut se concevoir comme le <alert>taux de variation</alert> de $b$ par rapport $a$, c'est à dire comme le quotient 
+$\displaystyle \frac{\text{d}a}{\text{d}b}$ dans la limite où les variations $\text{d}a$ et $\text{d}b$ sont très petites. 
+- l'idée <alert>principale</alert> de la dérivée est la suivante
+<div class = "proposition">
+Si les différentielles sont suffisamment petites, alors elles sont proportionnelles entre elles et le coefficient de multiplication est la dérivée:
+$$\text{db} =  \frac{\text{d}b}{\text{d}a} \text{d}a$$
+</div>
+
+## Différentielles et dérivées (III)
+
+Dans la notation traditionnelle avec $f'(x)$, on retrouve bien un rapport entre deux variations infinitésimales:
+
+- $\text{d}f = f(x+h) - f(x)$ (petite variation de $f$)
+- $\text{d}x = (x+h) - x$ (petite variation de $x$)
+
+On voit souvent les deux notations 
+
+- $\frac{\text{d}f(x)}{\text{d}x}$ qui insiste sur le rapport entre une petite variation de $\text{d}f(x)$ et une petite variation de $\text{d}x$
+- $\frac{\text{d}}{\text{d}x}f(x)$ qui insiste sur le fait qu'on dérive par rapport à la quantité $x$. 
+
+Les deux sont à connaître. 
+
+## Différentielles et dérivées (IV)
+
+On considère un angle qui mesure $\alpha$ radians. Une variation infime de cet angle, notée $\text{d}\alpha$, entrainera une minuscule variation de $\sin(\alpha)$, notée $\text{d}\sin(\alpha)$. Puisque la dérivée de $\sin$ est $\cos$, on la relation de proportionalité suivante entre les variations infinitésimales
+$$
+\text{d}\sin(\alpha) = \cos(\alpha) \text{d}\alpha
+$$
+En pratique, la relation précédente est vraie dès que $\text{d}\alpha$ est <alert>suffisamment petit</alert> (dans cet exemple, de l'ordre du centi ou milligradient). 
+
+On peut donc adopter une définition, moins rigoureuse mais plus pratique, des différentielles: ce sont des variations <alert>suffisamment petites</alert> pour que la relation de proportionnalité s'appelle (avec une précision raisonnable). [On donnera une définition rigoureuse plus tard]
+
+## Interprétation graphique (I)
+
+```{r, derivative, keep=TRUE}
+f <- function(x) {x^2}
+# curve(f, 0, 1, axes = FALSE, xlab = NA, ylab = NA, col = "red", lwd = 2)
+x <- (0:100)/100; plot(x, f(x), axes = FALSE, xlab = NA, ylab = NA, col = "red", lwd = 2, type = "l")
+x <- c(0.5, .55); points(x = x, y = f(x), pch = 19)
+abline(h=0, v = 0, lwd = 2)
+segments(x0 = rep(x, each = 2), x1 = c(x[1], 0, x[2], 0), 
+         y0 = c(0, f(x[1]), 0, f(x[2])), y1 = rep(f(x), each = 2), lty = 2)
+## add labels
+text(x = x[1], y = 0.005, adj = c(1, 0), labels = "a")
+text(x = x[2], y = 0.005, adj = c(0, 0), labels = "a+da")
+text(x = 0.005, y = f(x[1]), adj = c(0, 1), labels = "b")
+text(x = 0.005, y = f(x[2]), adj = c(0, 0), labels = "b+db")
+abline(b = diff(f(x))/diff(x), a = f(x[1]) - x[1] * diff(f(x))/diff(x), lty = 2, col = "blue")
+text(x = x[2]+.05, y = f(x[2]), labels = expression(paste("slope = ", frac(db, da)(a))), adj = c(0, 0.5), col = "blue")
+```
+
+## Interprétation graphique (II)
+
+- Le graphique précédent représente $b(a)$. Localement, entre $(a, b)$ et $(a + \text{d}a, b + \text{d}b)$, la courbe peut-être confondue avec tangente en $(a, b)$ et le coefficient directeur de cette tangente est $\frac{\text{d}b}{\text{d}a}$. 
+- Il apparaît clairement sur le graphique précédent, et en toute généralité, que la valeur $\frac{\text{d}b}{\text{d}a}$ <alert>dépend</alert> de $a$ et qu'il faudrait donc la noter $\frac{\text{d}b}{\text{d}a}(a)$. 
+- On peut définir la <alert>dérivéé de la dérivée</alert> comme $\text{d}(\frac{\text{d}b}{\text{d}a})/\text{d}a$. Par souci de simplicité, on abrège la notation en $\frac{\text{d}^2 b}{\text{d}a^2}$
+- De même, la dérivée troisième est notée $\frac{\text{d}^3 b}{\text{d}a^3}$ et plus généralement la dérivée $n$-ème est notée $\frac{\text{d}^n b}{\text{d}a^n}$
+
+## Interprétation graphique (III)
+
+On peut relier les dérivées successives au comportement du graphe de $b(a)$ au voisinage de $a$
+
+- $b(a)$ indique la <alert>valeur</alert> de $b$ au point $a$.
+- La dérivée première $\frac{\text{d}b}{\text{d}a}(a)$ indique la <alert>pente</alert> de la courbe au voisinage de $a$. 
+    - Une pente positive ($\frac{\text{d}b}{\text{d}a} > 0$) correspond à une fonction <alert>localement</alert> croissante 
+    - Une pente négative ($\frac{\text{d}b}{\text{d}a} < 0$) correspond à une fonction <alert>localement</alert> décroissante 
+    - Une pente nulle ($\frac{\text{d}b}{\text{d}a} = 0$) correspond à une absence de pente et à une fonction <alert>localement</alert> constante
+
+## Interprétation graphique (IV)
+
+- La dérivée seconde  $\frac{\text{d}^2 b}{\text{d}a^2}(a)$ indique la <alert>concavité</alert> de la courbe au voisinage de $a$. 
+    - Une concavité positive ($\frac{\text{d}^2b}{\text{d}a^2} > 0$) correspond à une fonction localement <alert>convexe</alert> (en forme de creux) en $a$
+    - Une concavité négative ($\frac{\text{d}^2b}{\text{d}a^2} < 0$) correspond à une fonction localement <alert>concave</alert> (en forme de bosse) en $a$
+    - Une concavité nulle ($\frac{\text{d}^2b}{\text{d}a^2} = 0$) correspond à une absence de courbure et à une fonction localement <alert>linéaire</alert> en $a$
+    
+## Interprétation graphique (V)
+
+```{r concavity}
+par(mfrow = c(1, 3))
+f1 <- function(x) {x^2}
+f2 <- function(x) { log(x) }
+f3 <- function(x) { x+1 }
+curve(f1, -1, 1, axes = FALSE, xlab = NA, ylab = NA, col = "red", lwd = 2, main = "Convexe", cex.main = 2);abline(h = 0, v = 0)
+curve(f2, 0, 4, axes = FALSE, xlab = NA, ylab = NA, col = "red", lwd = 2, main = "Concave", cex.main = 2);abline(h = 0, v = 0)
+curve(f3, -1, 1, axes = FALSE, xlab = NA, ylab = NA, col = "red", lwd = 2, main = "Pas de courbure", cex.main = 2);abline(h = 0, v = 0)
+```
+
+## Variable de dérivation
+
+Attention à la <alert>variable de dérivation</alert>, les variations de $b$ en réponse aux variations de $a$ ne sont pas les mêmes que celles de $b$ en réponse aux variations de $u = g(a)$. 
+
+On considère $b = a^6$ et $u = a^2$, de sorte que $b = u^3$. On a 
+$$
+\frac{\text{d}b}{\text{d}a}(a) = 6a^5 \quad \text{mais} \quad \frac{\text{d}b}{\text{d}u}(u) = 3u^2 (\neq 6a^5)
+$$
+
+## Dérivée de fonctions composées (I)
+
+Il est très facile de manipuler les différentielles pour retrouver des dérivées compliquées. Il arrive souvent que la variation d'une quantité $A$ implique la variation d'une quantité $B$ qui implique la variation d'une quantité $C$. On a alors des relations de proportionalité entre les différentielles:
+$$
+\text{d}B = \frac{\text{d}B}{\text{d}A} \text{d}A \quad \text{d}C = \frac{\text{d}C}{\text{d}B} \text{d}B \quad \text{d}C = \frac{\text{d}C}{\text{d}A} \text{d}A
+$$
+d'où on déduit aisément 
+$$
+\frac{\text{d}C}{\text{d}A} = \frac{\text{d}C}{\text{d}B} \times \frac{\text{d}B}{\text{d}A}
+$$
+
+## Dérivée de fonctions composées (II)
+
+En alourdissant un peu les notations pour expliciter les points auquels sont calculés les dérivées, on obtient 
+$$
+\frac{\text{d}C}{\text{d}A}(A) = \frac{\text{d}C}{\text{d}B}(B) \times \frac{\text{d}B}{\text{d}A}(A)
+$$
+
+D'où on tire par analogie (avec $A=x$, $B=f(x)$ et $C=(g\circ f)(x)$ la formule fondamentale du calcul différentiel
+$$
+(g \circ f)'(x) = f'(x) g'(f(x))
+$$
+
+On peut évidemment généraliser à la composée de plus de deux fonctions.
+
+## Exemple
+
+En posant événtuellement $u = \omega t + \phi$, calculer la dérivée par rapport à $t$ de $\sin(\omega t + \phi)$
+
+$$
+\begin{align*}
+\frac{\text{d}(\sin(\omega t + \phi))}{\text{d}t}(t) & = \frac{\text{d}\sin(u)}{\text{d}u}(u) \times \frac{\text{d}u}{\text{d}t}(t) \\
+& = \cos(u) \times \omega \\
+& = \omega \cos(\omega t + \phi)
+\end{align*}
+$$
+On n'oubliera pas de bien tout exprimer en fonction de la variable de dérivation (ici $t$).
+
+## Lien avec le formulaire
+
+En combinant le mini-formulaire (exception faite de $(f^{-1})'(x)$) et le résultat précédent, on retrouve des dérivées connues uniquement comme cas particuliers
+$$
+\begin{align*}
+(e^{u(x)})' = u'(x)e^{u(x)} \\
+(\ln(u(x)))' = \frac{u'(x)}{u(x)} \\
+(u^\alpha(x))' = \alpha u'(x) u^{\alpha-1}(x)\\
+\end{align*}
+$$
+
+## Exercices (dérivées de fonctions de bases)
+
+Calculer les dérivées suivantes (en décomposant les calculs et en vous servant du formulaire si besoin)
+$$
+\begin{align*}
+\frac{\text{d}[u\ln u - u ]}{\text{d}u} & & \frac{\text{d}[(v - 1)e^v]}{\text{d}v} \\
+\frac{\text{d}[1/(1+\epsilon^2)]}{\text{d}\epsilon} & & \frac{\text{d}[1/\tan{\alpha}]}{\text{d}\alpha} \\
+\frac{\text{d}^2[\sin^2(\theta)]}{\text{d}\theta^2} & & \frac{\text{d}^2[x\sqrt{x}]}{\text{d}x} \\
+\frac{\text{d}^2[\ln(y)]}{\text{d}y^2} & & \frac{\text{d}^2[z^3+3z^2+3z+1]}{\text{d}z}
+\end{align*}
+$$
+
+## Exercices (dérivées de fonctions composées)
+
+Calculer les dérivées suivantes (en décomposant les calculs et en vous servant du formulaire si besoin)
+$$
+\begin{align*}
+\frac{\text{d}[(1+u^3)^4]}{\text{d}u} & & \frac{\text{d}[\sqrt{1+v^2}]}{\text{d}v} \\
+\frac{\text{d}[\ln(1-x)]}{\text{d}x}  & & \frac{\text{d}[2\sin(\alpha - \frac{\pi}{8})]}{\text{d}\alpha} \\
+\frac{\text{d}[\tan^2(\theta)]}{\text{d}\theta} & & \frac{\text{d}[e^{-y^2}]}{\text{d}y} \\
+\frac{\text{d}[1/\sqrt{1+u^2}]}{\text{d}u} & & \frac{\text{d}[\sqrt{z^3 + 3z^2 + 3z + 1}]}{\text{d}z}
+\end{align*}
+$$
+
+## Dérivées de fonctions réciproques
+
+Les fonctions réciproques jouent un rôle fondamentales en sciences expérimentales. Il est souvent possible d'<alert>inverser</alert> une relation entre deux quantités $a$ et $b$. C'est à dire qu'on peut exprimer 
+
+- $a$ en fonction de $b$ ($a = a(b)$)
+- $b$ en fonction de $a$ ($b = b(a)$)
+
+C'est le cas si $a(b)$ (ou $b(a)$) est une <alert>bijection</alert> (ou plus simplement une fonctions strictement monotone). Dans ce cas, $a(b)$ et $b(a)$ sont dites <alert>réciproques</alert>. 
+
+Dans le formalisme mathématique, on note plutôt $y = f(x)$ et $x = f^{-1}(y)$. 
+
+## Graphes de fonctions réciproques
+
+Les graphes de fonctions réciproques s'obtiennent aisément en <alert>permutant</alert> les axes des abscisses et des ordonnées. 
+
+```{r graphes-reciproques}
+f <- function(x) {x^2}
+g <- function(x) {sqrt(x)}
+par(mfrow = c(1, 2))
+## Graph 1
+curve(f, 0, 1, axes = FALSE, xlab = NA, ylab = NA, col = "red", lwd = 2, main = "Graph of b(a)")
+x <- 0.4; points(x = x, y = f(x), pch = 19)
+abline(h=0, v = 0, lwd = 2)
+segments(x0 = rep(x, 2), x1 = c(x, 0), 
+         y0 = c(0, f(x)), y1 = rep(f(x), 2), lty = 2)
+## add labels
+text(x = x+0.025, y = 0.025, adj = c(0, 0), labels = "a")
+text(x = 0.025, y = f(x)+0.025, adj = c(0, 0), labels = "b")
+abline(b = 2*x, a = f(x) - x * 2*x, lty = 2, col = "blue")
+text(x = x+.05, y = f(x), labels = expression(paste("slope = ", frac(db, da)(a))), adj = c(0, 0.5), col = "blue")
+## Graph 2
+curve(g, 0, 1, axes = FALSE, xlab = NA, ylab = NA, col = "red", lwd = 2, main = "Graph of a(b)")
+x <- f(0.4); points(x = x, y = g(x), pch = 19)
+abline(h=0, v = 0, lwd = 2)
+segments(x0 = rep(x, 2), x1 = c(x, 0), 
+         y0 = c(0, g(x)), y1 = rep(g(x), 2), lty = 2)
+## add labels
+text(x = x+0.025, y = 0.025, adj = c(0, 0), labels = "b")
+text(x = 0.025, y = g(x)+0.025, adj = c(0, 0), labels = "a")
+abline(b = 1/(2*sqrt(x)), a = g(x) - sqrt(x)/2, lty = 2, col = "blue")
+text(x = x+.05, y = g(x), labels = expression(paste("slope = ", frac(da, db)(b))), adj = c(0, 0.5), col = "blue")
+
+```
+
+## Dérivées de fonctions réciproques (II)
+
+Au vu des relations de proportionalités entre les différentielles:
+$$
+\text{db} =  \frac{\text{d}b}{\text{d}a} \text{d}a \qquad \text{da} =  \frac{\text{d}a}{\text{d}b} \text{d}b
+$$
+On a évidemment la relation suivante:
+$$
+\frac{\text{d}b}{\text{d}a}(a) = \left( \frac{\text{d}a}{\text{d}b}(b) \right)^{-1}
+$$
+
+## Dérivées de fonctions réciproques (III)
+
+Attention à bien calculer les dérivées au point d'intérêt. 
+
+Par exemple, si $a$ et $b$ sont des quantités positives, alors $b=\sqrt{a} \Leftrightarrow a = b^2$. 
+
+Sachant que $\frac{\text{d}a}{\text{d}b} = \frac{\text{d}(b^2)}{\text{d}b} = 2b$, on déduit tout de suite que $\frac{\text{d}b}{\text{d}a} = \frac{1}{2b}$. Mais pour que ce résultat soit intéressant, il faut le <alert>réexprimer</alert> en fonction de $a$, c'est à dire $\frac{\text{d}b}{\text{d}a} = \frac{1}{2\sqrt{a}}$.
+
+D'un point de formel, on retrouve la formule de la dérivée de la fonction réciproque. Si $y = f(x)$ et $x = f^{-1}(y)$, on a 
+$$
+(f^{-1})'(y) = \frac{\text{d}x}{\text{d}y}(y) = \left( \frac{\text{d}y}{\text{d}x}(x) \right)^{-1} = \frac{1}{f'(x)} = \frac{1}{f'\circ f^{-1}(y)}
+$$
+
+## Exercice: Dérivées de fonctions trigonométriques réciproques
+
+Les fonctions $\arcsin(x)$, $\arccos(x)$ et $\arctan(x)$ sont les réciproques (sur un certain intervalle) des fonctions trigonométriques $\sin(x)$, $\cos(x)$, $\tan(x)$. 
+
+Calculer (les résultats sont à connaître)
+
+- $\frac{\text{d}\arcsin(x)}{\text{d}x}$
+- $\frac{\text{d}\arccos(x)}{\text{d}x}$
+- $\frac{\text{d}\arctan(x)}{\text{d}x}$
+
+Indice: Quand $\cos(x) >0$, on a $\cos(x) = \sqrt{1 - \sin^2(x)}$. Pareil pour $\sin(x)$. 
