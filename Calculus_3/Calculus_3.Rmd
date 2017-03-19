@@ -216,6 +216,16 @@ $$
 \end{align*}
 $$
 
+## Exercice: Dérivées de fonctions angulaires
+
+Calculer les dérivées suivantes (en décomposant les calculs et en vous servant du formulaire si besoin)
+$$
+\begin{align*}
+\frac{\text{d}(\tan(\alpha))}{\text{d}\alpha} & & \frac{\text{d}[1/\cos(\alpha)]}{\text{d}\alpha} \\
+\frac{\text{d}[1/\sin(\alpha)]}{\text{d}\alpha} & & \frac{\text{d}[1/\tan(\alpha)]}{\text{d}\alpha}
+\end{align*}
+$$
+
 ## Exercices (dérivées de fonctions de bases)
 
 Calculer les dérivées suivantes (en décomposant les calculs et en vous servant du formulaire si besoin)
@@ -308,6 +318,8 @@ $$
 (f^{-1})'(y) = \frac{\text{d}x}{\text{d}y}(y) = \left( \frac{\text{d}y}{\text{d}x}(x) \right)^{-1} = \frac{1}{f'(x)} = \frac{1}{f'\circ f^{-1}(y)}
 $$
 
+
+
 ## Exercice: Dérivées de fonctions trigonométriques réciproques
 
 Les fonctions $\arcsin(x)$, $\arccos(x)$ et $\arctan(x)$ sont les réciproques (sur un certain intervalle) des fonctions trigonométriques $\sin(x)$, $\cos(x)$, $\tan(x)$. 
@@ -319,3 +331,179 @@ Calculer (les résultats sont à connaître)
 - $\frac{\text{d}\arctan(x)}{\text{d}x}$
 
 Indice: Quand $\cos(x) >0$, on a $\cos(x) = \sqrt{1 - \sin^2(x)}$. Pareil pour $\sin(x)$. 
+
+# Application des dérivées
+
+## Théorème et inégalité des acroissements finis (TAF/IAF)
+
+<div class = "theoreme">
+Soit $f: I = [a,b] \to \mathbb{R}$ une fonction dérivable sur $I$. Il existe alors au moins un point $c$ dans l'intervalle $(a, b)$ tel que $$f(b) = f(a) = f'(c) (b - a)$$
+</div>
+
+<div class = "theoreme">
+Soit $f: I = [a,b] \to \mathbb{R}$ une fonction dérivable sur $I$. On suppose que pour tout $x \in (a, b)$, on a $m \leq f'(x) \leq M$. Alors, pour tout $x \in (a, b)$, 
+$$m(x - a) \leq f(x) - f(a) \leq M(x-a)$$
+</div>
+
+## TAF et IAF (II)
+
+- TAF: La corde $[AB]$ entre $A = (a, f(a))$ et $B = (b, f(b))$ est parallèle à une des tangentes à la courbe (TAF). 
+- IAF: Si les tangentes extrêmes ont pour pentes $m$ et $M$, la courbe est comprise entre $a$ et $b$ entre les droites passant par $A$ et de coefficient directeur $m$ et $M$. 
+
+```{r, taf-iaf, fig.width=8, fig.height=4}
+par(mfrow = c(1, 2), xpd = FALSE)
+f <- function(x) { x^2 }
+curve(f, 0, 1, axes = FALSE, xlab = NA, ylab = NA, col = "red", lwd = 2, main = NA)
+abline(h=0, v = 0, lwd = 2)
+abline(0, 1, col = c("blue"), lwd = 2)
+x <- 0.5; points(x = rep(x, 2), y = c(0, f(x)), pch = 19)
+## add labels
+text(x = x+0.025, y = 0.025, adj = c(0, 0), labels = "c")
+# text(x = 0.025, y = f(x)+0.025, adj = c(0, 0), labels = "b")
+abline(b = 2*x, a = f(x) - x * 2*x, lty = 2, col = "blue")
+## add a and b
+a <- 0; b = 1; points(c(a, b), f(c(a, b)), pch = 19)
+text(x = x+.05, y = f(x), labels = expression("slope = f'(c)"), adj = c(0, 0.5), col = "blue")
+
+## Figure 2
+f <- function(x) { cos(x - pi/4 ) }
+df <- function(x) { -sin(x - pi/4) }
+curve(f, 0, pi, axes = FALSE, xlab = NA, ylab = NA, col = "red", lwd = 2, main = NA, ylim = c(-2, 3))
+abline(h=0, v = 0, lwd = 2)
+a <- 0; b = pi; points(c(a, b), f(c(a, b)), pch = 19)
+x <- 0; abline(b = -df(x), a = f(0), col = c("blue"), lwd = 2, lty = 2)
+x <- pi; abline(b = -df(x), a = f(0), col = c("blue"), lwd = 2, lty = 2)
+```
+
+## Tableau de variations 
+
+<div class = "proposition">
+Soit $f: I = [a,b] \to \mathbb{R}$ une fonction dérivable sur $I$. Si 
+
+- $f' \geq 0$ (resp. $f > 0$) sur $I$, alors $f$ est croissante (resp. strictement croissante) sur $I$
+- $f' \leq 0$ (resp. $f < 0$) sur $I$, alors $f$ est décroissante (resp. strictement décroissante) sur $I$
+- $f' = 0$ sur $I$, alors $f$ est constante (resp. strictement décroissante) sur $I$
+</div>
+
+## Tangentes verticales
+
+<div class = "proposition">
+Soit $f: I = [a,b] \to \mathbb{R}$ une fonction continue sur $I$, dérivable sur $I\setminus \{a\}$. Si $\lim_{a+} f' = \pm \infty$, alors le graphe $f$ admet une tangente verticale en $a$. 
+</div>
+
+```{r, tangente-verticale}
+f <- function(x) { sqrt(x-1) }
+curve(f, 1, 4, axes = FALSE, xlab = NA, ylab = NA, col = "red", lwd = 2, main = NA, xlim = c(0, 4))
+abline(h=0, v = 0, lwd = 2)
+abline(v = 1, col = c("blue"), lwd = 2)
+```
+
+## Recherche de minimums
+
+Soit $f: I \to \mathbb{R}$ une fonction dérivable qu'on cherche à minimiser (typiquement une énergie, un temps, une surface). Il est parfois plus facile de chercher le minimum de $f$ en passant par $f'$ qu'en faisant le tableau de variation complet de $f$. 
+
+<div class = "definition">
+Les points critiques de $f$ sont les points d'annulation de $f'$ <alert>et</alert> les bornes de son domaine de définition $I$.
+</div>
+
+<div class = "proposition">
+Les minimums <alert>locaux</alert> de $f$ sur $I$ sont forcément atteints en un point critique.
+</div>
+
+Il suffit donc d'étudier les points critiques (généralement peu nombreux) pour savoir où $f$ est (localement) minimum et de comparer ces mininums pour trouver le minimum global. 
+
+On note aussi que maximiser $f$ revient à minimiser $-f$, on se contente donc ici de chercher des minimums. 
+
+## Point critique et minimum
+
+Attention, un minimum est toujours un point critique mais un point critique n'est pas forcément un minimum. 
+
+```{r, point-critique}
+f <- function(x) { 1+x^3 }
+curve(f, -1, 1, axes = FALSE, xlab = NA, ylab = NA, col = "red", lwd = 2, main = NA, ylim = c(0, 2))
+abline(h=0, v = 0, lwd = 2)
+points(0, f(0), pch = 19)
+abline(h = 1, col = c("blue"), lwd = 2)
+```
+
+## Nature des points critiques
+
+Si $f$ est deux-fois dérivable, on peut déterminer si un point critique (hors bornes du domaine) est un maximum local ou un minimum local en fonction du signe de $f''$. 
+
+<div class = "proposition">
+Soit $f: I = [a,b] \to \mathbb{R}$ une fonction deux fois dérivable sur $I$ et $a$ un point d'annulation de $f'$. 
+
+- $f''(a) > 0$, $a$ est un minimum local de $f$
+- $f''(a) < 0$, $a$ est un maximum local de $f$
+- $f''(a) = 0$ on peut pas conclure. 
+</div>
+
+## Nature du point quand $f''(a) \neq 0$
+
+```{r, point-critique-2}
+par(mfrow = c(1, 2))
+## graph 1
+f <- function(x) { 1+x^2 }
+curve(f, -1, 1, axes = FALSE, xlab = NA, ylab = NA, col = "red", lwd = 2, main = NA, ylim = c(0, 2))
+abline(h=0, v = 0, lwd = 2)
+points(0, f(0), pch = 19)
+abline(h = 1, col = c("blue"), lwd = 2)
+## graph 2
+f <- function(x) { 1-x^2 }
+curve(f, -1, 1, axes = FALSE, xlab = NA, ylab = NA, col = "red", lwd = 2, main = NA, ylim = c(0, 2))
+abline(h=0, v = 0, lwd = 2)
+points(0, f(0), pch = 19)
+abline(h = 1, col = c("blue"), lwd = 2)
+```
+
+## Nature du point quand $f''(a) = 0$
+
+```{r, point-critique-3}
+par(mfrow = c(1, 2))
+## graph 1
+f <- function(x) { 1+x^3 }
+curve(f, -1, 1, axes = FALSE, xlab = NA, ylab = NA, col = "red", lwd = 2, main = NA, ylim = c(0, 2))
+abline(h=0, v = 0, lwd = 2)
+points(0, f(0), pch = 19)
+abline(h = 1, col = c("blue"), lwd = 2)
+## graph 2
+f <- function(x) { 1+x^4 }
+curve(f, -1, 1, axes = FALSE, xlab = NA, ylab = NA, col = "red", lwd = 2, main = NA, ylim = c(0, 2))
+abline(h=0, v = 0, lwd = 2)
+points(0, f(0), pch = 19)
+abline(h = 1, col = c("blue"), lwd = 2)
+```
+
+## Application (I)
+
+Un pièton peut s'éloigner de $x$ mètres d'une antenne-relais (située en $x=0$). La puissance $f(x)$ des ondes-relais reçues est donnée par 
+$$f(x) = \frac{e^{-(x - \alpha)^2}}{x}$$ avec $\alpha = 2$.
+
+- À quelle distance doit-il se placer pour recevoir le moins d'ondes-relais?
+- Même question s'il ne peut s'éloigner de plus de 3 mètres? 
+- Où doit-il se placer pour maximiser la réception?
+- Même question s'il ne peut pas s'approcher de l'antenne à moins de 1 mètre. 
+
+## Application (II)
+
+Un campeur est situé à $3$ kilomètres en aval de sa tente, de l'autre côté d'une rivière qui fait $1$ km de large. Il nage à $2$ km/h et marche à $4$ km/h. 
+
+- Quel est le plus court chemin pour rentrer? 
+- Même question s'il existe un pont en face de sa tente.
+
+
+```{r, riviere}
+## graph 1
+f <- function(x) { 1+x^3 }
+curve(f, -1, 1, axes = FALSE, xlab = NA, ylab = NA, col = "red", lwd = 2, main = NA, xlim = c(-0.5, 3.5), ylim = c(0, 1), type = "n", asp = 1)
+abline(h = c(0, 1), col = c("black"), lwd = 2)
+points(0, 0, pch = 19, col = "red") ## piéton
+text(0, 0, "campeur", pos = 3, col = "red")
+points(3, 1, pch = 19, col = "red") ## tente
+text(3, 1, "tente", pos = 1, col = "red")
+arrows(1.5, 0, 1.5, 1, col = "blue", code = 3); text(1.5, 0.25, "1 km", pos = 4, col = "blue")
+arrows(0, 0.5, 3, 0.5, col = "maroon", code = 3); text(0.25, 0.5, "3 km", pos = 3, col = "maroon")
+```
+
+## Exercices
+
