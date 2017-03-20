@@ -1,0 +1,147 @@
+\documentclass[a4paper,12pt]{article}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% ZONE ROUGE : intervention très fortement deconseillee
+\usepackage[utf8]{inputenc} % accent dans la source
+\usepackage[T1]{fontenc}
+\usepackage{times}
+\usepackage[french]{babel}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{fancybox}
+\usepackage{pstricks}
+\usepackage{pst-plot}
+%\usepackage{pst-char}
+\usepackage{pst-text}
+% \usepackage{psfig}
+\usepackage{ifthen}
+\def\R{\mathbb{R}}
+\def\C{\mathbb{C}}
+\def\Z{\mathbb{Z}}
+\def\Q{\mathbb{Q}}
+\def\N{\mathbb{N}}
+\def\F{\mathbb{F}}
+\def\P{\mathbb{P}}
+\def\A{\mathbb{A}}
+
+%%%% Théorème, Proposition et tout le reste%%%%
+\newcommand{\proofbegin}{\paragraph{Proof.}}
+\newcommand\floor[1]{\lfloor#1\rfloor}
+\newcommand{\proofend}{$\blacksquare$\bigskip}
+\newtheorem{theorem}{Théorème}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{definition}[theorem]{Définition}
+\newtheorem{lemma}[theorem]{Lemme}
+\newtheorem{corollary}[theorem]{Corollaire}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% ZONE ORANGE : intervention deconseillee
+\parindent=0pt
+\textwidth 17.0cm
+\textheight26.0cm
+\hoffset-2.0cm
+\voffset-2.0cm
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% ZONE VERTE : Intervention obligatoire
+%%% ADAPTER SUIVANT LA NATURE DE L'EPREUVE
+\def\Exam{Test ``Limites''}
+\def\Date{22 mars 2017}
+\def\Classe{TS3}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% ZONE VERTE : 
+%%% ALIGNER LES EQUATIONS A GAUCHE
+\makeatletter
+\newenvironment*{fleqn}{
+    \@fleqntrue
+    \setlength\@mathmargin{0pt}%
+    \ignorespaces
+}{%
+    \ignorespacesafterend
+}
+\makeatother
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Force synctex
+\synctex=1
+
+%%% knitr
+<<include=FALSE>>=
+library(knitr)
+opts_chunk$set(
+fig.path='Figures/',cache=TRUE,echo=FALSE
+)
+opts_knit$set(concordance = TRUE, self.contained=TRUE)
+require(patchSynctex)
+@
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+\newcounter{nexo}
+\setcounter{nexo}{1}
+\newcommand{\Exo}{\medskip
+  {\bf Exercice \arabic{nexo} : }
+  \addtocounter{nexo}{1}}
+\newcommand{\Pb}{{\bf Problème \arabic{nexo} : } 
+\addtocounter{nexo}{1} \bigskip}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% ZONE BLEUE : Intervention parfois utile mais a faire prudemment
+{\bf  \hfill \Date \quad ~}
+%
+\vskip 1cm
+%
+%%% FAIRE UN CHOIX (3 choix possibles)
+%%% 1)
+%\centerline{\psframebox[fillstyle=solid,fillcolor=lightgray]
+%\textbf{\LARGE \black \Exam}}
+%%% 2)
+%\centerline{\psframebox{\bf \LARGE  \Exam}}
+%%% 3)
+\centerline{\bf \LARGE \Exam}
+%
+\vskip 1.5cm
+%
+
+
+%%%%%%%%%%%%%%%%%%%%%%
+%%% CORPS DU SUJET %%%
+%%%%%%%%%%%%%%%%%%%%%%
+
+%% \section*{Test 1}
+
+\Exo \textbf{Calcul \emph{à la main} de la dérivée de $x \mapsto x^n$}
+
+Soit $a$ et $x$ deux nombres réels et $n$ un entier naturel non nul. 
+
+\begin{enumerate}
+\item Montrer que $x^n - a^n = (x - a) \sum_{k=0}^{n-1} x^k a^{n-1-k}$ et en déduire $\lim_{x \to a} \frac{x^n - a^n}{x - a}$
+\item Retrouver ainsi que la fonction $x \mapsto x^n$ est dérivable et expliciter sa dérivée. 
+\end{enumerate}
+
+\bigskip
+
+\Exo \textbf{Branches infinies}
+
+On pose $\displaystyle f(x) = 1 + x \exp\left( \frac{1}{1 - x} \right)$
+\begin{enumerate}
+\item $f$ possède-t-elle une limite en $1$? $-\infty$? $+\infty$? Penser à justifier en calculant la limite si elle existe ou en justifiant qu'elle n'existe pas dans le cas contraire. 
+\item Calculer \[\lim_{x \to +\infty} x\left( \exp\left( \frac{1}{1 - x} \right) - 1 \right)\] On pourra essayer de faire un changement de variable approprié pour se ramener à une limite en $0$. 
+\item En déduire une branche affine pour $f$ en $+\infty$, \emph{i.e.} une fonction $g$ de la forme $g(x) = a + bx$ (avec $a, b$ à déterminer) telle que $\lim_{x \to +\infty} (f - g)(x) = 0$. 
+\end{enumerate}
+
+\bigskip
+
+\Exo \textbf{Limites}
+
+Calculer les limites suivantes
+\begin{align*}
+\lim_{x  \to 0} \frac{e^x - 1}{\sqrt{1 + x^2} - 1} & & \lim_{x \to +\infty} x^3 \ln\left(1 + \frac{1}{x^2}\right) \\
+\\
+\lim_{x  \to 0} \frac{x^3 - x^2 + x}{x^2 + 2x} & & \lim_{x  \to +\infty} \frac{x^3 - x^2 + x}{x^2 + 2x} \\
+\end{align*}
+
+\end{document}

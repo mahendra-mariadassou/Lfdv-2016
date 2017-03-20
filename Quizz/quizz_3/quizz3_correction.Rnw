@@ -1,0 +1,211 @@
+\documentclass[a4paper,12pt]{article}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% ZONE ROUGE : intervention très fortement deconseillee
+\usepackage[utf8]{inputenc} % accent dans la source
+\usepackage[T1]{fontenc}
+\usepackage{times}
+\usepackage[french]{babel}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{fancybox}
+\usepackage{pstricks}
+\usepackage{pst-plot}
+%\usepackage{pst-char}
+\usepackage{pst-text}
+% \usepackage{psfig}
+\usepackage{ifthen}
+\def\R{\mathbb{R}}
+\def\C{\mathbb{C}}
+\def\Z{\mathbb{Z}}
+\def\Q{\mathbb{Q}}
+\def\N{\mathbb{N}}
+\def\F{\mathbb{F}}
+\def\P{\mathbb{P}}
+\def\A{\mathbb{A}}
+
+%%%% Théorème, Proposition et tout le reste%%%%
+\newcommand{\proofbegin}{\paragraph{Proof.}}
+\newcommand\floor[1]{\lfloor#1\rfloor}
+\newcommand{\proofend}{$\blacksquare$\bigskip}
+\newtheorem{theorem}{Théorème}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{definition}[theorem]{Définition}
+\newtheorem{lemma}[theorem]{Lemme}
+\newtheorem{corollary}[theorem]{Corollaire}
+
+%%% Correction
+\newcommand{\correction[1]}{\textcolor{gray}{#1}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% ZONE ORANGE : intervention deconseillee
+\parindent=0pt
+\textwidth 17.0cm
+\textheight26.0cm
+\hoffset-2.0cm
+\voffset-2.0cm
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% ZONE VERTE : Intervention obligatoire
+%%% ADAPTER SUIVANT LA NATURE DE L'EPREUVE
+\def\Exam{Test ``Remise en forme'': corrigé}
+\def\Date{\today}
+\def\Classe{TS3}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% ZONE VERTE : 
+%%% ALIGNER LES EQUATIONS A GAUCHE
+\makeatletter
+\newenvironment*{fleqn}{
+    \@fleqntrue
+    \setlength\@mathmargin{0pt}%
+    \ignorespaces
+}{%
+    \ignorespacesafterend
+}
+\makeatother
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Force synctex
+\synctex=1
+
+%%% knitr
+<<include=FALSE>>=
+library(knitr)
+opts_chunk$set(
+fig.path='Figures/',cache=TRUE,echo=FALSE, fig.align = "center"
+)
+opts_knit$set(concordance = TRUE, self.contained=TRUE)
+require(patchSynctex)
+@
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+\newcounter{nexo}
+\setcounter{nexo}{1}
+\newcommand{\Exo}{\medskip
+  {\bf Exercice \arabic{nexo} : }
+  \addtocounter{nexo}{1}}
+\newcommand{\Pb}{{\bf Problème \arabic{nexo} : } 
+\addtocounter{nexo}{1} \bigskip}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% ZONE BLEUE : Intervention parfois utile mais a faire prudemment
+{\bf  \hfill \Date \quad ~}
+%
+\vskip 1cm
+%
+%%% FAIRE UN CHOIX (3 choix possibles)
+%%% 1)
+%\centerline{\psframebox[fillstyle=solid,fillcolor=lightgray]
+%\textbf{\LARGE \black \Exam}}
+%%% 2)
+%\centerline{\psframebox{\bf \LARGE  \Exam}}
+%%% 3)
+\centerline{\bf \LARGE \Exam}
+%
+\vskip 1.5cm
+%
+
+
+%%%%%%%%%%%%%%%%%%%%%%
+%%% CORPS DU SUJET %%%
+%%%%%%%%%%%%%%%%%%%%%%
+
+%% \section*{Test 1}
+
+
+\Exo \textbf{Forme algébrique}
+
+Écrire sous forme algébrique les complexes suivants:
+% \begin{equation*}
+%   z_1 = \frac{2+i}{3-i}
+% \end{equation*}
+
+\textcolor{gray}{
+\begin{equation*}
+  z_1 = \frac{2+i}{3-i} = \frac{(2+i)(3+i)}{(3-i)(3+i)} = \frac{5 + 5i}{|3+i|^2} = \frac{5(1+i)}{10} = \frac{1+i}{2}
+\end{equation*}
+}
+
+% \begin{equation*}
+%   z_2 = \exp(0.5\ln(2) + i\pi/4)
+% \end{equation*}
+
+\textcolor{gray}{
+\begin{equation*}
+  z_2 = \exp(0.5\ln(2) + i\pi/4) = e^{0.5\ln(2)} \times e^{i\pi/4} = 2^{0.5} (\cos(\pi/4) + i\sin(\pi/4)) = \sqrt{2} \left(\frac{\sqrt{2}}{2} + i\frac{\sqrt{2}}{2}\right)  = 1+i
+\end{equation*}
+}
+
+\Exo \textbf{Module et argument}
+
+Calculer le module (et pour $z_2$ également un argument) des nombres complexes suivants:
+\begin{eqnarray*}
+  z_1 = 3 + 4i \\
+  z_2 = (1+i)^{8} \\  
+\end{eqnarray*}
+
+\textcolor{gray}{
+$$|z_1| = |3+4i| = \sqrt{3^2 + 4^2} = \sqrt{9+16} = 5$$
+Pour $z_2$, on commence par écrire $1+i$ sous forme exponentielle, $|1+i| = \sqrt{2}$ donc 
+$$|1+i| = \sqrt{2} \left(\frac{\sqrt{2}}{2} + i\frac{\sqrt{2}}{2}\right) = \sqrt{2}(\cos(\pi/4) + i\sin(\pi/4)) = \sqrt{2}e^{i\pi/4}$$
+On peut aussi utiliser l'exercice précédent pour arriver au même résultat. On alors 
+$$z_2 = (1+i)^8 = \left[ \sqrt{2}e^{i\pi/4} \right]^8 = 2^4 e^{8\times i\pi/4} = 16 e^{i2\pi} = 16$$
+On en déduit que $|z_2| = 16$ et qu'\textbf{un} argument de $z_2$ est $0$ (\textbf{un} autre est $2\pi$.)
+}
+
+\Exo \textbf{Géométrie}
+
+Trouver l'ensemble des nombres complexes $z$ tels que $|z + 1 - i| = |z - 1 + i|$. 
+
+\textcolor{gray}{On adopte une résolution géométrique. Soit $z$ un nombre complexe. On note $M$ le point d'affixe $z$, $A$ le point d'affixe $-1+i$ et $B$ le point d'affixe $1-i$. On note que $|z + 1 - i| = AM$ et $|z - 1 + i| = BM$. On a donc: 
+$$|z + 1 - i| = |z - 1 + i| \Leftrightarrow AM = BM \Leftrightarrow M \text{ est sur la médiatrice de } A \text{ et } B$$ 
+La médiatrice de $AB$ est la droite d'équation $y = x$. L'ensemble solution est donc $S = \{ z \in \mathbb{C} \text{ tels que } Re(z) = Im(z) \}$.
+}
+
+<<mediatrice, out.width = "0.5\\linewidth">>=
+par(cex = 1.4)
+plot(x = c(-1, 1), y = c(1, -1), pch = 19, xlim=c(-1.1, 1.1), ylim = c(-1.1, 1.1), axes = F, xlab = NA, ylab = NA, asp = 1)
+abline(h = 0, v = 0)
+abline(a = 0, b = 1, col = "red", lwd = 3)
+text(x = c(-1, 1), y = c(1, -1), labels = c("A (-1+i)", "B (1-i)"), pos = c(1, 2))
+points(0.8, 0.8, pch = 19, col = "red"); text(0.8, 0.8, labels = "M (x + iy)", pos = 4, col = "red")
+segments(x0 = c(-1, 1), x1 = 0.8, y0 = c(1, -1), y1 = 0.8, col = "red")
+text(-1, -1, "S", col = "red", pos = 3)
+@
+
+\Exo \textbf{Linéarisation}
+
+Linéariser $\cos^4(x)$. 
+
+\textcolor{gray}{On répond à la consigne comme vu en cours: on utilise (1) la formule d'Euler pour écrire $\cos$ comme une somme, (2) la formule du binôme de Newton pour développer cette somme à la puissance $4$, (3) on trie les termes pour les apparier et (4) on utilise la formule d'Euler (dans l'autre sens) pour faire apparaître de nouveau des $\cos$. On rappelle juste la formule du binôme pour $n = 4$
+$$(a+b)^4 = a^4 + 4a^3b + 6a^2b^2 + 4ab^3 + b^4$$.
+En détails:
+\begin{align*}
+  \cos^4(x) & =  \left( \frac{e^{ix} + e^{-ix}}{2} \right)^4 \tag{Euler} \\
+  & = \frac{1}{16}\left( e^{i4x} + 4e^{i2x} + 6 + 4e^{-i2x} + e^{-i4x}\right) \tag{Binôme} \\
+  & = \frac{1}{16}\left( \textcolor{red}{e^{i4x} + e^{-i4x}} + 4(\textcolor{blue}{e^{i2x} + e^{-i2x}}) + \textcolor{green}{6} \right) \tag{Tri} \\
+  & = \frac{1}{16}\left( \textcolor{red}{2\cos(4x)} + 4\times \textcolor{blue}{2\cos(2x)} + \textcolor{green}{6} \right) \tag{Euler} \\
+  & = \frac{1}{8}(\cos(4x) + 4\cos(2x) + 3) \tag{Simplification}
+\end{align*}
+}
+
+\Exo \textbf{Racine carrée}
+
+Calculer les 2 racines carrés $z_1$ et $z_2$ de $Z = 1+i\sqrt{3}$. On pourra d'abord écrire $Z$ sous forme exponentielle mais on prendra soin de donner $z_1$ et $z_2$ sous forme algébrique. 
+
+\textcolor{gray}{
+On commence par écrire $Z$ sous forme exponentielle. $|Z| = \sqrt{1 + 3} = 2$ donc 
+$$Z = 2\left(\frac{1}{2} + i\frac{\sqrt{3}}{2}\right) = 2(\cos(\pi/3) + i\sin(\pi/3)) = 2e^{i\pi/3}$$
+D'où on déduit que les racines $z_1$ et $z_2$ sont 
+\begin{align*}
+z_1 & = \sqrt{2}e^{i\pi/6} = \sqrt{2} \left( \frac{\sqrt{3}}{2} + i\frac{1}{2} \right) = \frac{1}{\sqrt{2}} (\sqrt{3} + i) \\
+z_2 & = -z_1 = -\frac{1}{\sqrt{2}} (\sqrt{3} + i)
+\end{align*}
+}
+
+
+
+\end{document}

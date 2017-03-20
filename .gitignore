@@ -2,3 +2,7 @@
 .Rhistory
 .RData
 .Ruserdata
+Quizz/**/*.log
+Quizz/**/*.pdf
+Quizz/**/*.tex
+Quizz/**/*.synctex.gz

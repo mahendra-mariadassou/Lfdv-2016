@@ -378,12 +378,114 @@ x <- pi; abline(b = -df(x), a = f(0), col = c("blue"), lwd = 2, lty = 2)
 ## Tableau de variations 
 
 <div class = "proposition">
-Soit $f: I = [a,b] \to \mathbb{R}$ une fonction dérivable sur $I$. Si 
+Soit $f: I = [a,b] \to \mathbb{R}$ une fonction continue sur $I$ et dérivable sur $I$ (sauf éventuellement en un nombre <alert>fini</alert> de points).
 
-- $f' \geq 0$ (resp. $f > 0$) sur $I$, alors $f$ est croissante (resp. strictement croissante) sur $I$
-- $f' \leq 0$ (resp. $f < 0$) sur $I$, alors $f$ est décroissante (resp. strictement décroissante) sur $I$
+- $f' \geq 0$ (resp. $f > 0$ sauf éventuellement en un nombre <alert>fini</alert> de points) sur $I$, alors $f$ est croissante (resp. strictement croissante) sur $I$
+- $f' \leq 0$ (resp. $f < 0$ sauf éventuellement en un nombre <alert>fini</alert> de points) sur $I$, alors $f$ est décroissante (resp. strictement décroissante) sur $I$
 - $f' = 0$ sur $I$, alors $f$ est constante (resp. strictement décroissante) sur $I$
 </div>
+
+C'est une conséquence directe du TAF. 
+
+## Théorème de la bijection {.smaller}
+
+<div class = "theoreme">
+Soit $f$ une fonction <alert>continue</alert> et <alert>strictement monotone</alert> sur un intervalle $I$. Alors $f$ est bijective de $I$ sur $f(I)$. 
+
+De plus $f(I)$ se déduit simplement de $I$ et de la monotonie de $f$ comme suit: 
+$$
+\begin{array}{|c||c|c|}
+\hline
+\text{forme de } I & f \text{ croissante} & f \text{ décroissante} \\
+\hline
+\hline
+[a, b] & f(I) = [f(a), f(b)] & f(I) = [f(b), f(a)] \\
+\hline
+[a, b) & f(I) = [f(a), \lim_{b^-} f) & f(I) = (\lim_{b^-} f , f(a)] \\
+\hline
+(a, b] & f(I) = (\lim_{a^+} f, f(b)] & f(I) = [f(b) , \lim_{a^+} f) \\
+\hline
+(a, b) & f(I) = (\lim_{a^+} f, \lim_{b^-} f) & f(I) = (\lim_{b^-} f , \lim_{a^+} f) \\
+\hline
+\end{array}
+$$
+
+On utilise souvent le signe de la dérivée pour prouver la stricte monotonie 
+
+## Exercices (I)
+
+Déterminer l'image de l'intervalle $I$ par les fonctions suivantes:
+$$
+\begin{align}
+f: x \mapsto e^x - x & & \text{pour } I = \mathbb{R} & & \text{pour } I = (0, e) \\
+g: x \mapsto \ln(x+1) -x & & \text{pour } I = (-1, 0) & & \text{pour } I = [0, e] \\
+h: x \mapsto \frac{e^x + 1}{x+2} & & \text{pour } I = (-\infty, 2) & & \text{pour } I = \mathbb{R}_+ \\
+\end{align}
+$$
+
+## Exercices (II)
+
+- En fonction de la valeur du paramètre $m$, indiquer le nombre de solutions de l'équation $x^3 - x = m$. 
+- Montrer que l'équation $x^3 + x + 1 = 0$ admet une unique solution (notée $\alpha$) et que $-1 < \alpha < 0$. 
+
+## Application (I)
+
+Trouver toutes les applications dérivables de $\mathbb{R}_+^*$ telles que $f(xy) = f(x) + f(y)$ (on peut se rappeler que $\ln(x)$ est une primitive de $1/x$)
+
+On raisonne par analyse-synthèse. 
+
+## Application (II)
+
+<b>Analyse</b>
+Soit $f$ une telle fonction. Soit $y > 0$, on pose $g_y: x \mapsto f(xy)$. En dérivant $g_y$, on obtient:
+$$
+g'_y(x) = y f'(xy) = f'(x)
+$$
+Et en particulier, en $x = 1$, $f'(y) = f'(1) / y$ d'où on déduit que $f(y) = a (\ln(y) + C)$ avec $a = f'(1)$ et $C$ une constante à déterminer. On a également $f(1) = f(1 \times 1) = 2f(1)$ donc $f(1) = 0$ et $aC = 0$, \emph{i.e.} $a = 0$ ou $C = 0$. Au final $f$ doit être de la forme $f(y) = a\ln(y)$. 
+
+<b>Synthèse</b> Soit $f$ une fonction de la forme $f(y) = a \ln(y)$ avec $a \in \mathbb{R}$. On vérifie aisément que $f$ est dérivable et satisfait $f(xy) = f(x) + f(y)$ sur $\mathbb{R}_+^*$
+
+## Dérivées successives
+
+<div class = "définition">
+On définit les dérivées successives de $f$ en un point $a \in D_f$ (resp. sur $I \subset D_f$) par 
+$$
+\begin{cases}
+ & f^{(0)} & = & f \\
+\forall k \in \mathbb{N}^* & f^{(k)} & = & [f^{(k-1)}]'
+\end{cases}
+$$
+
+- On dit que $f$ est dérivable en $a$ (resp. sur $I$) lorsque $f^{(k)}(a)$ existe (resp. $f^{(k)}$ est définie sur $I$). 
+- On dit que $f$ est infiniment dérivable en $a$ (resp. sur $I$) lorsque $f^{(k)}(a)$ existe (resp. $f^{(k)}$ est définie sur $I$) pour tout $k \in \mathbb{N}$.
+</div>
+
+## Dérivées successives (II)
+
+<div class = "définition">
+
+- Une fonction $f$ est dite $D^k$ (en $a$, sur $I$) si elle est $k$-fois dérivable (en $a$, sur $I$)
+- Une fonction $f$ est dite $C^k$ (en $a$, sur $I$) si elle est $k$-fois dérivable et que $f^{(k)}$ est continue (en $a$, sur $I$).
+- Une fonction $f$ est dite $C^\infty$ (en $a$, sur $I$) si elle est infiniment dérivable (en $a$, sur $I$) (et on a $D^\infty = C^\infty$)
+
+</div>
+
+## Exemples
+
+- Tout polynôme est infiniment dérivable sur $\mathbb{R}$
+- Toute fraction rationnelle est infiniment dérivable sur son domaine de définition
+- $x \mapsto \sqrt{x}$ est infiniment continue sur $\mathbb{R}_+^*$ mais seulement $C^0$ en $0$. 
+- $\sin$, $\cos$, $\tan$, $\exp$, $\ln$ sont $C^\infty$ sur leurs domaines respectifs
+
+## Exercices
+
+Etudier l'existence des dérivées successives de 
+
+- $f: x \mapsto (x - 1)^{3/2}$
+- $g: x \mapsto \begin{cases} x^2 & \text{si} & x \geq 0 \\ x^3 & \text{si} & x < 0 \end{cases}$ 
+- $g: x \mapsto \begin{cases} x^2 \sin(1/x) & \text{si} & x \neq 0 \\ 0 & \text{si} & x = 0 \end{cases}$ 
+
+# Étude de fonctions 
 
 ## Tangentes verticales
 
@@ -391,7 +493,7 @@ Soit $f: I = [a,b] \to \mathbb{R}$ une fonction dérivable sur $I$. Si
 Soit $f: I = [a,b] \to \mathbb{R}$ une fonction continue sur $I$, dérivable sur $I\setminus \{a\}$. Si $\lim_{a+} f' = \pm \infty$, alors le graphe $f$ admet une tangente verticale en $a$. 
 </div>
 
-```{r, tangente-verticale}
+```{r tangente-verticale}
 f <- function(x) { sqrt(x-1) }
 curve(f, 1, 4, axes = FALSE, xlab = NA, ylab = NA, col = "red", lwd = 2, main = NA, xlim = c(0, 4))
 abline(h=0, v = 0, lwd = 2)
@@ -474,6 +576,8 @@ points(0, f(0), pch = 19)
 abline(h = 1, col = c("blue"), lwd = 2)
 ```
 
+# Mise en oeuvre
+
 ## Application (I)
 
 Un pièton peut s'éloigner de $x$ mètres d'une antenne-relais (située en $x=0$). La puissance $f(x)$ des ondes-relais reçues est donnée par 
@@ -505,5 +609,46 @@ arrows(1.5, 0, 1.5, 1, col = "blue", code = 3); text(1.5, 0.25, "1 km", pos = 4,
 arrows(0, 0.5, 3, 0.5, col = "maroon", code = 3); text(0.25, 0.5, "3 km", pos = 3, col = "maroon")
 ```
 
-## Exercices
+## Exercices (I)
 
+Trouver les minimums et maximums globaux des fonctions suivantes:
+$$
+\begin{align*}
+f(z) = 2z^4 - 16z^3 + 20z^2 - 7 & & \text{ pour } z \in [-2, 6] \\
+f(z) = 2z^4 - 16z^3 + 20z^2 - 7 & & \text{ pour } z \in [-2, 4] \\
+f(z) = 2z^4 - 16z^3 + 20z^2 - 7 & & \text{ pour } z \in [0, 2] \\
+f(t) = \frac{3 - 4t}{t^2 + 1} & & \text{ pour } t \in [-2, 4] \\
+f(x) = 3\cos(2x) - 5x & & \text{ pour } x \in [0, 6] \\
+f(x) = x\cos(x) - \sin(x) & & \text{ pour } x \in [-15, -5] \\
+f(z) = z^2e^{1-z} & & \text{ pour } z \in [-1/2, 5/2] \\
+f(t) = \ln(t^2 + t + 3) & & \text{ pour } t \in [-2, 2]
+\end{align*}
+$$
+
+## Exercices (II)
+
+Calculer, à l'aide de dérivées, les limites suivantes:
+$$
+\begin{align*}
+\lim_{x \to 3} \frac{\ln(x) - \ln(3)}{x - 3} & & \lim_{x \to 2} \frac{\sqrt{x+2} - 2}{x - 2} \\
+\lim_{x \to 1} \frac{e^x - e}{x - 1} & & \lim_{x \to -1} \frac{x^{2017} + 1}{x + 1}
+\end{align*}
+$$
+
+## Exercices (III)
+
+À l'aide de la méthode de votre choix, montrez les inégalités (dites de convexité) suivantes:
+$$
+\begin{align*}
+\forall x \in \mathbb{R} \quad e^x \geq 1 + x & & \forall x \geq 0 \quad xe^x + 1 \geq e^x \geq 1 + x + \frac{x^2}{2} \\
+\forall x \in (-1, +\infty) \quad \ln(1+x) \leq x & & \forall x \leq 0 \quad 1+x \leq e^x \leq 1 + x + \frac{x^2}{2}
+\end{align*}
+$$
+
+## Exercices (IV)
+
+On considère la fonction $f(x) = (x+1)e^{-x}$
+
+- Montrer par récurrence que pour tout entier $n \geq 0$, il existe deux réels $a_n$ et $b_n$ tels que $f^{(n)}(x) = (a_n x + b_n)e^{-x}$.
+- Expliciter $a_n$
+- Vérifier que la suite $c_n = (-1)^n b_n$ est arithmétique. En déduire $b_n$. 
