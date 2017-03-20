@@ -1,0 +1,186 @@
+---
+title: "Développements Limités"
+author: "Mahendra Mariadassou"
+date: "27 mars 2017"
+output:
+  ioslides_presentation:
+    css: ../CSS/custom_licence_fdv.css
+    keep_md: yes
+    toc: yes
+  beamer_presentation: default
+height: 720
+width: 1280
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, cache = TRUE)
+```
+
+# Introduction 
+
+## Plan du cours 
+
+- Domaine d'étude
+- Limites, continuité, dérivabilité et variations
+- Comparaison locale de fonction
+- Etude locale des fonctions
+- Retour sur la limite
+
+## Développement Limités
+
+Le but des développements limités est de faire des <alert>approximations</alert> en <alert>négligeant</alert> certaines quantités. On va voir ici qu'on néglige toujours une quantité <alert>par rapport</alert> à une autre.
+
+On va formaliser cette intuition avec la notion de négligeabilité et les notations de Landau. 
+
+# Négligeabilité
+
+<div class = "definition">
+On dit que $f$ est <alert>négligeable</alert> devant $g$ au voisinage de $a \in \bar{\mathbb{R}}$ s'il existe une fonction $\varepsilon$ définie au voisinage de $a$ telle que $\varepsilon(x) \to 0$ quand $x \to a$ et 
+$$\forall x \in D_f \cap D_g \quad f(x) = g(x) \varepsilon(x)$$
+Dans la plupart des cas, $g$ est non nulle au voisinage de $0$ et la condition précédente peut se reformuler: $f$ est négligeable devant $g$ au voisinage de $a$ si et seulement si $\displaystyle \frac{f}{g} \to 0$ quand $x \to a$. 
+</div>
+
+## Notation de Landau 
+
+Si $f$ est négligeable devant $g$ en $a$, on note 
+
+- $f = o_a(g)$ en omettant $a$ si le voisinage est clair. On dit qu'au voisinage de $a$, $f$ est un $o(g)$ (prononcé "petit o de g")
+- Par un abus de notation, on utilise la même notation pour des expressions: $x^2 = o(x)$ au voisinage de $0$. 
+- On écrit enfin $f = g + o(h)$ pour dire $f - g = o(h)$. 
+
+Les cas particuliers suivants sont à <alert>connaître</alert>
+
+- Si $a \in \mathbb{R}$ et $n < m$ alors $(x - a)^n = o_{\pm \infty} ( (x-a)^m )$ et $(x - a)^m = o_{0} ( (x-a)^n )$
+- Si $\lim_a g = \pm \infty$ et $f$ est bornée au voisinage de $a$ (par exemple $\lim_a f$ finie), alors $f = o(g)$
+- Si $f = o_a(1)$, alors $\lim_a f = 0$. 
+
+## Propriétés des $o$
+
+<div class = "proposition">
+
+- Si $f = o(g)$ et $g = o(h)$, alors $f = o(h)$
+- Si $f_1 = o(g)$ et $f_2 = o(g)$, alors $f_1 + f_2 = o(g)$
+- Si $f = o(g)$, alors $f \times h  = o(g \times h)$
+- Si $\lambda \in \mathbb{R}^*$, alors $f = o(g) \Leftrightarrow f = o(\lambda g)$
+- Si $f = o_a(1)$, alors $\lim_a f = 0$. 
+- Si $f_1 = o(g_1)$ et $f_2 = o(g_2)$, alors $f_1 \times f_2 = o(g_1 \times g_2)$
+</div>
+
+## Exercices
+
+Montrer que 
+
+- $\forall \alpha \in \mathbb{R}_+ \quad x^\alpha = o_{+\infty}(e^x)$
+- $\forall \alpha \in \mathbb{R}_+ \quad e^x = o_{-\infty}(x^{-\alpha})$
+- $\forall \alpha \in \mathbb{R}_+ \quad \ln(x) = o_{+\infty}(x^\alpha)$
+- $\forall \alpha \in \mathbb{R}_+ \quad \ln(x) = o_{+\infty}(x^{-\alpha})$
+
+## Approximation et somme 
+
+Une bonne règle heuristique à retenir pour s'assurer que le résultat approché est peu différent du résultat exact dans une somme est la suivante:
+
+- Pour faire une approximation, on néglige un terme devant les autres <alert>à l'intéreieur d'une somme</alert>
+
+## Exemple (I)
+
+Considérons la distante $l' = \frac{lf}{l + f}$ qui apparaît régulièrement en optique. On souhaite connaître la distance $l'$ quand la distance $l$ est grande devant la focale $f$ ($l \gg f$). 
+
+- Si on néglige $f$ naivement en le posant égal à $0$, on obtient $l' = 0$ qui est absurde
+- En revanche, si on néglige $f$ devant $l$ dans la somme $f+l$, on commet une faible erreur puisque  $l + f \simeq l$
+- On peut donc poursuivre le calcul avec l'approximation $l' \simeq \frac{lf}{l + f} \simeq f$. 
+
+## Exemple (II)
+
+De la même façon, si $f(x)$ fait intervenir des sommes, on peut utiliser les mêmes arguments pour svoir comment $x$ se comporte pour des grandes et des petites valeurs de $x$. Par exemple pour $f(x) = \frac{x}{1 + x^2}$:
+
+- si $x \gg 1$, alors $x^2 + 1 \simeq x^2$ et $f(x) \simeq \frac{x}{x^2} = 1/x$
+- si $x \ll 1$, alors $x^2 + 1 \simeq 1$ et $f(x) \simeq x$
+
+Faire une approximation est <alert>plus précis</alert> que calculer une limite: En effet dire $f(x) \simeq x$ (quand $x \to 0$) est plus précis que d'écrire $f$ tend vers $0$ en $0$. La limite se déduit de l'approximation mais pas l'inverse. 
+
+## Exemple (III)
+
+En notations de Landau, on a 
+
+- $f(x) = x(1 + o(1)) = x + o(x)$ au voisinage de $0$ 
+- $\displaystyle f(x) = \frac{1}{x}(1 + o(1)) = \frac{1}{x} + o\left(\frac{1}{x}\right)$ au voisinage de $0$ 
+
+C'est très utile mais on peut avoir d'aller plus loin et de connaître le comportement de $f(x) - x$ au voisinage de $0$. On sait juste $f(x) - x = o(x)$ mais on ne connaît pas son ordre de grandeur: $x^2$? $x^3$? Autre chose? 
+
+De même si on ne manipule pas directement des sommes mais des fonctions différentes (par exemple $\cos(x)$, $\sin(x)$), peut-on faire le même genre d'approximation? 
+
+C'est justement l'intérêt des développements limités.
+
+## Exercice
+
+Donner des approximations des quantités suivantes:
+$$
+\begin{align}
+\frac{1}{1+A} & & A \ll 1 & & A \gg 1 \\
+\frac{3+B+2B^2}{2+3B+B^2} & & B \ll 1 & & B \gg 1 \\
+\frac{a+b}{ab} & & a \ll b & & b \gg a \\
+\frac{x^2 + y^2 + 2xy}{3x - y} & & x \ll y & & x \gg y \\
+\sqrt{u^2 + v^2} & & u \ll v & & u \gg v \\
+e^{\sqrt{w} - 1} & & w \ll 1 & & w \gg 1 \\
+\end{align}
+$$
+
+# Développements Limités
+
+## Premier Contact 
+
+<div class = "definition">
+Soit $n \in \mathbb{R}$, $a \in \mathbb{R}$ et $f$ une fonction définie au voisinage de $a$ <alert>sauf éventuellement en $a$</alert>. On dit que $f$ admet un <alert>développement limité</alert> à l'ordre $n$ en $a$ (noté $DL_n(a)$) s'il existe des réels $(b_0, b_1, \dots, b_n)$ tels que 
+$$
+\small
+\forall x \in D_f \quad f(x) = b_0 + b_1 (x - a) + \dots + b_n (x - a)^n + o( (x-a)^n )
+$$
+</div>
+
+Attention, on ne développe pas les $(x - a)^k$ (puisqu'on regarde des termes correctifs quand on s'éloigne de $a$). 
+
+De façon générale, en posant $h = (x - a)$, on se ramènera <alert>toujours</alert> à des DL en $0$. 
+
+Le terme $o( (x-a)^n )$ est appelé <em>reste</em> ou <em>terme complémentaire</em>.
+
+## Formule de Taylor
+
+Le théorème suivant permet de construire explicitement $b_0, b_1, \dots, b_n$
+
+<div class = "definition">
+Soit $n \in \mathbb{R}$, $a \in \mathbb{R}$ et $f$ une fonction définie au voisinage de $a$ <alert>sauf éventuellement en $a$</alert>. Si $f$ est $n$ dérivable en $a$, alors elle admet le $DL_n(a)$ suivant
+$$
+\scriptsize
+f(x) = f(a) + f'(a) (x - a) + \frac{f^{(2)}(a)}{2!}(x - a)^2 + \dots + \frac{f^{(n)}(a)}{n!}(x - a)^n + o( (x-a)^n )
+$$
+</div>
+
+Autrement si $f$ est $n$ fois dérivable, on sait choisir $b_0, \dots, b_n$ sans (trop d') efforts
+
+
+## Intuition
+
+Dans le développement de Taylor, les termes sont triés du plus important au moins important. En effet, au voisinage de $a$
+$$
+1 \gg (x - a) \gg (x - a)^2 \gg \dots \gg (x- a)^n \gg o((x-a)^n)
+$$
+Le DL permet donc d'obtenir des approximations successives, dites d'ordre $0, 1, \dots, n$ de $f$ (au voisinage de $a$) en ne gardant que les termes les plus à gauche:
+$$
+\scriptsize
+\begin{align}
+\text{Ordre } 0 \quad & f(x) \simeq f(a) \\
+\text{Ordre } 1 \quad & f(x) \simeq f(a) + f'(a) (x - a) \\
+\text{Ordre } 2 \quad & f(x) \simeq f(a) + f'(a) (x - a) + \frac{f^{(2)}(a)}{2!}(x - a)^2 \\
+\vdots \\
+\text{Ordre } n \quad & f(x) \simeq f(a) + f'(a) (x - a) + \frac{f^{(2)}(a)}{2!}(x - a)^2 + \dots + \frac{f^{(n)}(a)}{n!}(x - a)^n \\
+\end{align}
+$$
+
+## Intuition (II)
+
+Certaines des approximations précédentes sont bien connues:
+
+- l'approximation d'ordre $0$ est la limite
+- l'approximation d'ordre $1$ est la tangente
+
+## Intuition (III)

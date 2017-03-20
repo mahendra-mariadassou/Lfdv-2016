@@ -6,3 +6,7 @@ Quizz/**/*.log
 Quizz/**/*.pdf
 Quizz/**/*.tex
 Quizz/**/*.synctex.gz
+Calculus*/*cache
+Calculus*/*files
+Calculus*/*md
+Calculus*/*html
