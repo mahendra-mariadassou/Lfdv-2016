@@ -540,7 +540,7 @@ qui est une très bonne approximation pour des petits angles (jusqu'à `r pi/4` 
 
 ## Représentation graphique
 
-```{r}
+```{r dl-2}
 curve(cos, -pi, pi, col = "red", ylim = c(-1, 1), lwd = 2, xlab = NA, ylab = NA); text(pi/2 - 0.05, 1, expression(cos(theta)), pos = 1, col= "red", cex = 1.5)
 abline(h = 0, v = 0)
 curve(1- x^2/2, col = "black", lty = 2, add = TRUE); text(1.5, -0.5, expression(1 - frac(theta^2, 2)), cex = 1.5, pos = 2)
@@ -556,3 +556,13 @@ $$
 
 En partant du DL de $\sin$, trouver directement le $DL_4(0)$ de $\text{sinc}(x)$. Pourquoi peut-on définir $\text{sinc}(0) = 1$ ? Que peut-on dire de la dérivée première du sinus cardinal lorsque x tend
 0 ? Et du signe de sa dérivée seconde ?
+
+## Représentation graphique
+
+```{r sinus-cardinal}
+curve(sin(x)/x, -pi, pi, col = "red", ylim = c(-1, 1), lwd = 2, xlab = NA, ylab = NA); text(pi/2 - 0.05, 1, expression(sinc(theta)), pos = 1, col= "red", cex = 1.5)
+abline(h = 0, v = 0)
+curve(1- x^2/6, col = "black", lty = 2, add = TRUE); text(1.5, -0.5, expression(1 - frac(theta^2, 6)), cex = 1.5, pos = 2)
+abline(v = pi/4*c(-1, 1), col = "gray80")
+```
+
