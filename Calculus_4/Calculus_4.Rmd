@@ -141,7 +141,7 @@ Attention, on ne développe pas les $(x - a)^k$ (puisqu'on regarde des termes co
 
 De façon générale, en posant $h = (x - a)$, on se ramènera <alert>toujours</alert> à des DL en $0$. 
 
-Le terme $o( (x-a)^n )$ est appelé <em>reste</em> ou <em>terme complémentaire</em>.
+Le terme $o( (x-a)^n )$ est appelé <em>reste</em> ou <em>terme complémentaire</em>, le terme $b_0 + \dots + b_n (x-a)^n$ est appelé terme polynômial. 
 
 ## Formule de Taylor
 
@@ -182,5 +182,377 @@ Certaines des approximations précédentes sont bien connues:
 
 - l'approximation d'ordre $0$ est la limite
 - l'approximation d'ordre $1$ est la tangente
+- Plus généralement, l'approximation d'ordre $n$ est un polynôme de degré $n$
 
 ## Intuition (III)
+
+```{r, DL-exp, keep=TRUE}
+f <- function(x) { exp(x) }
+curve(f, -5, 5, axes = FALSE, xlab = NA, ylab = NA, col = "red", lwd = 2, ylim = c(-4, 10)); text(2, f(2), "exp(x)", pos = 2, col = "red")
+abline(h=0, v = 0, lwd = 2)
+points(0, 1, pch = 19, col = "black")
+ord.col <- c("cadetblue4", "blueviolet", "darkblue")
+abline(h = 1, lty = 2, col = ord.col[1], lwd = 2); text(3, 1, "1", col = ord.col[1], pos = 3)
+abline(1, 1, lty = 2, col = ord.col[2], lwd = 2); text(3, 3.5, expression(1+x), pos = 4, col = ord.col[2])
+curve(1+x+x^2/2, add = TRUE, col = ord.col[3], lty = 2, lwd = 2); text(3, 8, expression(1+x + frac(x^2, 2)), pos = 4, col = ord.col[3])
+```
+
+# Lien avec l'approximation 
+
+## DLs et différentielle
+
+Quand on utilise les DLs dans des contextes concrets, l'absence de notations $f$ et $x$ peut entrainer des erreurs. On va donc revenir aux notions de différentielles pour l'expliciter. 
+
+On considère deux quantités $a$ et $b$ reliées entre elles par une certaine relation $b$ et on cherche une approximation de $b(a)$ au voisinage d'une valeur de référence $a_0$. Si $b$ est continue, on sait que $b(a)$ sera proche de $b(a_0)$ mais on voudrait être plus précis. 
+
+On définit les petits écarts $\Delta b = b(a) - b(a_0)$ et $\Delta a = a - a_0$. On sait que $\Delta b \to 0$ quand $\Delta a \to 0$ mais on cherche un lien plus précis entre $\Delta b$ et $\Delta a$. 
+
+## Illustration graphique
+
+```{r, derivative, keep=TRUE}
+par(mar = c(4, 4, 0, 0))
+f <- function(x) {x^2}
+# curve(f, 0, 1, axes = FALSE, xlab = NA, ylab = NA, col = "red", lwd = 2)
+x <- (0:100)/100; plot(x, f(x), axes = FALSE, xlab = NA, ylab = NA, col = "red", lwd = 2, type = "l")
+x <- c(0.5, .55); points(x = x, y = f(x), pch = 19)
+abline(h=0, v = 0, lwd = 2)
+segments(x0 = rep(x, each = 2), x1 = c(x[1], 0, x[2], 0), 
+         y0 = c(0, f(x[1]), 0, f(x[2])), y1 = rep(f(x), each = 2), lty = 2)
+## add labels
+text(x = x[1], y = -0.005, adj = c(1, 1), labels = expression(a[0]))
+text(x = x[2], y = -0.005, adj = c(0, 1), labels = expression(a))
+text(x = 0.005, y = f(x[1]), adj = c(0, 1), labels = expression(b(a[0])))
+text(x = 0.005, y = f(x[2]), adj = c(0, 0), labels = expression(b(a)))
+arrows(x[1], f(x[1]), x[1], f(x[1])+0.25, col = "black", code = 1, length = 0.1); text(x[1], f(x[1])+0.25, "point de référence", pos = 3)
+## add arrows
+arrows(x[1], 0.1, x[2], 0.1, code = 3, length = 0.1, col = "darkblue"); text(x[2], 0.1, expression(Delta~a==a-a[0]), pos = 4, col = "darkblue")
+arrows(0.25, f(x[1]), 0.25, f(x[2]), code = 3, length = 0.05, col = "blueviolet"); text(0.25, f(x[2]), expression(Delta~b==b(a)-b(a[0])), pos = 3, col = "blueviolet")
+```
+
+## Lien avec la dérivée
+
+On a vu avec les <em>différentielles</em> que pour des variations infinitésimales, on a
+$$
+\text{d}b = \alpha \text{d}a \quad \text{ avec } \alpha = \frac{\text{d}b}{\text{d}a}
+$$
+Si on considère des variations <alert>suffisamment petites</alert> $\Delta b$ et $\Delta a$, cette relation doit rester valable:
+$$
+\Delta b \simeq \alpha \Delta a
+$$
+
+## Lien avec les dérivées successives
+
+Si on n'est pas satisfait de l'approximation précédente, on peut rajouter des termes correctifs proportionnels à $\Delta a^2, \Delta a^3, \dots$:
+
+$$
+\Delta b \simeq \alpha \Delta a + \beta \Delta a^2 + \gamma \Delta a^3 + \dots
+$$
+
+Compte tenus des définitions de $\Delta b = b(a) - b(a_0)$ et $\Delta a = a - a_0$, cela revient à approcher la relation $b(a)$ par un polynôme $b^{DL}$ de $a$ de degré $n$ (le fameux DL)
+$$
+b^{DL}(a) = b(a_0) + \alpha (a - a_0) + \beta (a - a_0)^2 + \gamma (a - a_0)^3 + \dots
+$$
+
+## Lien avec les dérivées successives (II)
+
+Pour s'assurer que l'approximation $b^{DL}(a) \simeq b(a)$ est valide au voisinage de $a_0$, on impose à $b^{DL}$ et $b$ d'avoir la même valeur en $a_0$, mais également la même pente, la même concavité, etc. 
+
+En termes formels, 
+$$
+\forall k \leq n \quad \frac{\text{d}^k b^{DL}}{\text{d}a^k}(a_0) = \frac{\text{d}^kb}{\text{d}a^k}(a_0)
+$$
+
+## Exercice
+
+Dériver $b^{DL}(a)$ 3 fois en $a_0$ et montrer qu'au point de référence $a_0$ on a 
+
+- $\frac{\text{d} b^{DL}}{\text{d}a}(a_0) = \alpha$
+- $\frac{\text{d}^2 b^{DL}}{\text{d}a^2}(a_0) = 2 \times \beta$
+- $\frac{\text{d}^3 b^{DL}}{\text{d}a^3}(a_0) = 3 \times 2 \times \gamma $
+
+En déduire les valeurs de $\alpha$, $\beta$, $\gamma$
+
+## Lien avec les dérivées successives (III)
+
+On retrouve ainsi en égalisant les dérivées, et avec la notation de Leibniz la formule de Taylor
+$$
+\small
+b(a) \simeq b(a_0) + \frac{\text{d}b}{\text{d}a}(a_0)\Delta a + \frac{1}{2!}\frac{\text{d}^2b}{\text{d}a^2}(a_0) \Delta a^2 + \dots + \frac{1}{n!}\frac{\text{d}^n b}{\text{d}a^n}(a_0) \Delta a^n
+$$
+La méthode à suivre pour faire un DL est donc <alert>systématiques</alert>
+
+- exprimer $b$ en fonction de $a$ (souvent donné dans l'exercice)
+- choisir un point de référence $a_0$ (idem)
+- calculer les premières dérivées de $b$
+- en déduire les coefficients du DL et conclure
+
+## Exemple (I)
+
+Pour faire un DL de $u = \cos(\theta)$ autour de $\theta_0 = \pi/3$, on calcule les valeurs successives des dérivées de $u$ en $\theta_0$. 
+
+- $u(\theta_0) = \cos(\theta_0) = \frac{1}{2}$
+- $\frac{\text{d}u}{\text{d}\theta}(\theta_0) = -\sin(\theta_0) = -\frac{\sqrt{3}}{2}$
+- $\frac{\text{d}^2u}{\text{d}\theta^2}(\theta_0) = -\cos(\theta_0) = -\frac{1}{2}$
+- $\frac{\text{d}^3u}{\text{d}\theta^3}(\theta_0) = \sin(\theta_0) = \frac{\sqrt{3}}{2}$
+
+## Exemple (II)
+
+D'ou on déduit que si $\theta$ reste proche de $\theta_0 = \frac{\pi}{3}$, on a 
+$$
+\small
+\begin{align}
+u(\theta) = \cos(\theta) & \simeq \frac{1}{2} - \frac{\sqrt{3}}{2}\left(\theta - \frac{\pi}{3}\right) - \frac{1}{2!} \frac{1}{2}\left(\theta - \frac{\pi}{3}\right)^2 + \frac{1}{3!} \frac{\sqrt{3}}{2}\left(\theta - \frac{\pi}{3}\right)^3 \\ 
+& \simeq \frac{1}{2} - \frac{\sqrt{3}}{2}\left(\theta - \frac{\pi}{3}\right) - \frac{1}{4}\left(\theta - \frac{\pi}{3}\right)^2 + \frac{\sqrt{3}}{12}\left(\theta - \frac{\pi}{3}\right)^3 
+\end{align}
+$$
+
+
+# Exercice
+
+En appliquant la procédure vue dans l'exemple, calculer un $DL_3$ des fonctions suivantes
+
+- $v = \tan(u)$ lorsque $u$ est proche de $\frac{pi}{6}$
+- $v = \ln(u)$ lorsque $u$ est proche de $2$
+- $A = 1 + t + 2t^2 + 3t^3$ lorsque $t$ est proche de $1$. Montrer que dans ce cas-là, le DL est en fait rigoureusement égal à $A$ mais écrit sous une autre forme
+- $A = 1 + t + 2t^2 + 3t^3$ lorsque $t$ est proche de $0$. Commenter le résultat
+
+## Exercice - Proposition 
+
+Dans la pratique, on se ramène toujours à des DLs en $0$ et il est bon de connaître les $DL_3(0)$ des fonctions suivantes (à calculer comme vu dans l'exemple)
+
+$$
+\begin{align}
+\sin(x) & & \cos(x) & & \tan(x) \\
+\frac{1}{1+u} & &  & & \frac{1}{1 - u} \\
+e^u & &  & & e^{-u} \\
+\sqrt{1+u} & &  & & \sqrt{1-u} \\
+\ln(1+u) & &  & & \ln(1-u) \\
+(1+u)^\alpha & &  & & (1-u)^{\alpha} \\
+\end{align}
+$$
+
+## DLs classiques
+
+Les DLs suivants au voisinage de $0$ sont à connaître. 
+
+<div class = "proposition">
+$$
+\small
+\begin{align}
+e^x  = & 1 + x + \frac{x^2}{2!} + \dots + \frac{x^n}{n!} + o(x^n) \\
+\cos(x) = & 1 - \frac{x^2}{2!} + \frac{x^4}{4!} + \dots + (-1)^n \frac{x^{2n}}{2n!} + o(x^{2n}) \\
+\sin(x) = & x - \frac{x^3}{3!} + \frac{x^5}{5!} + \dots + (-1)^n \frac{x^{2n+1}}{(2n+1)!} + o(x^{2n+1}) \\
+\frac{1}{1 + x} = & 1 - x + x^2 + \dots + (-1)^n x^n + o(x^n) \\
+(1+x)^\alpha = & 1 + \alpha x + \frac{\alpha (\alpha - 1)}{2} x^2 + \dots \\
+ & + \frac{\alpha (\alpha - 1) \dots (\alpha - (n - 1))}{n!} x^n + o(x^n) \\
+\end{align}
+$$
+</div>
+
+## Opérations sur les DLs
+
+Comme pour les limites et les dérivées, on peut aussi utiliser des règles pour combiner les DLs. 
+
+```{r, out.width = "720px", fig.align="center"}
+knitr::include_graphics("../Images_externes/lego-assembled-disassembled.jpg")
+```
+
+## Addition, multiplication de DL
+
+<div class = "proposition">
+Si $f$ et $g$ admettent toutes deux un $DL_n$ en $0$ et $\lambda \in \mathbb{R}$, alors
+
+- $f+g$ admet un $DL_n$ en $0$, qui s'obtient en additionnant les parties polynômiales des $DL_n$ de $f$ et $g$ (penser à la linéarité de la dérivée: $(f+g)^{(k)} = f^{(k)} + g^{(k)}$)
+- $f \times g$ admet un $DL_n$ en $0$, qui s'obtient en multipliant les parties polynômiales des $DL_n$ de $f$ et $g$ et <alert>en ne gardant que les termes de degrés $\leq n$</alert>.
+- $\lambda f$ admet un $DL_n$ en $0$, qui s'obtient en multipliant la partie polynômiale du $DL_n$ de $f$ par $\lambda$.
+</div>
+
+## Exemple 
+
+On sait que 
+
+- $\cos(x) = 1 - \frac{x^2}{2} + o(x^2)$
+- $e^x = 1 + x + \frac{x^2}{2} + o(x^2)$
+
+On a donc (les termes en rouges sont des $o(x^2)$):
+
+- $e^x + \cos(x) = 2 + x + o(x^2)$ (terme d'ordre $2$ du $DL_2$ nul)
+- 
+$$
+\small
+\begin{align}
+e^x \cos(x) = & \left( 1 + x + \frac{x^2}{2} + o(x^2) \right) \left( 1 - \frac{x^2}{2} + o(x^2) \right) \\
+            = & 1 - \frac{x^2}{2} + o(x^2) + x \color{red}{- \frac{x^3}{2} + o(x^3)} + \frac{x^2}{2} \color{red}{- \frac{x^4}{4} + o(x^4)} \\  
+            & + o(x^2) + \color{red}{o(x^4) + o(x^4)} \\ 
+            = & 1 + x + o(x^2)
+\end{align}
+$$
+
+## Composition
+
+<div class = "proposition">
+Soit $f: A \to B$ et $g: B \to C$ deux fonctions avec 
+$$
+0 \in A, 0 \in B \text{ et } f(0) = 0
+$$
+Si $f$ et $g$ admettent toutes deux un $DL_n$ en $0$, alors $g \circ f$ s'obtient en composant les parties polynômiales des $DL_n$ de $f$ et $g$ et <alert>en ne gardant que les termes de degrés $\leq n$</alert>.
+</div>
+
+## Exemple (I)
+
+Avec $\sin(x) = x - \frac{x^3}{3!} + o(x^3)$ et $\frac{x}{1+x} = x - x^2 + x^3 + o(x^3)$, on pose implicitement $X = \frac{x^2}{1+x}$ (petit quand $x$ est proche de $0$).
+
+$$
+\begin{align}
+\sin\left( \frac{x}{1+x} \right) = & \sin(X) \\
+= & X - \frac{X^3}{3!} + o(X^3) \\
+\end{align}
+$$
+
+## Exemple (II)
+
+Pour finir le calcul, on développe et on ne garde que les termes de degré au plus $3$
+$$
+\begin{align}
+X = & x - x^2 + x^3 + o(x^3) \\
+X^2 = & (x - x^2 + x^3 + o(x^3))^2 = x^2 - 2x^3 + o(x^3) \\
+X^3 = & (x - x^2 + x^3 + o(x^3))^3 = x^3 + o(x^3) \\
+o(X^3) = & o(x^3)
+\end{align}
+$$
+et donc au final 
+$$
+\begin{align}
+\sin\left( \frac{x}{1+x} \right) = &  x - x^2 + x^3 - x^3/6 + o(x^3) \\
+ = & x - x^2 +\frac{5x^3}{6} + o(x^3)
+\end{align}
+$$
+
+## Quotient  {.smaller}
+
+Comme d'habitude, quotienter par $f$ revient à multiplier par $1/f$, on cherche donc un $DL_n$ de $1/f$.
+
+<div class = "proposition">
+Soit $f$ une fonction admettant le $DL_n(0)$ suivant: 
+$$
+f(x) = b_0 + b_1 x + \dots + b_n x^n + o(x^n)
+$$
+
+- Si $b_0 = 0$, alors $1/f$ n'a pas de DL en $0$
+- Sinon, $1/f$ admet un $DL_n(0)$ obtenu en écrivant:
+$$
+\begin{align}
+\frac{1}{f(h)} = & \frac{1}{b_0 + b_1 x + \dots + b_n x^n + o(x^n)} \\ 
+ = & \frac{1}{b_0} \frac{1}{1 + \frac{b_1}{b_0} x + \dots + \frac{b_n}{b_0} x^n + o(x^n)}
+\end{align}
+$$
+Et il faut donc composer le $DL_n(0)$ de $u \mapsto \frac{1}{1 + u}$ avec $u = \frac{b_1}{b_0} x + \dots + \frac{b_n}{b_0} x^n + o(x^n)$. 
+</div>
+
+Les calculs à faire peuvent être un brin compliqués...
+
+## Exemple (I)
+
+On va calculer le $DL_2(0)$ de $1/e^{x}$. On sait que 
+$$
+e^x = 1 + x + \frac{x^2}{2} + o(x^2) = 1 + u
+$$
+avec $u = x + \frac{x^2}{2} + o(x^2)$. On va donc composer avec le $DL_2(0)$ de $\frac{1}{1+u}$, à savoir 
+$$
+\frac{1}{1+u} = 1 - u + u^2 + o(u^2)
+$$
+
+## Exemple (II)
+
+On commence par calculer $u^2$ (et il est clair que $o(u^2) = o(x^2)$)
+$$
+\begin{align}
+u^2 = & (x + \frac{x^2}{2} + o(x^2))^2 = x^2 + o(x^2)
+\end{align}
+$$
+D'où on tire
+$$
+\begin{align}
+\frac{1}{e^x} = & \frac{1}{1+u} = 1 - u + u^2 + o(u^2) \\ 
+= & 1 - \left(x + \frac{x^2}{2}\right) + x^2 + o(x^2) \\
+= & 1 - x + \frac{x^2}{2} + o(x^2)
+\end{align}
+$$
+
+## Exemple (III)
+
+Dans ce cas précis, on aurait aussi pu remarquer que $1/e^x = e^{-x}$ et se rappeler que le $DL_2(0)$ de $e^{-x}$ est 
+$$
+\begin{align}
+e^{-x} = & 1 + (-x) + \frac{(-x)^2}{2} + o((-x)^2) \\ 
+= & 1 - x + \frac{x^2}{2} + o(x^2)
+\end{align}
+$$
+On retrouve heureusement le même résultat
+
+## Exercices
+
+Calculer les $DL$s suivants
+$$
+\begin{align}
+DL_4(0) \; \text{ de } \; \frac{x}{\sin(x)} & & DL_2(0) \; \text{ de } \; \ln(a^x + b^x)  \\
+DL_4(0) \; \text{ de } \; \frac{1}{\cos(x)} & & DL_4(\pi/2) \; \text{ de } \; \sin(x)^{\sin(x)}  \\
+DL_2(\pi/4) \; \text{ de } \; \sqrt{\tan(x)} & & DL_3(0) \; \text{ de } \; \sqrt{1 + \sqrt{1 - x}}  \\
+DL_5(0) \; \text{ de } \; e^{\cos(x)} & & DL_3(0) \; \text{ de } \; x\sqrt{\frac{1+x}{1-x}}  \\
+DL_3(1) \; \text{ de } \; \frac{\ln(x)}{\sqrt{x}} & & \\
+\end{align}
+$$
+
+
+
+# Retour sur les DLs d'ordre 1 et 2
+
+## DL d'ordre 1 en physique
+
+Physiquement, l'approximation d'ordre $1$ considère que les variations $\Delta b$ et $\Delta a$ sont proportionnelles, et ce dans le même rapport que les différentielles $\text{d}b$ et $\text{d}a$. 
+
+Du point de vue graphique, cela revient à confondre la courbe de $b(a)$ avec une droite (en l'occurence sa tangente en $a_0$). Les $DL_1(0)$ sont très utilisés pour remplacer des petits angles $\theta$, ils permettent d'écrire
+
+- $\sin(\theta) \simeq \theta$
+- $\tan(\theta) \simeq \theta$
+
+qui est une très bonne approximation pour des petits angles (de l'ordre de `r 2*pi*20/360` radians). 
+
+## Représentation graphique
+
+```{r}
+curve(sin, -pi/2, pi/2, col = "red", ylim = c(-2, 2), lwd = 2, xlab = NA, ylab = NA); text(pi/2 - 0.05, 1, expression(sin(theta)), pos = 1, col= "red", cex = 1.5)
+curve(tan, -pi/2, pi/2, col = "darkred", add = TRUE, lwd = 2); text(pi/4, 1, expression(tan(theta)), pos = 2, col= "darkred", cex = 1.5)
+abline(h = 0, v = 0)
+abline(0, 1, lty = 2); text(1, 1, expression(theta), pos = 3, cex = 1.5)
+abline(v = 2*pi*20/360*c(-1, 1), col = "gray80")
+```
+
+## DL d'ordre 2 en physique
+
+Si on s'éloigne un peu trop du point de référence $a_0$ (et pour certaines valeurs de $a_0$), l'approximation par une droite n'est pas très satisfaisante et il faut rajouter un terme correctif en $(a - a_0)^2$ pour obtenir une meilleure approximation. Ceci revient à approcher le graphe de $b(a)$ par une <em>parabole</em>. 
+
+Le $DL_1(0)$ est très utilisé pour remplacer le $\cos$ de petits angles $\theta$, il permet d'écrire
+
+- $\cos(\theta) \simeq 1 - \frac{\theta^2}{2}$
+
+qui est une très bonne approximation pour des petits angles (jusqu'à `r pi/4` radians). 
+
+## Représentation graphique
+
+```{r}
+curve(cos, -pi, pi, col = "red", ylim = c(-1, 1), lwd = 2, xlab = NA, ylab = NA); text(pi/2 - 0.05, 1, expression(cos(theta)), pos = 1, col= "red", cex = 1.5)
+abline(h = 0, v = 0)
+curve(1- x^2/2, col = "black", lty = 2, add = TRUE); text(1.5, -0.5, expression(1 - frac(theta^2, 2)), cex = 1.5, pos = 2)
+abline(v = pi/4*c(-1, 1), col = "gray80")
+```
+
+## Exercice
+
+En optique ondulatoire, on a souvent affaire à la fonction <em>sinus cardinal</em> définie par 
+$$
+\text{sinc}(x) = \frac{\sin(x)}{x}
+$$
+
+En partant du DL de $\sin$, trouver directement le $DL_4(0)$ de $\text{sinc}(x)$. Pourquoi peut-on définir $\text{sinc}(0) = 1$ ? Que peut-on dire de la dérivée première du sinus cardinal lorsque x tend
+0 ? Et du signe de sa dérivée seconde ?
