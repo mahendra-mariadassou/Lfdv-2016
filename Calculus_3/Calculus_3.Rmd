@@ -231,10 +231,10 @@ $$
 Calculer les dérivées suivantes (en décomposant les calculs et en vous servant du formulaire si besoin)
 $$
 \begin{align*}
-\frac{\text{d}[u\ln u - u ]}{\text{d}u} & & \frac{\text{d}[(v - 1)e^v]}{\text{d}v} \\
+\frac{\text{d}[u\ln(u) - u ]}{\text{d}u} & & \frac{\text{d}[(v - 1)e^v]}{\text{d}v} \\
 \frac{\text{d}[1/(1+\epsilon^2)]}{\text{d}\epsilon} & & \frac{\text{d}[1/\tan{\alpha}]}{\text{d}\alpha} \\
-\frac{\text{d}^2[\sin^2(\theta)]}{\text{d}\theta^2} & & \frac{\text{d}^2[x\sqrt{x}]}{\text{d}x} \\
-\frac{\text{d}^2[\ln(y)]}{\text{d}y^2} & & \frac{\text{d}^2[z^3+3z^2+3z+1]}{\text{d}z}
+\frac{\text{d}^2[\sin^2(\theta)]}{\text{d}\theta^2} & & \frac{\text{d}^2[x\sqrt{x}]}{\text{d}x^2} \\
+\frac{\text{d}^2[\ln(y)]}{\text{d}y^2} & & \frac{\text{d}^2[z^3+3z^2+3z+1]}{\text{d}z^2}
 \end{align*}
 $$
 
@@ -337,7 +337,7 @@ Indice: Quand $\cos(x) >0$, on a $\cos(x) = \sqrt{1 - \sin^2(x)}$. Pareil pour $
 ## Théorème et inégalité des acroissements finis (TAF/IAF)
 
 <div class = "theoreme">
-Soit $f: I = [a,b] \to \mathbb{R}$ une fonction dérivable sur $I$. Il existe alors au moins un point $c$ dans l'intervalle $(a, b)$ tel que $$f(b) = f(a) = f'(c) (b - a)$$
+Soit $f: I = [a,b] \to \mathbb{R}$ une fonction dérivable sur $I$. Il existe alors au moins un point $c$ dans l'intervalle $(a, b)$ tel que $$f(b) - f(a) = f'(c) (b - a)$$
 </div>
 
 <div class = "theoreme">
@@ -382,7 +382,7 @@ Soit $f: I = [a,b] \to \mathbb{R}$ une fonction continue sur $I$ et dérivable s
 
 - $f' \geq 0$ (resp. $f > 0$ sauf éventuellement en un nombre <alert>fini</alert> de points) sur $I$, alors $f$ est croissante (resp. strictement croissante) sur $I$
 - $f' \leq 0$ (resp. $f < 0$ sauf éventuellement en un nombre <alert>fini</alert> de points) sur $I$, alors $f$ est décroissante (resp. strictement décroissante) sur $I$
-- $f' = 0$ sur $I$, alors $f$ est constante (resp. strictement décroissante) sur $I$
+- $f' = 0$ sur $I$, alors $f$ est constante sur $I$
 </div>
 
 C'est une conséquence directe du TAF. 
@@ -416,6 +416,7 @@ On utilise souvent le signe de la dérivée pour prouver la stricte monotonie
 
 Déterminer l'image de l'intervalle $I$ par les fonctions suivantes:
 $$
+\small
 \begin{align}
 f: x \mapsto e^x - x & & \text{pour } I = \mathbb{R} & & \text{pour } I = (0, e) \\
 g: x \mapsto \ln(x+1) -x & & \text{pour } I = (-1, 0) & & \text{pour } I = [0, e] \\
@@ -456,7 +457,7 @@ $$
 \end{cases}
 $$
 
-- On dit que $f$ est dérivable en $a$ (resp. sur $I$) lorsque $f^{(k)}(a)$ existe (resp. $f^{(k)}$ est définie sur $I$). 
+- On dit que $f$ est $k$ fois dérivable en $a$ (resp. sur $I$) lorsque $f^{(k)}(a)$ existe (resp. $f^{(k)}$ est définie sur $I$). 
 - On dit que $f$ est infiniment dérivable en $a$ (resp. sur $I$) lorsque $f^{(k)}(a)$ existe (resp. $f^{(k)}$ est définie sur $I$) pour tout $k \in \mathbb{N}$.
 </div>
 
@@ -474,7 +475,7 @@ $$
 
 - Tout polynôme est infiniment dérivable sur $\mathbb{R}$
 - Toute fraction rationnelle est infiniment dérivable sur son domaine de définition
-- $x \mapsto \sqrt{x}$ est infiniment continue sur $\mathbb{R}_+^*$ mais seulement $C^0$ en $0$. 
+- $x \mapsto \sqrt{x}$ est infiniment dérivable sur $\mathbb{R}_+^*$ mais seulement $C^0$ en $0$. 
 - $\sin$, $\cos$, $\tan$, $\exp$, $\ln$ sont $C^\infty$ sur leurs domaines respectifs
 
 ## Exercices
@@ -639,9 +640,12 @@ $$
 
 À l'aide de la méthode de votre choix, montrez les inégalités (dites de convexité) suivantes:
 $$
+\small
 \begin{align*}
-\forall x \in \mathbb{R} \quad e^x \geq 1 + x & & \forall x \geq 0 \quad xe^x + 1 \geq e^x \geq 1 + x + \frac{x^2}{2} \\
-\forall x \in (-1, +\infty) \quad \ln(1+x) \leq x & & \forall x \leq 0 \quad 1+x \leq e^x \leq 1 + x + \frac{x^2}{2}
+\forall x \in \mathbb{R} & \quad e^x \geq 1 + x \\
+\forall x \geq 0 & \quad xe^x + 1 \geq e^x \geq 1 + x + \frac{x^2}{2} \\
+\forall x \in (-1, +\infty) & \quad \ln(1+x) \leq x \\
+\forall x \leq 0 & \quad 1+x \leq e^x \leq 1 + x + \frac{x^2}{2}
 \end{align*}
 $$
 
