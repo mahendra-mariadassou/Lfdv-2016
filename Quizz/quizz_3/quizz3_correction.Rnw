@@ -47,8 +47,8 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%% ZONE VERTE : Intervention obligatoire
 %%% ADAPTER SUIVANT LA NATURE DE L'EPREUVE
-\def\Exam{Test ``Remise en forme'': corrigé}
-\def\Date{\today}
+\def\Exam{Test ``Limites'': corrigé}
+\def\Date{23 mars 2017}
 \def\Classe{TS3}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -115,97 +115,98 @@ require(patchSynctex)
 
 %% \section*{Test 1}
 
+\Exo \textbf{Calcul \emph{à la main} de la dérivée de $x \mapsto x^n$}
 
-\Exo \textbf{Forme algébrique}
+Soit $a$ et $x$ deux nombres réels et $n$ un entier naturel non nul. 
 
-Écrire sous forme algébrique les complexes suivants:
-% \begin{equation*}
-%   z_1 = \frac{2+i}{3-i}
-% \end{equation*}
+\begin{enumerate}
+\item Montrer que $x^n - a^n = (x - a) \sum_{k=0}^{n-1} x^k a^{n-1-k}$ et en déduire $\lim_{x \to a} \frac{x^n - a^n}{x - a}$
+\item Retrouver ainsi que la fonction $x \mapsto x^n$ est dérivable et expliciter sa dérivée. 
+\end{enumerate}
 
 \textcolor{gray}{
+On commence par développer la somme et regarder ce que donne l'expression de droite pour de petites valeurs de $n$
+\begin{align*}
+n = 2 & \quad a^2 - b^2 = (a - b)(a+b) \\
+n = 3 & \quad a^3 - b^3 = (a - b)(a^2+ab+b^2) \\
+n = n & \quad a^n - b^n = (a - b)(a^{n-1}+a^{n-2}b+\dots+ab^{n-2} + b^{n-1}) \\
+\end{align*}
+On va la démontrer directement en développant le terme de droite
+\begin{align*}
+(a - b)(a^{n-1}+a^{n-2}b+\dots+ab^{n-2} + b^{n-1}) & = a(a^{n-1}+a^{n-2}b+\dots+ab^{n-2} + b^{n-1}) \\
+& - b(a^{n-1}+a^{n-2}b+\dots+ab^{n-2} + b^{n-1}) \\
+& = a^n + a^{n-1}b + \dots + a^{2}b^{n-2} + ab^{n-1} \\
+& \qquad\; - a^{n-1}b - \dots - a^{2}b^{n-2} - ab^{n-1} - b^n \\
+& = a^n - b^n
+\end{align*}
+On s'en sert ensuite pour calculer la limite demandée
 \begin{equation*}
-  z_1 = \frac{2+i}{3-i} = \frac{(2+i)(3+i)}{(3-i)(3+i)} = \frac{5 + 5i}{|3+i|^2} = \frac{5(1+i)}{10} = \frac{1+i}{2}
+\lim_{x \to a} \frac{x^n - a^n}{x - a} = \lim_{x \to a} (x^{n-1} + x^{n-2}a + \dots + x a^{n-2} + a^{n-1}) = na^{n-1}
 \end{equation*}
-}
-
-% \begin{equation*}
-%   z_2 = \exp(0.5\ln(2) + i\pi/4)
-% \end{equation*}
-
-\textcolor{gray}{
+car on a une somme de $n$ termes qui tendent tous vers $a^{n-1}$. En particulier, si on considère la fonction $f(x)=x^n$, on retrouve bien que pour tout $x \in \mathbb{R}$
 \begin{equation*}
-  z_2 = \exp(0.5\ln(2) + i\pi/4) = e^{0.5\ln(2)} \times e^{i\pi/4} = 2^{0.5} (\cos(\pi/4) + i\sin(\pi/4)) = \sqrt{2} \left(\frac{\sqrt{2}}{2} + i\frac{\sqrt{2}}{2}\right)  = 1+i
+\lim_{h \to 0} \frac{f(x+h) - f(x)}{h} = \lim_{h \to 0} \frac{(x+h)^n - x^n}{h} = \lim_{h \to 0} \frac{(x+h)^n - x^n}{(x+h) - h} = nx^{n-1}
 \end{equation*}
+et donc $f$ est dérivable sur $\mathbb{R}$ de dérivée $f'(x) = nx^{n-1}$. 
 }
 
-\Exo \textbf{Module et argument}
 
-Calculer le module (et pour $z_2$ également un argument) des nombres complexes suivants:
-\begin{eqnarray*}
-  z_1 = 3 + 4i \\
-  z_2 = (1+i)^{8} \\  
-\end{eqnarray*}
+\bigskip
+
+\Exo \textbf{Branches infinies}
+
+On pose $\displaystyle f(x) = 1 + x \exp\left( \frac{1}{1 - x} \right)$
+\begin{enumerate}
+\item $f$ possède-t-elle une limite en $1$? $-\infty$? $+\infty$? Penser à justifier en calculant la limite si elle existe ou en justifiant qu'elle n'existe pas dans le cas contraire. 
+\item Calculer \[\lim_{x \to +\infty} x\left( \exp\left( \frac{1}{1 - x} \right) - 1 \right)\] On pourra essayer de faire un changement de variable approprié pour se ramener à une limite en $0$. 
+\item En déduire une branche affine pour $f$ en $+\infty$, \emph{i.e.} une fonction $g$ de la forme $g(x) = a + bx$ (avec $a, b$ à déterminer) telle que $\lim_{x \to +\infty} (f - g)(x) = 0$. 
+\end{enumerate}
 
 \textcolor{gray}{
-$$|z_1| = |3+4i| = \sqrt{3^2 + 4^2} = \sqrt{9+16} = 5$$
-Pour $z_2$, on commence par écrire $1+i$ sous forme exponentielle, $|1+i| = \sqrt{2}$ donc 
-$$|1+i| = \sqrt{2} \left(\frac{\sqrt{2}}{2} + i\frac{\sqrt{2}}{2}\right) = \sqrt{2}(\cos(\pi/4) + i\sin(\pi/4)) = \sqrt{2}e^{i\pi/4}$$
-On peut aussi utiliser l'exercice précédent pour arriver au même résultat. On alors 
-$$z_2 = (1+i)^8 = \left[ \sqrt{2}e^{i\pi/4} \right]^8 = 2^4 e^{8\times i\pi/4} = 16 e^{i2\pi} = 16$$
-On en déduit que $|z_2| = 16$ et qu'\textbf{un} argument de $z_2$ est $0$ (\textbf{un} autre est $2\pi$.)
+On utilise les théorèmes d'opération (en l'occurence composition, multiplication et somme) pour répondre à la première question
+\begin{align*}
+\frac{1}{1 - x} \xrightarrow[x \to -\infty]{} 0 & & \frac{1}{1 - x} \xrightarrow[x \to 1^{-}]{} +\infty & & \frac{1}{1 - x} \xrightarrow[x \to 1^{+}]{} -\infty & & \frac{1}{1 - x} \xrightarrow[x \to +\infty]{} 0 \\
+e^{\frac{1}{1 - x}} \xrightarrow[x \to -\infty]{} 1 & & e^{\frac{1}{1 - x}} \xrightarrow[x \to 1^{-}]{} +\infty & & e^{\frac{1}{1 - x}} \xrightarrow[x \to 1^{+}]{} 0 & & e^{\frac{1}{1 - x}} \xrightarrow[x \to +\infty]{} 1 \\
+1 + xe^{\frac{1}{1 - x}} \xrightarrow[x \to -\infty]{} -\infty & & 1+xe^{\frac{1}{1 - x}} \xrightarrow[x \to 1^{-}]{} +\infty & & 1+xe^{\frac{1}{1 - x}} \xrightarrow[x \to 1^{+}]{} 1 & & 1+xe^{\frac{1}{1 - x}} \xrightarrow[x \to +\infty]{} +\infty \\
+\end{align*}
+Au final, $f$ admet une limite en $-\infty$ et $+\infty$ mais pas en $1$ (même si elle a une limite à gauche et à droite en $1$). Pour la deuxième question, l'énoncé suggère de faire un changement de variable pour se ramener à une limite en $0$, le terme le plus pénible est le $1/(1-x)$ en argument de l'exponentiel, qui tend vers $0$ quand $x$ tend vers $+\infty$. On pose $X = 1/(1-x)$ (donc $x = -1/X+1$ et $X \to 0$ quand $x \to +\infty$) et l'expression se réécrit: 
+\begin{equation*}
+x\left( \exp\left( \frac{1}{1 - x} \right) - 1 \right) = \left( 1 - \frac{1}{X} \right) (e^X - 1) = \underbrace{e^X - 1}_{\xrightarrow[X \to 0]{} 0} - \underbrace{\frac{e^X - 1}{X}}_{\xrightarrow[X \to 0]{} 1} \xrightarrow[X \to 0]{} -1
+\end{equation*}
+Au final, on vient de montrer que 
+\begin{equation*}
+f(x) - x = 1 + x \exp\left( \frac{1}{1 - x} \right) - x = 1 + x\left( \exp\left( \frac{1}{1 - x} \right) - 1 \right) \xrightarrow[x \to +\infty]{} 1 - 1 = 0
+\end{equation*}
+Et donc que $f$ admet $x$ comme branche affine en $+\infty$. On peut le voir assez facilement sur un graphe:
 }
-
-\Exo \textbf{Géométrie}
-
-Trouver l'ensemble des nombres complexes $z$ tels que $|z + 1 - i| = |z - 1 + i|$. 
-
-\textcolor{gray}{On adopte une résolution géométrique. Soit $z$ un nombre complexe. On note $M$ le point d'affixe $z$, $A$ le point d'affixe $-1+i$ et $B$ le point d'affixe $1-i$. On note que $|z + 1 - i| = AM$ et $|z - 1 + i| = BM$. On a donc: 
-$$|z + 1 - i| = |z - 1 + i| \Leftrightarrow AM = BM \Leftrightarrow M \text{ est sur la médiatrice de } A \text{ et } B$$ 
-La médiatrice de $AB$ est la droite d'équation $y = x$. L'ensemble solution est donc $S = \{ z \in \mathbb{C} \text{ tels que } Re(z) = Im(z) \}$.
-}
-
-<<mediatrice, out.width = "0.5\\linewidth">>=
-par(cex = 1.4)
-plot(x = c(-1, 1), y = c(1, -1), pch = 19, xlim=c(-1.1, 1.1), ylim = c(-1.1, 1.1), axes = F, xlab = NA, ylab = NA, asp = 1)
-abline(h = 0, v = 0)
-abline(a = 0, b = 1, col = "red", lwd = 3)
-text(x = c(-1, 1), y = c(1, -1), labels = c("A (-1+i)", "B (1-i)"), pos = c(1, 2))
-points(0.8, 0.8, pch = 19, col = "red"); text(0.8, 0.8, labels = "M (x + iy)", pos = 4, col = "red")
-segments(x0 = c(-1, 1), x1 = 0.8, y0 = c(1, -1), y1 = 0.8, col = "red")
-text(-1, -1, "S", col = "red", pos = 3)
+<<branche-affine, out.width = "0.33\\linewidth">>=
+f <- function(x) { 1 + x * exp(1 / (1 -x))}
+curve(f, 1, 10, col = "red", lwd = 2)
+abline(0, 1, lty = 2, col = "black")
+text(6, f(6) - 0.25, expression(y == f(x)), col = "red", pos = 4, cex = 1.5)
+text(5, 5, expression(y == x), col = "black", pos = 2, cex = 1.5)
 @
 
-\Exo \textbf{Linéarisation}
 
-Linéariser $\cos^4(x)$. 
+\bigskip
 
-\textcolor{gray}{On répond à la consigne comme vu en cours: on utilise (1) la formule d'Euler pour écrire $\cos$ comme une somme, (2) la formule du binôme de Newton pour développer cette somme à la puissance $4$, (3) on trie les termes pour les apparier et (4) on utilise la formule d'Euler (dans l'autre sens) pour faire apparaître de nouveau des $\cos$. On rappelle juste la formule du binôme pour $n = 4$
-$$(a+b)^4 = a^4 + 4a^3b + 6a^2b^2 + 4ab^3 + b^4$$.
-En détails:
+\Exo \textbf{Limites}
+
+Calculer les limites suivantes
 \begin{align*}
-  \cos^4(x) & =  \left( \frac{e^{ix} + e^{-ix}}{2} \right)^4 \tag{Euler} \\
-  & = \frac{1}{16}\left( e^{i4x} + 4e^{i2x} + 6 + 4e^{-i2x} + e^{-i4x}\right) \tag{Binôme} \\
-  & = \frac{1}{16}\left( \textcolor{red}{e^{i4x} + e^{-i4x}} + 4(\textcolor{blue}{e^{i2x} + e^{-i2x}}) + \textcolor{green}{6} \right) \tag{Tri} \\
-  & = \frac{1}{16}\left( \textcolor{red}{2\cos(4x)} + 4\times \textcolor{blue}{2\cos(2x)} + \textcolor{green}{6} \right) \tag{Euler} \\
-  & = \frac{1}{8}(\cos(4x) + 4\cos(2x) + 3) \tag{Simplification}
+\lim_{x  \to 0} \frac{e^x - 1}{\sqrt{1 + x^2} - 1} & & \lim_{x \to +\infty} x^3 \ln\left(1 + \frac{1}{x^2}\right) \\
+\\
+\lim_{x  \to 0} \frac{x^3 - x^2 + x}{x^2 + 2x} & & \lim_{x  \to +\infty} \frac{x^3 - x^2 + x}{x^2 + 2x} \\
 \end{align*}
-}
-
-\Exo \textbf{Racine carrée}
-
-Calculer les 2 racines carrés $z_1$ et $z_2$ de $Z = 1+i\sqrt{3}$. On pourra d'abord écrire $Z$ sous forme exponentielle mais on prendra soin de donner $z_1$ et $z_2$ sous forme algébrique. 
 
 \textcolor{gray}{
-On commence par écrire $Z$ sous forme exponentielle. $|Z| = \sqrt{1 + 3} = 2$ donc 
-$$Z = 2\left(\frac{1}{2} + i\frac{\sqrt{3}}{2}\right) = 2(\cos(\pi/3) + i\sin(\pi/3)) = 2e^{i\pi/3}$$
-D'où on déduit que les racines $z_1$ et $z_2$ sont 
+On force l'apparition de limites classiques
 \begin{align*}
-z_1 & = \sqrt{2}e^{i\pi/6} = \sqrt{2} \left( \frac{\sqrt{3}}{2} + i\frac{1}{2} \right) = \frac{1}{\sqrt{2}} (\sqrt{3} + i) \\
-z_2 & = -z_1 = -\frac{1}{\sqrt{2}} (\sqrt{3} + i)
+\frac{e^x - 1}{\sqrt{1 + x^2} - 1} & = \frac{e^x - 1}{x} \frac{x}{1} \frac{\sqrt{1+x^2} + 1}{(1 + x^2) - 1} = \underbrace{\frac{e^x - 1}{x}}_{\to 1} \underbrace{\sqrt{1+x^2} + 1}_{\to 2} \underbrace{\frac{1}{x}}_{\text{pas de limite en $0$}} \\
+\frac{x^3 - x^2 + x}{x^2 + 2x} & = \frac{x^2 - x + 1}{x + 2} \xrightarrow[x \to 0]{} \frac{1}{2} \\
+x^3 \ln\left(1 + \frac{1}{x^2}\right) & = x \underbrace{\frac{\ln\left(1 + 1/x^2\right)}{1/x^2}}_{\xrightarrow[x \to +\infty]{} 1} \xrightarrow[x \to +\infty]{} +\infty \\
+\frac{x^3 - x^2 + x}{x^2 + 2x} & = \frac{x^3(1 - 1/x + 1/x^2)}{x^2(1 + 2/x)} = x \underbrace{\frac{1 - 1/x + 1/x^2}{1 + 2/x}}_{\xrightarrow[x \to +\infty]{} 1} \xrightarrow[x \to +\infty]{} +\infty
 \end{align*}
 }
-
-
 
 \end{document}
