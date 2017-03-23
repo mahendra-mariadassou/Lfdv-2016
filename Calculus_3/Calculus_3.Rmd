@@ -226,15 +226,37 @@ $$
 \end{align*}
 $$
 
-## Exercices (dérivées de fonctions de bases)
+## Solutions 
 
-Calculer les dérivées suivantes (en décomposant les calculs et en vous servant du formulaire si besoin)
 $$
 \begin{align*}
-\frac{\text{d}[u\ln(u) - u ]}{\text{d}u} & & \frac{\text{d}[(v - 1)e^v]}{\text{d}v} \\
+\frac{\text{d}(\tan(\alpha))}{\text{d}\alpha} & = \frac{1}{\cos^2(\alpha)} = 1 + \tan^2(\alpha)\\ \frac{\text{d}[1/\cos(\alpha)]}{\text{d}\alpha} & = \frac{\sin(\alpha)}{\cos^2(\alpha)}\\
+\frac{\text{d}[1/\sin(\alpha)]}{\text{d}\alpha} & = -\frac{\cos(\alpha)}{\sin^2(\alpha)}\\
+\frac{\text{d}[1/\tan(\alpha)]}{\text{d}\alpha} & = \frac{-1}{\sin^2(\alpha)}
+\end{align*}
+$$
+
+## Exercices (dérivées de fonctions de bases)
+
+$$
+\begin{align*}
+\frac{\text{d}[u\ln(u) - u ]}{\text{d}u} & & \frac{\text{d}[(v - 1)e^v]}{\text{d}v}\\
 \frac{\text{d}[1/(1+\epsilon^2)]}{\text{d}\epsilon} & & \frac{\text{d}[1/\tan{\alpha}]}{\text{d}\alpha} \\
 \frac{\text{d}^2[\sin^2(\theta)]}{\text{d}\theta^2} & & \frac{\text{d}^2[x\sqrt{x}]}{\text{d}x^2} \\
 \frac{\text{d}^2[\ln(y)]}{\text{d}y^2} & & \frac{\text{d}^2[z^3+3z^2+3z+1]}{\text{d}z^2}
+\end{align*}
+$$
+
+## Solutions
+
+Calculer les dérivées suivantes (en décomposant les calculs et en vous servant du formulaire si besoin)
+$$
+\small
+\begin{align*}
+\frac{\text{d}[u\ln(u) - u ]}{\text{d}u} = \ln(u) & & \frac{\text{d}[(v - 1)e^v]}{\text{d}v} = ve^v \\
+\frac{\text{d}[1/(1+\epsilon^2)]}{\text{d}\epsilon} = \frac{-2\varepsilon}{(1+\varepsilon^2)^2}& & \frac{\text{d}[1/\tan{\alpha}]}{\text{d}\alpha} = \frac{-1}{\sin^2(\alpha)} \\
+\frac{\text{d}^2[\sin^2(\theta)]}{\text{d}\theta^2} = 2\cos(2\theta) & & \frac{\text{d}^2[x\sqrt{x}]}{\text{d}x^2} = \frac{3}{4\sqrt{x}}\\
+\frac{\text{d}^2[\ln(y)]}{\text{d}y^2} = \frac{-1}{y^2} & & \frac{\text{d}^2[z^3+3z^2+3z+1]}{\text{d}z^2} = 6z + 6
 \end{align*}
 $$
 
@@ -248,6 +270,23 @@ $$
 \frac{\text{d}[\tan^2(\theta)]}{\text{d}\theta} & & \frac{\text{d}[e^{-y^2}]}{\text{d}y} \\
 \frac{\text{d}[1/\sqrt{1+u^2}]}{\text{d}u} & & \frac{\text{d}[\sqrt{z^3 + 3z^2 + 3z + 1}]}{\text{d}z}
 \end{align*}
+$$
+
+## Solutions
+
+Calculer les dérivées suivantes (en décomposant les calculs et en vous servant du formulaire si besoin)
+$$
+\scriptsize
+\begin{align*}
+\frac{\text{d}[(1+u^3)^4]}{\text{d}u} = 12u^2(1+u^3)^3 & & \frac{\text{d}[\sqrt{1+v^2}]}{\text{d}v} = \frac{v}{\sqrt{1+v^2}} \\
+\frac{\text{d}[\ln(1-x)]}{\text{d}x}  = \frac{-1}{1 - x} & & \frac{\text{d}[2\sin(\alpha - \frac{\pi}{8})]}{\text{d}\alpha} = 2\cos\left(\alpha - \frac{\pi}{8}\right)\\
+\frac{\text{d}[\tan^2(\theta)]}{\text{d}\theta} = 2\tan(\theta) + 2\tan^3(\theta))& & \frac{\text{d}[e^{-y^2}]}{\text{d}y} = -2y e^{-y^2}\\
+\frac{\text{d}[1/\sqrt{1+u^2}]}{\text{d}u} = \frac{u}{\sqrt{1+u^2}} & & \\ 
+\end{align*}
+$$
+$$
+\scriptsize
+\frac{\text{d}[\sqrt{z^3 + 3z^2 + 3z + 1}]}{\text{d}z} = \frac{3z^2 + 6z + 3}{2\sqrt{z^3 + 3z^2 + 3z + 1}}
 $$
 
 ## Dérivées de fonctions réciproques
@@ -324,11 +363,11 @@ $$
 
 Les fonctions $\arcsin(x)$, $\arccos(x)$ et $\arctan(x)$ sont les réciproques (sur un certain intervalle) des fonctions trigonométriques $\sin(x)$, $\cos(x)$, $\tan(x)$. 
 
-Calculer (les résultats sont à connaître)
+Montrer que (les résultats sont à connaître)
 
-- $\frac{\text{d}\arcsin(x)}{\text{d}x}$
-- $\frac{\text{d}\arccos(x)}{\text{d}x}$
-- $\frac{\text{d}\arctan(x)}{\text{d}x}$
+- $\frac{\text{d}\arcsin(x)}{\text{d}x} = \frac{1}{\sqrt{1 - x^2}}$
+- $\frac{\text{d}\arccos(x)}{\text{d}x} = \frac{-1}{\sqrt{1 - x^2}}$
+- $\frac{\text{d}\arctan(x)}{\text{d}x} = \frac{1}{1+x^2}$
 
 Indice: Quand $\cos(x) >0$, on a $\cos(x) = \sqrt{1 - \sin^2(x)}$. Pareil pour $\sin(x)$. 
 
@@ -420,14 +459,25 @@ $$
 \begin{align}
 f: x \mapsto e^x - x & & \text{pour } I = \mathbb{R} & & \text{pour } I = (0, e) \\
 g: x \mapsto \ln(x+1) -x & & \text{pour } I = (-1, 0) & & \text{pour } I = [0, e] \\
-h: x \mapsto \frac{e^x + 1}{x+2} & & \text{pour } I = (-\infty, 2) & & \text{pour } I = \mathbb{R}_+ \\
+h: x \mapsto \frac{e^x + 1}{x+2} & & \text{pour } I = (-\infty, -2) & & \text{pour } I = \mathbb{R}_+ \\
 \end{align}
 $$
+
+## Solutions
+
+- $f$ est strictement décroissante sur $\mathbb{R}_-$, strictement croissante sur $\mathbb{R}_+$. De plus, $\lim_{-\infty} f = \lim_{+\infty} f = +\infty$ et $f(0) = 1$ donc $f(\mathbb{R}) = [1, +\infty)$ et $f((0, e)) = (1, e^e - e)$. 
+- $g$ est strictement croissante sur $(-1, 0]$ et strictement décroissante sur $[0, +\infty)$. De plus, $\lim_{-1} f =  -\infty$, $f(0) = 0$ et $f(e) = \ln(1+e) - e$ donc $f((-1, 0)) = (-\infty, 0)$ et $f([0, e]) = [\ln(1+e) - e, 0]$
+- $h$ est strictement décroissante sur $(-\infty, -2)$ et strictement croissante sur $[0, +\infty)$. De plus, $\lim_{-\infty} f =  0$, $\lim_{-2} f =  -\infty$, $f(0) = 1$ et $\lim_{+\infty} f = +\infty$ donc $f((-\infty, -2)) = (-\infty, 0)$ et $f([0, \infty)) = [1, +\infty)$
+
 
 ## Exercices (II)
 
 - En fonction de la valeur du paramètre $m$, indiquer le nombre de solutions de l'équation $x^3 - x = m$. 
 - Montrer que l'équation $x^3 + x + 1 = 0$ admet une unique solution (notée $\alpha$) et que $-1 < \alpha < 0$. 
+
+## Solutions 
+
+Corrigé en cours
 
 ## Application (I)
 
@@ -484,7 +534,13 @@ Etudier l'existence des dérivées successives de
 
 - $f: x \mapsto (x - 1)^{3/2}$
 - $g: x \mapsto \begin{cases} x^2 & \text{si} & x \geq 0 \\ x^3 & \text{si} & x < 0 \end{cases}$ 
-- $g: x \mapsto \begin{cases} x^2 \sin(1/x) & \text{si} & x \neq 0 \\ 0 & \text{si} & x = 0 \end{cases}$ 
+- $h: x \mapsto \begin{cases} x^2 \sin(1/x) & \text{si} & x \neq 0 \\ 0 & \text{si} & x = 0 \end{cases}$ 
+
+## Solutions
+
+- $f$ est définie sur $[1, +\infty)$, $C^{\infty}$ sur $(1, +\infty)$ mais seulement $C^1$ (dérivable de dérivée continue) en $1$. 
+- $g$ est $C^\infty$ sur $\mathbb{R}^*$ mais seulement $C^1$ en $0$. 
+- $h$ est $C^\infty$ sur $\mathbb{R}^*$ mais seulement $C^1$ en $0$. 
 
 # Étude de fonctions 
 
@@ -612,18 +668,39 @@ arrows(0, 0.5, 3, 0.5, col = "maroon", code = 3); text(0.25, 0.5, "3 km", pos = 
 
 ## Exercices (I)
 
-Trouver les minimums et maximums globaux des fonctions suivantes:
+Trouver les minimums et maximums globaux des fonctions suivantes (il est recommandé de s'aider d'un ordinateur pour calculer $f$ en différentes valeurs, les exercices avec un (*) sont difficiles):
 $$
 \begin{align*}
 f(z) = 2z^4 - 16z^3 + 20z^2 - 7 & & \text{ pour } z \in [-2, 6] \\
 f(z) = 2z^4 - 16z^3 + 20z^2 - 7 & & \text{ pour } z \in [-2, 4] \\
 f(z) = 2z^4 - 16z^3 + 20z^2 - 7 & & \text{ pour } z \in [0, 2] \\
 f(t) = \frac{3 - 4t}{t^2 + 1} & & \text{ pour } t \in [-2, 4] \\
-f(x) = 3\cos(2x) - 5x & & \text{ pour } x \in [0, 6] \\
+f(x) = 3\cos(2x) - 5x & & \text{ pour } x \in [0, 6] \quad (*)\\
 f(x) = x\cos(x) - \sin(x) & & \text{ pour } x \in [-15, -5] \\
-f(z) = z^2e^{1-z} & & \text{ pour } z \in [-1/2, 5/2] \\
+f(z) = z^2e^{1-z} & & \text{ pour } z \in [-1/2, 5/2]\\
 f(t) = \ln(t^2 + t + 3) & & \text{ pour } t \in [-2, 2]
 \end{align*}
+$$
+
+## Solutions 
+
+$$
+\small
+\begin{array}{|cccc|}
+\hline
+f & I & \min & \max \\
+\hline
+\hline 
+2z^4 - 16z^3 + 20z^2 - 7 & [-2, 6] & -257 & 233 \\
+2z^4 - 16z^3 + 20z^2 - 7 & [-2, 4] & -199 & 233 \\
+2z^4 - 16z^3 + 20z^2 - 7 & [0, 2] & -23 & -1 \\
+\frac{3-4t}{t^2 + 1}     & [-2, 4] &  f(1 + \sqrt{2})  & f(1 - \sqrt{2}) \\
+3\cos(2x) - 5x      & [0, 6] & f(0) & f(30) \\
+x\cos(x) - \sin(x)      & [-15, -5] & f(-5) & f(-15) \\
+x^2e^{1 - x} & [-1/2, 5/2] & f(0) = 0 & f(2) = 4/e & \\
+\ln(t^2 + t + 3) & [-2, 2] & \ln(3.75) & 2\ln(3) \\
+\hline
+\end{array}
 $$
 
 ## Exercices (II)
@@ -633,6 +710,15 @@ $$
 \begin{align*}
 \lim_{x \to 3} \frac{\ln(x) - \ln(3)}{x - 3} & & \lim_{x \to 2} \frac{\sqrt{x+2} - 2}{x - 2} \\
 \lim_{x \to 1} \frac{e^x - e}{x - 1} & & \lim_{x \to -1} \frac{x^{2017} + 1}{x + 1}
+\end{align*}
+$$
+
+## Solutions 
+
+$$
+\begin{align*}
+\lim_{x \to 3} \frac{\ln(x) - \ln(3)}{x - 3} = \frac{1}{3} & & \lim_{x \to 2} \frac{\sqrt{x+2} - 2}{x - 2} = \frac{1}{4}\\
+\lim_{x \to 1} \frac{e^x - e}{x - 1} = e & & \lim_{x \to -1} \frac{x^{2017} + 1}{x + 1} = 2017
 \end{align*}
 $$
 
