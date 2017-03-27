@@ -281,7 +281,7 @@ $$
 \frac{\text{d}[(1+u^3)^4]}{\text{d}u} = 12u^2(1+u^3)^3 & & \frac{\text{d}[\sqrt{1+v^2}]}{\text{d}v} = \frac{v}{\sqrt{1+v^2}} \\
 \frac{\text{d}[\ln(1-x)]}{\text{d}x}  = \frac{-1}{1 - x} & & \frac{\text{d}[2\sin(\alpha - \frac{\pi}{8})]}{\text{d}\alpha} = 2\cos\left(\alpha - \frac{\pi}{8}\right)\\
 \frac{\text{d}[\tan^2(\theta)]}{\text{d}\theta} = 2\tan(\theta) + 2\tan^3(\theta))& & \frac{\text{d}[e^{-y^2}]}{\text{d}y} = -2y e^{-y^2}\\
-\frac{\text{d}[1/\sqrt{1+u^2}]}{\text{d}u} = \frac{u}{\sqrt{1+u^2}} & & \\ 
+\frac{\text{d}[1/\sqrt{1+u^2}]}{\text{d}u} = -\frac{u}{(1+u^2)^{3/2}} & & \\ 
 \end{align*}
 $$
 $$

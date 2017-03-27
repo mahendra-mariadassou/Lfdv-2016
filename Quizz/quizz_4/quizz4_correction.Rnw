@@ -1,0 +1,212 @@
+\documentclass[a4paper,12pt]{article}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% ZONE ROUGE : intervention très fortement deconseillee
+\usepackage[utf8]{inputenc} % accent dans la source
+\usepackage[T1]{fontenc}
+\usepackage{times}
+\usepackage[french]{babel}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{fancybox}
+\usepackage{pstricks}
+\usepackage{pst-plot}
+%\usepackage{pst-char}
+\usepackage{pst-text}
+% \usepackage{psfig}
+\usepackage{ifthen}
+\def\R{\mathbb{R}}
+\def\C{\mathbb{C}}
+\def\Z{\mathbb{Z}}
+\def\Q{\mathbb{Q}}
+\def\N{\mathbb{N}}
+\def\F{\mathbb{F}}
+\def\P{\mathbb{P}}
+\def\A{\mathbb{A}}
+
+%%%% Théorème, Proposition et tout le reste%%%%
+\newcommand{\proofbegin}{\paragraph{Proof.}}
+\newcommand\floor[1]{\lfloor#1\rfloor}
+\newcommand{\proofend}{$\blacksquare$\bigskip}
+\newtheorem{theorem}{Théorème}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{definition}[theorem]{Définition}
+\newtheorem{lemma}[theorem]{Lemme}
+\newtheorem{corollary}[theorem]{Corollaire}
+
+%%% Correction
+\newcommand{\correction[1]}{\textcolor{gray}{#1}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% ZONE ORANGE : intervention deconseillee
+\parindent=0pt
+\textwidth 17.0cm
+\textheight26.0cm
+\hoffset-2.0cm
+\voffset-2.0cm
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% ZONE VERTE : Intervention obligatoire
+%%% ADAPTER SUIVANT LA NATURE DE L'EPREUVE
+\def\Exam{Test ``Limites'': corrigé}
+\def\Date{23 mars 2017}
+\def\Classe{TS3}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% ZONE VERTE : 
+%%% ALIGNER LES EQUATIONS A GAUCHE
+\makeatletter
+\newenvironment*{fleqn}{
+    \@fleqntrue
+    \setlength\@mathmargin{0pt}%
+    \ignorespaces
+}{%
+    \ignorespacesafterend
+}
+\makeatother
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Force synctex
+\synctex=1
+
+%%% knitr
+<<include=FALSE>>=
+library(knitr)
+opts_chunk$set(
+fig.path='Figures/',cache=TRUE,echo=FALSE, fig.align = "center"
+)
+opts_knit$set(concordance = TRUE, self.contained=TRUE)
+require(patchSynctex)
+@
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+\newcounter{nexo}
+\setcounter{nexo}{1}
+\newcommand{\Exo}{\medskip
+  {\bf Exercice \arabic{nexo} : }
+  \addtocounter{nexo}{1}}
+\newcommand{\Pb}{{\bf Problème \arabic{nexo} : } 
+\addtocounter{nexo}{1} \bigskip}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% ZONE BLEUE : Intervention parfois utile mais a faire prudemment
+{\bf  \hfill \Date \quad ~}
+%
+\vskip 1cm
+%
+%%% FAIRE UN CHOIX (3 choix possibles)
+%%% 1)
+%\centerline{\psframebox[fillstyle=solid,fillcolor=lightgray]
+%\textbf{\LARGE \black \Exam}}
+%%% 2)
+%\centerline{\psframebox{\bf \LARGE  \Exam}}
+%%% 3)
+\centerline{\bf \LARGE \Exam}
+%
+\vskip 1.5cm
+%
+
+
+%%%%%%%%%%%%%%%%%%%%%%
+%%% CORPS DU SUJET %%%
+%%%%%%%%%%%%%%%%%%%%%%
+
+%% \section*{Test 1}
+
+\Exo \textbf{Calcul \emph{à la main} de la dérivée de $x \mapsto x^n$}
+
+Soit $a$ et $x$ deux nombres réels et $n$ un entier naturel non nul. 
+
+\begin{enumerate}
+\item Montrer que $x^n - a^n = (x - a) \sum_{k=0}^{n-1} x^k a^{n-1-k}$ et en déduire $\lim_{x \to a} \frac{x^n - a^n}{x - a}$
+\item Retrouver ainsi que la fonction $x \mapsto x^n$ est dérivable et expliciter sa dérivée. 
+\end{enumerate}
+
+\textcolor{gray}{
+On commence par développer la somme et regarder ce que donne l'expression de droite pour de petites valeurs de $n$
+\begin{align*}
+n = 2 & \quad a^2 - b^2 = (a - b)(a+b) \\
+n = 3 & \quad a^3 - b^3 = (a - b)(a^2+ab+b^2) \\
+n = n & \quad a^n - b^n = (a - b)(a^{n-1}+a^{n-2}b+\dots+ab^{n-2} + b^{n-1}) \\
+\end{align*}
+On va la démontrer directement en développant le terme de droite
+\begin{align*}
+(a - b)(a^{n-1}+a^{n-2}b+\dots+ab^{n-2} + b^{n-1}) & = a(a^{n-1}+a^{n-2}b+\dots+ab^{n-2} + b^{n-1}) \\
+& - b(a^{n-1}+a^{n-2}b+\dots+ab^{n-2} + b^{n-1}) \\
+& = a^n + a^{n-1}b + \dots + a^{2}b^{n-2} + ab^{n-1} \\
+& \qquad\; - a^{n-1}b - \dots - a^{2}b^{n-2} - ab^{n-1} - b^n \\
+& = a^n - b^n
+\end{align*}
+On s'en sert ensuite pour calculer la limite demandée
+\begin{equation*}
+\lim_{x \to a} \frac{x^n - a^n}{x - a} = \lim_{x \to a} (x^{n-1} + x^{n-2}a + \dots + x a^{n-2} + a^{n-1}) = na^{n-1}
+\end{equation*}
+car on a une somme de $n$ termes qui tendent tous vers $a^{n-1}$. En particulier, si on considère la fonction $f(x)=x^n$, on retrouve bien que pour tout $x \in \mathbb{R}$
+\begin{equation*}
+\lim_{h \to 0} \frac{f(x+h) - f(x)}{h} = \lim_{h \to 0} \frac{(x+h)^n - x^n}{h} = \lim_{h \to 0} \frac{(x+h)^n - x^n}{(x+h) - h} = nx^{n-1}
+\end{equation*}
+et donc $f$ est dérivable sur $\mathbb{R}$ de dérivée $f'(x) = nx^{n-1}$. 
+}
+
+
+\bigskip
+
+\Exo \textbf{Branches infinies}
+
+On pose $\displaystyle f(x) = 1 + x \exp\left( \frac{1}{1 - x} \right)$
+\begin{enumerate}
+\item $f$ possède-t-elle une limite en $1$? $-\infty$? $+\infty$? Penser à justifier en calculant la limite si elle existe ou en justifiant qu'elle n'existe pas dans le cas contraire. 
+\item Calculer \[\lim_{x \to +\infty} x\left( \exp\left( \frac{1}{1 - x} \right) - 1 \right)\] On pourra essayer de faire un changement de variable approprié pour se ramener à une limite en $0$. 
+\item En déduire une branche affine pour $f$ en $+\infty$, \emph{i.e.} une fonction $g$ de la forme $g(x) = a + bx$ (avec $a, b$ à déterminer) telle que $\lim_{x \to +\infty} (f - g)(x) = 0$. 
+\end{enumerate}
+
+\textcolor{gray}{
+On utilise les théorèmes d'opération (en l'occurence composition, multiplication et somme) pour répondre à la première question
+\begin{align*}
+\frac{1}{1 - x} \xrightarrow[x \to -\infty]{} 0 & & \frac{1}{1 - x} \xrightarrow[x \to 1^{-}]{} +\infty & & \frac{1}{1 - x} \xrightarrow[x \to 1^{+}]{} -\infty & & \frac{1}{1 - x} \xrightarrow[x \to +\infty]{} 0 \\
+e^{\frac{1}{1 - x}} \xrightarrow[x \to -\infty]{} 1 & & e^{\frac{1}{1 - x}} \xrightarrow[x \to 1^{-}]{} +\infty & & e^{\frac{1}{1 - x}} \xrightarrow[x \to 1^{+}]{} 0 & & e^{\frac{1}{1 - x}} \xrightarrow[x \to +\infty]{} 1 \\
+1 + xe^{\frac{1}{1 - x}} \xrightarrow[x \to -\infty]{} -\infty & & 1+xe^{\frac{1}{1 - x}} \xrightarrow[x \to 1^{-}]{} +\infty & & 1+xe^{\frac{1}{1 - x}} \xrightarrow[x \to 1^{+}]{} 1 & & 1+xe^{\frac{1}{1 - x}} \xrightarrow[x \to +\infty]{} +\infty \\
+\end{align*}
+Au final, $f$ admet une limite en $-\infty$ et $+\infty$ mais pas en $1$ (même si elle a une limite à gauche et à droite en $1$). Pour la deuxième question, l'énoncé suggère de faire un changement de variable pour se ramener à une limite en $0$, le terme le plus pénible est le $1/(1-x)$ en argument de l'exponentiel, qui tend vers $0$ quand $x$ tend vers $+\infty$. On pose $X = 1/(1-x)$ (donc $x = -1/X+1$ et $X \to 0$ quand $x \to +\infty$) et l'expression se réécrit: 
+\begin{equation*}
+x\left( \exp\left( \frac{1}{1 - x} \right) - 1 \right) = \left( 1 - \frac{1}{X} \right) (e^X - 1) = \underbrace{e^X - 1}_{\xrightarrow[X \to 0]{} 0} - \underbrace{\frac{e^X - 1}{X}}_{\xrightarrow[X \to 0]{} 1} \xrightarrow[X \to 0]{} -1
+\end{equation*}
+Au final, on vient de montrer que 
+\begin{equation*}
+f(x) - x = 1 + x \exp\left( \frac{1}{1 - x} \right) - x = 1 + x\left( \exp\left( \frac{1}{1 - x} \right) - 1 \right) \xrightarrow[x \to +\infty]{} 1 - 1 = 0
+\end{equation*}
+Et donc que $f$ admet $x$ comme branche affine en $+\infty$. On peut le voir assez facilement sur un graphe:
+}
+<<branche-affine, out.width = "0.33\\linewidth">>=
+f <- function(x) { 1 + x * exp(1 / (1 -x))}
+curve(f, 1, 10, col = "red", lwd = 2)
+abline(0, 1, lty = 2, col = "black")
+text(6, f(6) - 0.25, expression(y == f(x)), col = "red", pos = 4, cex = 1.5)
+text(5, 5, expression(y == x), col = "black", pos = 2, cex = 1.5)
+@
+
+
+\bigskip
+
+\Exo \textbf{Limites}
+
+Calculer les limites suivantes
+\begin{align*}
+\lim_{x  \to 0} \frac{e^x - 1}{\sqrt{1 + x^2} - 1} & & \lim_{x \to +\infty} x^3 \ln\left(1 + \frac{1}{x^2}\right) \\
+\\
+\lim_{x  \to 0} \frac{x^3 - x^2 + x}{x^2 + 2x} & & \lim_{x  \to +\infty} \frac{x^3 - x^2 + x}{x^2 + 2x} \\
+\end{align*}
+
+\textcolor{gray}{
+On force l'apparition de limites classiques
+\begin{align*}
+\frac{e^x - 1}{\sqrt{1 + x^2} - 1} & = \frac{e^x - 1}{x} \frac{x}{1} \frac{\sqrt{1+x^2} + 1}{(1 + x^2) - 1} = \underbrace{\frac{e^x - 1}{x}}_{\to 1} \underbrace{\sqrt{1+x^2} + 1}_{\to 2} \underbrace{\frac{1}{x}}_{\text{pas de limite en $0$}} \\
+\frac{x^3 - x^2 + x}{x^2 + 2x} & = \frac{x^2 - x + 1}{x + 2} \xrightarrow[x \to 0]{} \frac{1}{2} \\
+x^3 \ln\left(1 + \frac{1}{x^2}\right) & = x \underbrace{\frac{\ln\left(1 + 1/x^2\right)}{1/x^2}}_{\xrightarrow[x \to +\infty]{} 1} \xrightarrow[x \to +\infty]{} +\infty \\
+\frac{x^3 - x^2 + x}{x^2 + 2x} & = \frac{x^3(1 - 1/x + 1/x^2)}{x^2(1 + 2/x)} = x \underbrace{\frac{1 - 1/x + 1/x^2}{1 + 2/x}}_{\xrightarrow[x \to +\infty]{} 1} \xrightarrow[x \to +\infty]{} +\infty
+\end{align*}
+}
+
+\end{document}
