@@ -73,7 +73,7 @@ Montrer que
 - $\forall \alpha \in \mathbb{R}_+ \quad x^\alpha = o_{+\infty}(e^x)$
 - $\forall \alpha \in \mathbb{R}_+ \quad e^x = o_{-\infty}(x^{-\alpha})$
 - $\forall \alpha \in \mathbb{R}_+ \quad \ln(x) = o_{+\infty}(x^\alpha)$
-- $\forall \alpha \in \mathbb{R}_+ \quad \ln(x) = o_{+\infty}(x^{-\alpha})$
+- $\forall \alpha \in \mathbb{R}_+ \quad x^{-\alpha} = o_{+\infty}(\ln(x))$
 
 ## Approximation et somme 
 
@@ -83,7 +83,7 @@ Une bonne règle heuristique à retenir pour s'assurer que le résultat approch�
 
 ## Exemple (I)
 
-Considérons la distante $l' = \frac{lf}{l + f}$ qui apparaît régulièrement en optique. On souhaite connaître la distance $l'$ quand la distance $l$ est grande devant la focale $f$ ($l \gg f$). 
+Considérons la distance $l' = \frac{lf}{l + f}$ qui apparaît régulièrement en optique. On souhaite connaître la distance $l'$ quand la distance $l$ est grande devant la focale $f$ ($l \gg f$). 
 
 - Si on néglige $f$ naivement en le posant égal à $0$, on obtient $l' = 0$ qui est absurde
 - En revanche, si on néglige $f$ devant $l$ dans la somme $f+l$, on commet une faible erreur puisque  $l + f \simeq l$
@@ -103,7 +103,7 @@ Faire une approximation est <alert>plus précis</alert> que calculer une limite:
 En notations de Landau, on a 
 
 - $f(x) = x(1 + o(1)) = x + o(x)$ au voisinage de $0$ 
-- $\displaystyle f(x) = \frac{1}{x}(1 + o(1)) = \frac{1}{x} + o\left(\frac{1}{x}\right)$ au voisinage de $0$ 
+- $\displaystyle f(x) = \frac{1}{x}(1 + o(1)) = \frac{1}{x} + o\left(\frac{1}{x}\right)$ au voisinage de $+\infty$ 
 
 C'est très utile mais on peut avoir d'aller plus loin et de connaître le comportement de $f(x) - x$ au voisinage de $0$. On sait juste $f(x) - x = o(x)$ mais on ne connaît pas son ordre de grandeur: $x^2$? $x^3$? Autre chose? 
 
@@ -118,7 +118,7 @@ $$
 \begin{align}
 \frac{1}{1+A} & & A \ll 1 & & A \gg 1 \\
 \frac{3+B+2B^2}{2+3B+B^2} & & B \ll 1 & & B \gg 1 \\
-\frac{a+b}{ab} & & a \ll b & & b \gg a \\
+\frac{a+b}{ab} & & a \ll b & & a \gg b \\
 \frac{x^2 + y^2 + 2xy}{3x - y} & & x \ll y & & x \gg y \\
 \sqrt{u^2 + v^2} & & u \ll v & & u \gg v \\
 e^{\sqrt{w} - 1} & & w \ll 1 & & w \gg 1 \\
