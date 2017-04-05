@@ -131,10 +131,6 @@ Calculer les limites suivantes
 
 Pour la deuxième limite, on pourra écrire $e^{x^2} - e^{ax} = (e^{x^2} - e^{a^2}) + (e^{a^2} - e^{ax})$
 
-\Exo \textbf{Optimisation}
-
-Naila veut construire un enclos rectangulaire de surface maximale, sachant qu’elle possède 400m de barbelés pour en délimiter les bords. Que doit-elle faire ?
-
 \Exo \textbf{Inégalité arithmético-géométrique}
 
 Soit $a\geq 0$ un réel. On considère la fonction $f_a: x \mapsto a + x - 2\sqrt{ax}$. 
@@ -147,5 +143,10 @@ Soit $a\geq 0$ un réel. On considère la fonction $f_a: x \mapsto a + x - 2\sqr
 \]
 \item Quand a-t-on égalité?
 \end{enumerate}
+
+\Exo \textbf{Optimisation}
+
+Naila veut construire un enclos rectangulaire de surface maximale, sachant qu’elle possède 400m de barbelés pour en délimiter les bords. Que doit-elle faire ?
+
 
 \end{document}

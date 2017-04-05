@@ -11,3 +11,8 @@ Calculus*/*files
 Calculus*/*md
 Calculus*/*html
 Calculus*/*pdf
+DM/**/*pdf
+DM/**/*tex
+DM/**/*synctex.gz
+DM/**/*log
+DM/**/*cache

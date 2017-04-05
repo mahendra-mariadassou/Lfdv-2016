@@ -1,0 +1,179 @@
+\documentclass[a4paper,12pt]{article}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% ZONE ROUGE : intervention très fortement deconseillee
+\usepackage[utf8]{inputenc} % accent dans la source
+\usepackage[T1]{fontenc}
+\usepackage{times}
+\usepackage[french]{babel}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{fancybox}
+\usepackage{pstricks}
+\usepackage{pst-plot}
+\usepackage{pst-char}
+\usepackage{pst-text}
+% \usepackage{psfig}
+\usepackage{ifthen}
+\def\R{\mathbb{R}}
+\def\C{\mathbb{C}}
+\def\Z{\mathbb{Z}}
+\def\Q{\mathbb{Q}}
+\def\N{\mathbb{N}}
+\def\F{\mathbb{F}}
+\def\P{\mathbb{P}}
+\def\A{\mathbb{A}}
+
+%%%% Théorème, Proposition et tout le reste%%%%
+\newcommand{\proofbegin}{\paragraph{Proof.}}
+\newcommand{\proofend}{$\blacksquare$\bigskip}
+\newtheorem{theorem}{Théorème}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{definition}[theorem]{Définition}
+\newtheorem{lemma}[theorem]{Lemme}
+\newtheorem{corollary}[theorem]{Corollaire}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% ZONE ORANGE : intervention deconseillee
+\parindent=0pt
+\textwidth 17.0cm
+\textheight26.0cm
+\hoffset-2.0cm
+\voffset-2.0cm
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% ZONE VERTE : Intervention obligatoire
+%%% ADAPTER SUIVANT LA NATURE DE L'EPREUVE
+\def\Exam{Devoir Maison \og Dérivées et Intégrales \fg{}}
+\def\Date{Pour le 3 Mai 2017}
+\def\Classe{TS3}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% ZONE VERTE : 
+%%% ALIGNER LES EQUATIONS A GAUCHE
+\makeatletter
+\newenvironment*{fleqn}{
+    \@fleqntrue
+    \setlength\@mathmargin{0pt}%
+    \ignorespaces
+}{%
+    \ignorespacesafterend
+}
+\makeatother
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% knitr
+<<include=FALSE>>=
+library(knitr)
+opts_chunk$set(
+fig.path='Figures/',cache=TRUE,echo=FALSE
+)
+@
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+\newcounter{nexo}
+\setcounter{nexo}{1}
+\newcommand{\Exo}{\medskip
+  {\bf Exercice \arabic{nexo} : }
+  \addtocounter{nexo}{1}}
+\newcommand{\Pb}{{\bf Problème \arabic{nexo} : } 
+\addtocounter{nexo}{1} \bigskip}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% ZONE BLEUE : Intervention parfois utile mais a faire prudemment
+{\bf  \hfill \Date \quad ~}
+%
+\vskip 1cm
+%
+%%% FAIRE UN CHOIX (3 choix possibles)
+%%% 1)
+%\centerline{\psframebox[fillstyle=solid,fillcolor=lightgray]
+%\textbf{\LARGE \black \Exam}}
+%%% 2)
+%\centerline{\psframebox{\bf \LARGE  \Exam}}
+%%% 3)
+\centerline{\bf \LARGE \Exam}
+%
+\vskip 1.5cm
+%
+
+
+%%%%%%%%%%%%%%%%%%%%%%
+%%% CORPS DU SUJET %%%
+%%%%%%%%%%%%%%%%%%%%%%
+
+% \section{Exercices}
+
+\Exo \textbf{\'Ecart entre une fonction et sa corde (un dessin peut aider pour cet exercice)}
+
+On considère la fonction $f$ définie sur $[-1, 2]$ par $f(x) = x^2$. On note $A = (-1, f(-1))$ et $B = (2, f(2))$.
+\begin{enumerate}
+\item Calculer l'équation de la droite $D_{AB}$ qui passe par $A$ et $B$?
+\item Soit $x \in [-1, 2]$, quel est la distance $d(x)$ entre $M = (x, f(x))$ et le point d'abscisse $x$ sur $D_{AB}$?
+\item En déduire la distance maximum entre le graphe de $f$ et le segment $[AB]$, c'est-à-dire $\max_{[-1, 2]} d(x)$. 
+\end{enumerate}
+
+
+% \newpage
+
+\Exo Calcul approché d'intégrale. 
+
+Dans cet exercice, on cherche à calculer l'erreur commise quand on calcule une intégrale par la méthode des rectangles. On rappelle quelques notions (qui seront revues dans le cours d'Intégration). 
+
+\begin{itemize}
+\item Si $f$ est une fonction continue sur $[a, b]$, la suite 
+\[ S_n = \frac{1}{n} \sum_{k=0}^{n-1} f\left(a + (k+1) \frac{b-a}{n} \right) - f\left(a + k \frac{b-a}{n} \right)\]
+converge quand $n \to \infty$ une quantité $I$ noté $I = \int_{a}^b f(x)dx$.
+\item Si $F$ est une primitive de $f$ sur $[a,b]$, c'est à dire une fonction $F$ dérivable sur $[a,b]$ telle que pour tout $x \in [a, b]$ on a $F'(x) = f(x)$, alors $I = F(b) - F(a)$
+\item La relation de Chasles: si $f$ est continue sur $[a, b]$ et $c \in [a,b]$, alors $\int_a^c f(x)dx + \int_c^b f(x)dx = \int_a^b f(x)dx$
+\end{itemize}
+
+On considère la fonction $f(x) x \mapsto x^2$ et cherche à calculer $A = \int_{0}^1 f(x)dx$ en faisant une approximation par des rectangles comme illustré sur l'image ci-dessous:
+\begin{center}
+<<out.width = "0.5\\linewidth">>=
+
+par(mar = c(1, 1, 1, 1))
+x <- seq(0, 1, length.out = 10)
+f <- function(x) { x^2 }
+plot(x, f(x), col = "red", lwd = 2, axes = FALSE, type = "l", xlab = "", ylab = "", 
+     xlim = c(-0.1, 1.05), ylim = c(-0.1, 1))
+abline(h = 0, v = 0)
+segments(x0 = x, x1 = x, 
+         y0 = rep(0, length(x)),  y1 = rep(-0.025, length(x)))
+text(x = x, y = rep(-0.03, length(x)), 
+     labels =  c("", 
+         expression(x[1]),
+         rep("", 2), 
+         expression(x[k]),
+         rep("", length(x) - 6), 
+         ""), adj = c(0.5, 1), cex = 1.5)
+text(x = 0, y = -0.03, labels = expression(x[0] == 0), adj = c(0.75, 1), cex = 1.5)
+text(x = 1, y = -0.03, labels = expression(x[n] == 1), adj = c(0.25, 1), cex = 1.5)
+segments(y0 = x, y1 = x, 
+         x0 = rep(0, length(x)),  x1 = rep(-0.025, length(x)))
+text(y = x, x = rep(-0.03, length(x)), 
+     labels =  c(0, 
+         0.1,
+         rep("", 2), 
+         "",
+         rep("", length(x) - 6), 
+         1), adj = c(0.5, 0), cex = 1.5)
+rect(xleft = x[-length(x)], xright = x[-1], ybottom= 0, ytop = (f(x)[-length(x)] + f(x)[-length(x)])/2, col = "grey80")
+rect(xleft = x[5], xright = x[6], ybottom= 0, ytop = (f(x)[5] + f(x)[5])/2, col = "grey60")
+# segments(0, 0, 1, 1, lwd = 2, col = "red")
+
+@ 
+\end{center}
+
+On décompose $[0, 1]$ en $n$ intervalles de longueurs $1/n$ à l'aide des points $0 = x_0 < x_1 < \dots < x_k < \dots < x_{n-1} < x_n = 1$ comme indiqué sur la figure, et on note $S_n$ l'aire grisée sur la figure. 
+\begin{enumerate}
+\item Exprimer $x_k$ en fonction de $k$ et $n$. (Ce n'est pas $4/9$ qui ne s'exprime pas en fonction de $k$ et $n$)
+\item Exprimer l'aire $A_k$ du rectangle dont le coin inférieur gauche est $x_k$ (en gris foncé sur la figure) en fonction de $x_k$, $x_{k+1}$, $f$, puis en fonction de $f$, $a$, $b$, $k$ et $n$ uniquement. 
+\item En utilisant l'inégalité des accroissement finis, montrer que pour tout $k \in \{0, \dots, n-1\}$ et pour tout $x \in [x_k, x_{k+1}]$, on  a $|f(x) - f(x_k)| \leq 2/n$. (Il faut trouver un encadrement de $f'$ sur $[x_k, x_{k+1}]$)
+\item On note $T_k = \int_{x_k}^{x_{k+1}} f(x)dx$. Exprimer $A_k$ comme l'intégrale d'une fonction simple entre $x_k$ et $x_{k+1}$. En déduire $T_k - A_k$. (on rappelle que $|\int_a^b (f(x) - g(x))dx| \leq \int_a^b |f(x) - g(x)|dx$ )
+\item On note $\tilde{A}_n = \sum_{k=0}^{n-1} A_k$. Déduire de la question précédente un majorant de $|A - \tilde{A}_n|$. On pourra utiliser la relation de Chasles pour exprimer $A$ en fonction des $T_k$. 
+\item À quelle vitesse $\tilde{A}_n$ converge t-elle vers $A$? On écrira $\tilde{A}_n = A + o(a_n)$ avec $a_n$ le plus petit ordre de grandeur possible. 
+\end{enumerate}
+
+\end{document}
