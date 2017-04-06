@@ -1,0 +1,205 @@
+\documentclass[a4paper,12pt]{article}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% ZONE ROUGE : intervention très fortement deconseillee
+\usepackage[utf8]{inputenc} % accent dans la source
+\usepackage[T1]{fontenc}
+\usepackage{times}
+\usepackage[french]{babel}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{fancybox}
+\usepackage{pstricks}
+\usepackage{pst-plot}
+%\usepackage{pst-char}
+\usepackage{pst-text}
+% \usepackage{psfig}
+\usepackage{ifthen}
+\def\R{\mathbb{R}}
+\def\C{\mathbb{C}}
+\def\Z{\mathbb{Z}}
+\def\Q{\mathbb{Q}}
+\def\N{\mathbb{N}}
+\def\F{\mathbb{F}}
+\def\P{\mathbb{P}}
+\def\A{\mathbb{A}}
+
+%%%% Théorème, Proposition et tout le reste%%%%
+\newcommand{\proofbegin}{\paragraph{Proof.}}
+\newcommand\floor[1]{\lfloor#1\rfloor}
+\newcommand{\proofend}{$\blacksquare$\bigskip}
+\newtheorem{theorem}{Théorème}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{definition}[theorem]{Définition}
+\newtheorem{lemma}[theorem]{Lemme}
+\newtheorem{corollary}[theorem]{Corollaire}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% ZONE ORANGE : intervention deconseillee
+\parindent=0pt
+\textwidth 17.0cm
+\textheight26.0cm
+\hoffset-2.0cm
+\voffset-2.0cm
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% ZONE VERTE : Intervention obligatoire
+%%% ADAPTER SUIVANT LA NATURE DE L'EPREUVE
+\def\Exam{Test ``Dérivées''}
+\def\Date{6 avril 2017}
+\def\Classe{TS3}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% ZONE VERTE : 
+%%% ALIGNER LES EQUATIONS A GAUCHE
+\makeatletter
+\newenvironment*{fleqn}{
+    \@fleqntrue
+    \setlength\@mathmargin{0pt}%
+    \ignorespaces
+}{%
+    \ignorespacesafterend
+}
+\makeatother
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Force synctex
+\synctex=1
+
+%%% knitr
+<<include=FALSE>>=
+library(knitr)
+opts_chunk$set(
+fig.path='Figures/',cache=TRUE,echo=FALSE
+)
+opts_knit$set(concordance = TRUE, self.contained=TRUE)
+require(patchSynctex)
+@
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+\newcounter{nexo}
+\setcounter{nexo}{1}
+\newcommand{\Exo}{\medskip
+  {\bf Exercice \arabic{nexo} : }
+  \addtocounter{nexo}{1}}
+\newcommand{\Pb}{{\bf Problème \arabic{nexo} : } 
+\addtocounter{nexo}{1} \bigskip}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% ZONE BLEUE : Intervention parfois utile mais a faire prudemment
+{\bf  \hfill \Date \quad ~}
+%
+\vskip 1cm
+%
+%%% FAIRE UN CHOIX (3 choix possibles)
+%%% 1)
+%\centerline{\psframebox[fillstyle=solid,fillcolor=lightgray]
+%\textbf{\LARGE \black \Exam}}
+%%% 2)
+%\centerline{\psframebox{\bf \LARGE  \Exam}}
+%%% 3)
+\centerline{\bf \LARGE \Exam}
+%
+\vskip 1.5cm
+%
+
+
+%%%%%%%%%%%%%%%%%%%%%%
+%%% CORPS DU SUJET %%%
+%%%%%%%%%%%%%%%%%%%%%%
+
+%% \section*{Test 1}
+
+\Exo \textbf{Dérivées calculatoires}
+
+Calculer les dérivées des fonctions suivantes sur leurs domaines de définitions (inutile de préciser le domaine de définition): 
+
+\begin{align*}
+f(x) = \frac{1}{8}\sqrt[3]{(1+x^3)^8} - \frac{1}{5}\sqrt[3]{(1+x^2)^5} & & g(x) = \ln \left| \frac{1+x}{1-x} \right| \\
+\end{align*}
+
+\textcolor{gray}{
+On se rappelle que la dérivée est additive $(f+g)' = f' + g'$ et on note que $\sqrt[3]{(1+x^3)^8} = (1+x^3)^{8/3}$. En particulier, si on note $y = 1+x^3$:
+\begin{align*}
+\frac{d[\sqrt[3]{(1+x^3)^8}]}{dx} & = \frac{d[y^{8/3}]}{dy} \frac{d[y]}{dx} = \frac{8}{3} y^{5/3} 3x^2 = 8x^2 (1+x^3)^{5/3}
+\end{align*}
+De même en posant cette foix $y = 1+x^2$
+\begin{align*}
+\frac{d[\sqrt[3]{(1+x^2)^5}]}{dx} & = \frac{d[y^{5/3}]}{dy} \frac{d[y]}{dx} = \frac{5}{3} y^{2/3} 2x = \frac{10}{3} x (1+x^2)^{2/3}
+\end{align*}
+Et donc au final en utilisant les théorèmes d'opérations:
+\[
+f'(x) = \frac{1}{8} 8x^2 (1+x^3)^{5/3} - \frac{1}{5} \frac{10}{3} x (1+x^2)^{2/3} = x^2 (1+x^3)^{5/3} - \frac{2}{3} x (1+x^2)^{2/3}
+\]
+\\
+Pour la deuxième dérivée, on se rappelle que $\ln \left| \frac{1+x}{1-x} \right| = \ln|1+x|  - \ln|1-x|$ et on dérive donc une somme. 
+\begin{align*}
+\frac{d[\ln \left| \frac{1+x}{1-x} \right|]}{dx} & = \frac{d[\ln \left| 1+x \right|]}{dx} - \frac{d[\ln \left| 1-x \right|]}{dx} = \frac{1}{1+x} - \frac{-1}{1-x} \\ 
+& = \frac{1-x}{1-x^2} + \frac{1+x}{1-x^2} = \frac{2}{1-x^2}
+\end{align*}
+}
+
+\Exo \textbf{Dérivées et limites}
+
+Calculer les limites suivantes
+
+\begin{align*}
+\lim_{x \to 0^+} \frac{x}{e^{x^2} - 1} & & \lim_{x \to a} \frac{e^{x^2} - e^{ax}}{x - a} \\
+\end{align*}
+
+\textcolor{gray}{
+On fait apparaître les limites de l'exercice comme des taux d'accroissements. Si on pose $f(x) = e^{x^2}$, on sait que $f$ est dérivable de dérivée $f'(x) = 2xe^{x^2}$. On a donc:
+\begin{align*}
+\frac{e^{x^2} - 1}{x - 0} & = \frac{f(x) - f(0)}{x - 0} \xrightarrow[x\to 0^+]{} f'(0^+) = 0^+
+\end{align*}
+On en déduit que 
+\[
+\lim_{x \to 0^+} \frac{x}{e^{x^2} - 1} = +\infty
+\]
+Pour la deuxième on considère en plus $g(x) = e^{ax}$ qui est également dérivable sur $\mathbb{R}$ de dérivée $g'(x) = ae^{ax}$. On alors 
+\begin{align*}
+\frac{e^{x^2} - e^{ax}}{x - a} & = \frac{(e^{x^2} - e^{a^2}) + (e^{a^2} - e^{ax})}{x - a} = \frac{e^{x^2} - e^{a^2}}{x - a} - \frac{e^{ax} - e^{a^2}}{x - a} \\ 
+& = \frac{f(x) - f(a)}{x - a} - \frac{g(x) - g(a)}{x-a} \xrightarrow[x\to a]{} f'(a) - g'(a) = 2ae^{a^2} - ae^{a^2} = ae^{a^2}
+\end{align*}
+}
+
+
+Pour la deuxième limite, on pourra écrire $e^{x^2} - e^{ax} = (e^{x^2} - e^{a^2}) + (e^{a^2} - e^{ax})$
+
+\Exo \textbf{Inégalité arithmético-géométrique}
+
+Soit $a\geq 0$ un réel. On considère la fonction $f_a: x \mapsto a + x - 2\sqrt{ax}$. 
+
+\begin{enumerate}
+\item Montrer que $\forall x \geq 0, \; f_a(x) \geq 0$
+\item En déduire l'inégalité arithmético-géométrique: pour tout couple $(a, b) \in \mathbb{R}_+^2$, 
+\[
+\frac{a+b}{2} \geq \sqrt{ab}
+\]
+\item Quand a-t-on égalité?
+\end{enumerate}
+
+\textcolor{gray}{
+La fonction $f_a$ est définie et continue sur $\mathbb{R}_+$, dérivable sur $\mathbb{R}_+^\star$ de dérivée $f_a'(x) = 1 - \sqrt{a}{x}$. La dérivée de $f_a$ s'annule uniquement en $x = a$ donc $f_a$ atteint son minimum global aux bornes du domaines ($0$ ou $+\infty$) ou au point extrême $a$. On évalue $f_a$ en ces trois points
+\begin{align*}
+f_a(0) = a > 0 & & f_a(a) = 0 & & \lim_{+\infty} f_a = +\infty
+\end{align*}
+$f_a$ atteint donc son minimum en $x=a$ et ce minimum vaut $f(a) = 0$. Autrement dit, $f(x) \geq 0$ pour tout $x \geq 0$. En particulier, pour tout réels $a, b$ positifs on a $f_a(b) \geq 0$ qui se réécrit $a+b \geq 2\sqrt{ab}$. Pour avoir égalité, il faut que $f_a(b) = 0$, d'après la première question, cela arrive uniquement quand $a = b$
+}
+
+\Exo \textbf{Optimisation}
+
+Naila veut construire un enclos rectangulaire de surface maximale, sachant qu’elle possède 400m de barbelés pour en délimiter les bords. Que doit-elle faire ?
+
+\textcolor{gray}{
+On note $l$ et $L$ les dimensions de l'enclos. D'après l'énoncé, le périmètre est égale à 400m c'est à dire $2(l+L) = 400$ donc $L = 200 - l)$. La surface de l'enclos est alors $A = lL = l(200 - l)$. On cherche donc à maximiser la fonction $A(l) = l(200 - l)$ pour $l \in [0, 200]$. La fonction $A$ est dérivable de dérivée $A'(l) = 200 - 2l$ et sa dérivée s'annule uniquement en $l=100$. $A$ est donc maximale aux bornes du domaine ($l=0$ et $l=200$) ou au point extrême $l = 100$. 
+\begin{align*}
+A(0) = 0 & & A(100) = 100^2 & & A(200) = 0
+\end{align*}
+$A$ est donc maximale en $l=100$. Pour maximiser la surface de son enclos, Naila doit le faire carré de côté $l = 100$. 
+}
+
+\end{document}
