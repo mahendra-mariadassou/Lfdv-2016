@@ -567,3 +567,52 @@ curve(1- x^2/6, col = "black", lty = 2, add = TRUE); text(1.5, -0.5, expression(
 abline(v = pi/4*c(-1, 1), col = "gray80")
 ```
 
+## Intérêt en mathématiques
+
+Les DLs permettent de calculer très facilement des limites. En particulier, la règle de l'Hopital est un cas particulier de DLs. 
+
+$$
+\begin{align}
+\frac{f(x) - f(x_0)}{g(x) - g(x_0)} & = \frac{f'(x_0)x + o(x)}{g'(x_0)x + o(x)} \\ 
+& = \frac{f'(x_0)+ o(1)}{g'(x_0) + o(1)} \xrightarrow[x \to x_0]{} \frac{f'(x_0)}{g'(x_0)}
+\end{align}
+$$
+
+## Intérêt en mathématiques (II)
+
+On peut aussi retrouver des limites classiques en $0$
+$$
+\begin{align}
+e^x = 1 + x + o(x) & \Rightarrow \frac{e^x - 1}{x} \xrightarrow[x \to 0]{} 1 \\
+\sin(x) = x + o(x) & \Rightarrow \frac{\sin(x)}{x} \xrightarrow[x \to 0]{} 1 \\
+\ln(1+x) = x + o(x) & \Rightarrow \frac{\ln(1+x)}{x} \xrightarrow[x \to 0]{} 1 \\
+\end{align}
+$$
+et d'autres plus neuves
+$$
+\cos(x) = 1- \frac{x^2}{2} + o(x^2) \Rightarrow \frac{1 - \cos(x)}{x^2} \xrightarrow[x \to 0]{} \frac{1}{2} \\
+$$
+
+## Exercices d'applications (I)
+
+- Dans le modèle du gaz parfait avec $PV = nRT$, on considère une enceinte étanche thermostatée (nombre de moles et température constants). On suppose que le volume de l'enceinte passe de $V$ à $V + \Delta V$. La pression évolue en conséquence de $P$ à $P + \Delta P$. Relier $\Delta P$ à $\Delta V$ en faisant un DL au premier ordre. Comment se compare les variations relatives $\Delta P/P$ et $\Delta V / V$. 
+
+- On considère une sphère de rayon $R$ et de surface $S$. On suppose que le rayon de la sphère passe de $R$ à $R + \Delta R$. La surface évolue en conséquence de $S$ à $S + \Delta S$. Relier $\Delta S$ à $\Delta R$ en faisant un DL au premier ordre. Comment se compare les variations relatives $\Delta S/S$ et $\Delta R / R$. 
+
+## Exercices d'applications (II)
+
+- On cherche à évaluer le comportement de la quantité $f(t) = \frac{1}{\sqrt{t^2+\tau^2}}$ lorsque $t$ est petit devant $\tau$. Exprimer $f(t)$ sour la forme $C(1+x)^{\alpha}$ où $x = t/\tau$ est une quantité sans dimension très petite et $C$ et $\alpha$ sont des constantes à déterminer. En faisant ensuite un DL à l'ordre 2 de $(1+x)^{\alpha}$, en déduire un DL$_2$ de $f(t)$. 
+
+## Exercices d'applications (III)
+
+En utilisant les DL (et surtout les théorèmes d'opérations) calculer les limites suivantes:
+$$
+\small
+\begin{align}
+\lim_{x \to 0} \frac{\cos(x) - 1}{\ln(1+x)\sin(x)} & & \lim_{x \to 0} \frac{\ln(1+\tan(x))}{\sin(x)} \\
+\lim_{x \to 0} \frac{\sin(x)\tan(x)}{\sin(x^2)} & & \lim_{x \to 0} \frac{1}{x^2} - \frac{1}{\sin^2(x)} \\
+\lim_{x \to 1} \frac{\ln(x)}{x^2 - 1} & & \lim_{x \to 1} \frac{\ln(x)\tan(\pi x /4)}{(x - 1)^2} \\
+\lim_{x \to +\infty} \left(\frac{2x+1}{2x-1}\right)^{2x} & & \lim_{x \to +\infty} x\left( \left(1+\frac{1}{x}\right)^x - e \right)
+\end{align}
+$$
+Les courageux peuvent aussi essayer de calculer les DL$_1$ des $6$ premières fonctions.
