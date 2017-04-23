@@ -1,0 +1,116 @@
+---
+title: "Intégration"
+author: "Mahendra Mariadassou"
+date: "24 avril 2017"
+output:
+  ioslides_presentation:
+    css: ../CSS/custom_licence_fdv.css
+    keep_md: yes
+    toc: yes
+  beamer_presentation: default
+height: 720
+width: 1280
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, cache = TRUE)
+```
+
+# Introduction 
+
+## Avant propos 
+
+L'objectif de ce cours est de comprendre l'intégrale. On présente souvent l'intégrale sous forme d'aire ou d'une primitive. Ces deux interprétations ne sont pas fausses mais masquent la nature fondamentale des intégrales
+
+<center>Une intégrale est une <alert>somme</alert></center></p>
+
+Plus précisément une somme de très nombreux éléménts (une infinité d'éléments) qui sont tous très petits (infinitésimaux). Il est souvent <alert>commode</alert> de calculer au moyen d'une primitive. 
+
+
+## Intuition géométrique
+
+<div class = "definition">
+Soit $f$ une fonction continue sur un **segment** $[a,b]$ (avec $a \leq b$). On appelle _intégrale de $a$ à $b$ de $f$_ l'aire située entre 
+
+- la courbe de $f$
+- l'axe des abscisses
+- les droites d'équation $x=a$ et $x=b$. 
+
+en attribuant un signe **négatif** aux parties situées sous l'axe des abscisses. L'intégrale sur $[a,b]$ de $f$ est notée $\int_a^b f(x)dx$
+</div>
+
+On pose par convention (pour généraliser la notion)
+$$
+\int_b^a f(x)dx = - \int_a^b f(x)dx
+$$
+
+## Intuition géométrique (II)
+
+```{r integrale-illustration}
+library(ggplot2)
+plotdata <- data.frame(x = (x <- seq(0, pi, length.out = 200)), 
+                       y = cos(x))
+ggplot(plotdata, aes(x = x, y = y)) + geom_line() + theme_bw() + geom_hline(yintercept = 0) + geom_area(aes(fill = (y < 0))) + theme(legend.position = "none")
+```
+
+## Théorème fondamental du calcul intégral
+
+
+L'aire rouge compte positivement, l'aire bleue négativement. 
+
+<div class = "Théorème">
+Soit $f$ une fonction continue sur un **segment** $[a,b]$ et $F$ une primitive de $f$ sur $[a,b]$. On a alors 
+$$
+\int_a^b f(x)dx = F(b) - F(a) = [F(x)]_a^b
+$$
+</div>
+
+## Remarques sur le théorème
+
+Le Théorème fondamental du calcul intégral est indispensable, en pratique, pour calculer des intégrales mais ne renseigne pas 
+
+- sur le lien entre intégrale et somme,
+- sur la façon dont on utilise les intégrales dans de nombreuses situations.
+
+## Primitives usuelles 
+
+On rappelle quelques primtives usuelles (qui se déduisent des dérivées usuelles)
+
+$$
+\begin{array}{|c||c|}
+\hline
+\text{Fonction } f & \text{Primitive } F \\
+\hline
+x^\alpha \quad (\alpha \neq 1) & x^{\alpha+1} / {(\alpha + 1})  \\
+\hline
+1 / x & \ln(x) \\
+\hline 
+e^x & e^x \\
+\hline
+\cos(x) & \sin(x) \\
+\hline
+\sin(x) & -\cos(x) \\
+\hline
+\frac{1}{\sqrt{1 - x^2}} & \arcsin(x) \\
+\hline 
+\frac{-1}{\sqrt{1 - x^2}} & \arccos(x) \\
+\hline 
+\frac{1}{1+x^2} & \arctan(x) \\
+\hline
+\end{array}
+$$
+
+## Recherche de Primitives 
+
+Contrairement à la dérivation, il y a peu de régles automatiques pour trouver des primitives, la seule qui fonctionne est la régle d'addition
+
+<div class = "proposition">
+Soit $f$ et $g$ deux fonctions continues sur un **segment** $[a,b]$ dont $F$ et $G$ sont deux primitives. $F+G$ est alors une primitive de $f+g$ sur le segment $[a, b]$.
+</div>
+
+Mais on ne sait pas faire mieux, en particulier multiplier, quotienter, composer, etc... 
+
+Si on n'a pas affaire à une fonction de primitive astucieuse, il faut être **astucieux** et reconnaître une forme détournée, souvent cachée par un changement de variable. 
+
+## Exercice
+

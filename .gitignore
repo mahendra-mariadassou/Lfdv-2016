@@ -8,7 +8,7 @@ Quizz/**/*.tex
 Quizz/**/*.synctex.gz
 Calculus*/*cache
 Calculus*/*files
-Calculus*/*md
+Calculus*/*.md
 Calculus*/*html
 Calculus*/*pdf
 DM/**/*pdf
