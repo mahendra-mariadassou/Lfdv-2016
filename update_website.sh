@@ -14,3 +14,6 @@ rsync -avz --delete-after ~/Documents/Cours/Cours/Licence_FdV/Calculus2016/Calcu
 rsync -avz --delete-after ~/Documents/Cours/Cours/Licence_FdV/Calculus2016/Calculus_4/Calculus_4.html  migale:/projet/web/htdocs/migale/mmariadasso/public_html/Licence_FdV/2016/Calculus_4/
 rsync -avz --delete-after ~/Documents/Cours/Cours/Licence_FdV/Calculus2016/Calculus_4/Calculus_4_files  migale:/projet/web/htdocs/migale/mmariadasso/public_html/Licence_FdV/2016/Calculus_4/
 rsync -avz --delete-after ~/Documents/Cours/Cours/Licence_FdV/Calculus2016/Calculus_4/Calculus_4.pdf  migale:/projet/web/htdocs/migale/mmariadasso/public_html/Licence_FdV/2016/Calculus_4/
+rsync -avz --delete-after ~/Documents/Cours/Cours/Licence_FdV/Calculus2016/Calculus_5/Calculus_5.html  migale:/projet/web/htdocs/migale/mmariadasso/public_html/Licence_FdV/2016/Calculus_5/
+rsync -avz --delete-after ~/Documents/Cours/Cours/Licence_FdV/Calculus2016/Calculus_5/Calculus_5_files  migale:/projet/web/htdocs/migale/mmariadasso/public_html/Licence_FdV/2016/Calculus_5/
+rsync -avz --delete-after ~/Documents/Cours/Cours/Licence_FdV/Calculus2016/Calculus_5/Calculus_5.pdf  migale:/projet/web/htdocs/migale/mmariadasso/public_html/Licence_FdV/2016/Calculus_5/
