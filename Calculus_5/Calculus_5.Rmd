@@ -618,7 +618,10 @@ Quand on change de variable, on a trois éléments à changer:
 - <alert>les bornes</alert> quand $x$ varie entre $a$ et $b$, $t$ varie entre $\alpha$ et $\beta$. Comme $x = \phi(t)$, on doit avoir $a=\phi(\alpha)$ et $b = \phi(\beta)$ et il faut donc trouver un $\alpha$ et un $\beta$ convenable. 
 - <alert>l'élement différentiel $dx$</alert> Comme on intègre par rapport à $t$, il faut remplacer $dx$ par une expression qui fait intervenir $dt$. Comme $x = \phi(t)$, on sait que $\frac{dx}{dt} = \phi'(t)$, c'est à dire $dx = \phi'(t) dt$. 
 
-En pratique, on utilise souvent la formule "de la droite vers la gauche".
+En pratique, on utilise souvent la formule "de la droite vers la gauche". Intuitivement, les deux intégrales sont égales parce qu'on somme des petits éléments égaux:
+$$
+f(x)dx = g(t)dt \; [ = f(\phi(t)) \phi'(t) ]
+$$
 
 ## Changement de variable: exemple
 
@@ -634,3 +637,117 @@ I & = \int_{t = 1}^{t = e} \frac{\ln(t)}{t}dt = \int_{x = 0}^{x = 1} \frac{x}{e^
 \end{align}
 $$
 
+## Deuxième exemple (I)
+
+On veut calculer l'intégrale $I = \int_{\pi/6}^{\pi/3} \frac{\cos(\theta)}{\sin(\theta)} d\theta$. On remarque au numérateur une différentielle connue puisque $\sin(\theta) d\theta = d(\sin(\theta))$. Il est donc tentant d'essayer de tout écrire en fonction de $y = \sin(\theta)$. 
+
+- Concernant l'élément différentiel, on sait que $dy = \cos(\theta) d\theta$
+- On veut réécrire l'expression dans l'intégrale en fonction de $y$ seulement: $\frac{\cos(\theta)}{\sin(\theta)} d\theta = \frac{dy}{\sin(\theta)} = \frac{dy}{y}$
+- On veut changer les bornes, quand $\theta = \pi/6$, $y = \sin(\pi/6) = 1/2$ et quand $\theta = \pi/3$, $y = \sin(\pi/6) = \sqrt{3}/2$
+
+## Deuxième exemple (II)
+
+On a donc 
+
+$$
+\begin{align}
+I & = \int_{\theta = \pi/6}^{\theta = \pi/3} \frac{\cos(\theta)}{\sin(\theta)}d\theta \\ 
+  & = \int_{y = 1/2}^{y = \sqrt{3}/2} \frac{dy}{y} \\ 
+  & = [\ln(y)]_{1/2}^{\sqrt{3}/2} = \ln(\sqrt{3})
+\end{align}
+$$
+
+## Troisième exemple (I)
+
+On cherche à calculer l'intégrale $\int_{0}^{\pi/2} \sin^{3}(\alpha) d\alpha$ avec le changement de variable $u = \cos(\alpha)$ 
+
+- Concernant l'élément différentiel, on sait que $du = -\sin(\alpha) d\alpha$
+- On veut réécrire l'expression dans l'intégrale en fonction de $u$ uniquement: 
+$$
+\begin{align}
+\sin^{3}(\alpha)d\alpha & = \sin^2(\alpha) \sin(\alpha) d\alpha = - \sin^2(\alpha) du \\ 
+                 & = -(1 - \cos^2(\alpha)) du = - (1 - u^2)du
+\end{align}                 
+$$
+* On veut changer les bornes, 
+    + quand $\alpha = 0$, $u = \cos(\alpha) = \cos(0) = 1$
+    + quand $\alpha = \pi/$, $u = \cos(\alpha) = \cos(\pi/2) = 0$
+
+## Troisième exemple (II)
+
+On a donc 
+
+$$
+\begin{align}
+I & = \int_{\alpha = 0}^{\alpha = \pi/2} \sin^3(\alpha) d\alpha \\ 
+  & = \int_{u = 1}^{u = 0} -(1 - u^2)du \\ 
+  & = \int_{u = 0}^{u = 1} (1 - u^2)du \\
+  & = \left[u - \frac{u^3}{3}\right]_{0}^1 = \frac{2}{3}
+\end{align}
+$$
+
+## Changement de variable: exercices
+
+Calculer les intégrales suivantes à l'aide du changement de variable proposé:
+$$
+\small
+\begin{align}
+\int_{\pi/4}^{\pi/3} \tan(\theta) d\theta & & \text{en posant } v = \cos(\theta) \\
+\int_{0}^{\pi/2} \cos^3(\theta) d\theta & & \text{en posant } v = \sin(\theta) \\
+\int_0^{\pi / \omega} \cos\left( \frac{\pi}{3}  - \frac{\omega t }{2}\right)dt & & \text{en posant } y = \frac{\pi}{3}  - \frac{\omega t}{2} \\
+\int_{x_0}^{x_0 + H} (x - x_0) e^{- \left( \frac{x - x_0}{h} \right)^2} dx& & \text{en posant } z = \left(\frac{x - x_0}{h}\right)^2 \\
+\int_0^R \frac{dr}{(R^2 + r^2)^{3/2}} & & \text{en posant } r = R\tan(\alpha) 
+\end{align}
+$$
+
+## Changement de variable: exercices (II)
+
+Calculer les intégrales suivantes:
+
+$$
+\small
+\begin{align}
+\int_{0}^{1} w \sqrt{3w+1} dw & & \text{en posant } z = 3w+1 \\
+\int_{0}^{1} \frac{dx}{e^x + 1} & & \text{en posant } v= e^x [*] \\
+\int_1^{2} \frac{ds}{s(s^3+1)} & & \text{en posant } y = s^3 + 1 \\
+\int_{-1}^{0} \frac{u^3 du}{(u^2 + 1)\sqrt{u^2 +1}} & & \text{en posant } v = u^2 + 1 \\
+\int_0^3  \frac{t \ln(t^2 + 1)}{t^2 + 1} & & \text{en posant } x = t^2 + 1
+\end{align}
+$$
+
+$[*]$ On peut utiliser le fait que $1/(x(x-1)) = 1/(x-1) - 1/x$.
+
+# Intégrale à borne variable
+
+## Un problème de notation
+
+Jusqu'à présent, on a uniquement des intégrales de la forme $I = \int_{x_0}^{x_1} f(x)dx$ mais rien n'oblige les deux bornes à être des constantes. On pourrait avoir envie de faire varier la valeur finale ($b$) et de l'appeler $x$. 
+
+<alert>Attention</alert>, bien qu'il soit tout à fait légitime d'appeler la valeur finale $x$, il faut alors faire attention aux notations pour éviter le grand n'importe quoi $\int_{x_0}^x f(x)dx$.
+
+Ici on a donné le même nom $x$à deux choses différentes:
+
+- la quantité qui varie par petit pas et qu'on utilise pour faire une grande somme de petits éléments;
+- la valeur finale pour laquelle on arrête de sommer.
+
+## Solution
+
+Pour lever l'incertitude, on donne un nom différent à la <alert>variable d'intégration</alert> et aux <alert>bornes d'intégration</alert>. Par exemple, on écrit souvent:
+
+$$
+I(x) = \int_{x_0}^x f(t)dt
+$$
+
+Le résultat de l'intégration n'est plus un nombre bien défini mais une valeur qui dépend de $x$, c'est une **fonction**, notée $I(x)$. Si $F$ est une primitive de $f$, on peut en effet écrire 
+$$
+I(x) = \int_{x_0}^x f(t)dt = F(x) - F(x_0)
+$$
+
+En particulier $I(x)$ est <alert>la primitive de $f$ qui s'annule en $x_0$</alert> (toutes les primitives sont égales à  constante près et $I(x_0) = 0$)
+
+## Exemple
+
+Un mobile se déplace sur une droite en partant du point $x = 0$. Sa vitesse au temps $t$ est notée $v(t)$. On sait alors que sa position au temps $t$ est donnée par 
+$$
+x(t) = \int_0^t v(t')dt'
+$$
