@@ -1,0 +1,223 @@
+\documentclass[a4paper,12pt]{article}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% ZONE ROUGE : intervention très fortement deconseillee
+\usepackage[utf8]{inputenc} % accent dans la source
+\usepackage[T1]{fontenc}
+\usepackage{times}
+\usepackage[french]{babel}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{fancybox}
+\usepackage{pstricks}
+\usepackage{pst-plot}
+%\usepackage{pst-char}
+%\usepackage{pst-text}
+%\usepackage{psfig}
+\usepackage{ifthen}
+\def\R{\mathbb{R}}
+\def\C{\mathbb{C}}
+\def\Z{\mathbb{Z}}
+\def\Q{\mathbb{Q}}
+\def\N{\mathbb{N}}
+\def\F{\mathbb{F}}
+\def\P{\mathbb{P}}
+\def\A{\mathbb{A}}
+
+%%%% Théorème, Proposition et tout le reste%%%%
+\newcommand{\proofbegin}{\paragraph{Proof.}}
+\newcommand\floor[1]{\lfloor#1\rfloor}
+\newcommand{\proofend}{$\blacksquare$\bigskip}
+\newtheorem{theorem}{Théorème}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{definition}[theorem]{Définition}
+\newtheorem{lemma}[theorem]{Lemme}
+\newtheorem{corollary}[theorem]{Corollaire}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% ZONE ORANGE : intervention deconseillee
+\parindent=0pt
+\textwidth 17.0cm
+\textheight 25.0cm
+\hoffset-2.0cm
+\voffset-2.0cm
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% ZONE VERTE : Intervention obligatoire
+%%% ADAPTER SUIVANT LA NATURE DE L'EPREUVE
+\def\Exam{Partiel de Mathématiques}
+\def\Date{19 mai 2017}
+\def\Classe{TS3}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% ZONE VERTE : 
+%%% ALIGNER LES EQUATIONS A GAUCHE
+\makeatletter
+\newenvironment*{fleqn}{
+    \@fleqntrue
+    \setlength\@mathmargin{0pt}%
+    \ignorespaces
+}{%
+    \ignorespacesafterend
+}
+\makeatother
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Force synctex
+\synctex=1
+
+%%% knitr
+<<include=FALSE>>=
+library(knitr)
+opts_chunk$set(
+fig.path='Figures/',cache=TRUE,echo=FALSE
+)
+opts_knit$set(concordance = TRUE, self.contained=TRUE)
+require(patchSynctex)
+@
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+\newcounter{nexo}
+\setcounter{nexo}{1}
+\newcounter{pb}
+\setcounter{pb}{1}
+\newcommand{\Exo}{\medskip
+  {\bf Exercice \arabic{nexo} : }
+  \addtocounter{nexo}{1}}
+\newcommand{\Pb}{
+  \medskip
+  {\bf Problème \arabic{pb} : } 
+  \addtocounter{pb}{1}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% ZONE BLEUE : Intervention parfois utile mais a faire prudemment
+{\bf  \hfill \Date \quad ~}
+%
+\vskip 1cm
+%
+%%% FAIRE UN CHOIX (3 choix possibles)
+%%% 1)
+%\centerline{\psframebox[fillstyle=solid,fillcolor=lightgray]
+%\textbf{\LARGE \black \Exam}}
+%%% 2)
+%\centerline{\psframebox{\bf \LARGE  \Exam}}
+%%% 3)
+\centerline{\bf \LARGE \Exam}
+%
+\vskip 1.5cm
+%
+
+
+%%%%%%%%%%%%%%%%%%%%%%
+%%% CORPS DU SUJET %%%
+%%%%%%%%%%%%%%%%%%%%%%
+
+\textbf{Consignes}
+\begin{itemize}
+\item Le barème est donné à titre indicatif;
+\item L'exercice $1$ est \textbf{obligatoire};
+\item Le sous-total des points sur les exercices est plafonné à $15$ (sur $20$).
+\end{itemize}
+
+%% \section*{Test 1}
+
+\Exo \textbf{3 points}
+
+Vérifier si la famille suivante est liée ou libre:
+
+\[ \{ \vec{x} = (1, 2, 3), \vec{y} = (4, 5, 6), \vec{z} = (7, 8, 9) \} \]
+
+\Exo \textbf{3 points}
+
+On dispose de 3 Eppendorfs avec les concentrations suivantes de lactocoques ($lc$), de lactobacilles ($lb$) et de propionobactéries ($pb$), exprimées en multiples de $\times 10^8$ UFC / g:
+
+\begin{itemize}
+\item \textbf{Epp. $A$:} $lc = 1$, $lb = 2$, $pb = 3$
+\item \textbf{Epp. $B$:} $lc = 3$, $lb = 1$, $pb = 2$
+\item \textbf{Epp. $C$:} $lc = 2$, $lb = 3$, $pb = 1$
+\end{itemize}
+
+On mesure la vitesse de dégradation du galactose dans chaque Eppendorf et on obtient les résultats suivants: 
+\[ (v_A, v_B, v_C) = (1.7, 2.2, 2.1) \]. 
+
+Quelle est la vitesse de dégradation de chaque bactérie, par unité de $10^8$ UFC / g? On suppose que la vitesse de dégradation est additive. 
+
+\Exo \textbf{4 points}
+
+À l'aide de DL, calculer les limites:
+
+\[ \lim_{x \to 0} \frac{1 - \cos(\sin(x))}{x\tan(x)} \hfill \qquad \hfill \lim_{x \to 0} \frac{1}{e^x - 1} - \frac{1}{\sin(x)} \]
+
+\Exo \textbf{4 points}
+
+On considère la fonction $f(x) = (x+1)e^{-x}$
+
+\begin{enumerate}
+\item Montrer par récurrence que pour tout entier $n \geq 0$, il existe deux réels $a_n$ et $b_n$ tels que $f^{(n)}(x) = (a_n x + b_n)e^{-x}$. On pourra expliciter la relation de récurrence entre $(a{n+1}, b_{n+1})$ et $(a_n, b_n)$. 
+\item Expliciter $a_n$. 
+\item Vérifier que la suite $c_n = (-1)^n b_n$ est arithmétique. En déduire $b_n$. 
+\end{enumerate}
+
+\Exo \textbf{3 points}
+
+La formule de Doppler spécifie que la fréquence sonore émise $f_e$ d'un son et sa fréquence reçue $f_r$ sont reliées par la formule 
+\[ f_r = \frac{c + v_e}{c + v_r} f_e\]
+où $c$ est la vitesse de propagation du son dans le milieu ambiant, $v_e$ est la vitesse de déplacement de la source vers l'auditeur (positive si la source se rapproche, négative sinon) et $v_r$ est la vitesse de déplacement de l'auditeur de l'auditeur vers la source (positive si la source se rapproche, négative sinon). 
+
+En supposant que $v_e \ll c$ et $v_r \ll c$, faites un DL à l'ordre $1$ de $f_r$ en $v_e$ et $v_r$. (le DL doit être affine en $v_e$ et en $v_r$). 
+
+\Exo \textbf{3 pt}
+
+\begin{itemize}
+\item Montrer que pour la fraction $1/(1 - y^2)$ peut se décomposer sous la forme 
+\begin{equation*}
+  \frac{1}{1 - y^2} = \frac{a}{1 - y} + \frac{b}{1 + y}
+\end{equation*}
+avec $a$ et $b$ à déterminer. 
+\item En effectuant le changement de variable $y = \sqrt{1 + e^x}$, calculer l'intégrale
+  \begin{equation*}
+    I = \int_{\ln(3)}^{3\ln(2)} \frac{dx}{\sqrt{1 + e^x}}
+  \end{equation*}
+\end{itemize}
+
+\Exo \textbf{2 pt}
+
+En utilisant une double intégration par parties, calculer 
+\begin{equation*}
+  \int_0^{\pi/2} x^2 \sin(x) dx
+\end{equation*}
+
+\Pb \textbf{Approximation d'une limite, 9 points} 
+
+Soit $x \in [0, \pi/2]$
+
+\begin{enumerate}
+\item Montrer que pour tout $u \in [0, x]$, $0 \leq \sin(u) \leq u$. 
+\item En intégrant deux fois l'inégalité précédente entre $0$ et $x$, en déduire que 
+  \begin{equation*}
+    0 \leq x - \sin(x) \leq x^3/3!
+  \end{equation*}
+  puis que 
+  \begin{equation*}
+    \left| x - \sin(x) | \right| \leq x^3/3!
+  \end{equation*}
+\item On considère un polygone régulier à $3 \times 2^n$ côtés inscrit dans le cercle de centre $O = (0, 0)$ de rayon $1$ et dont un des sommets a pour coordonnées $(1, 0)$. Faites un dessin pour $n = 1$ (et éventuellement $n = 2$ sur votre brouillon). 
+\item Exprimer la longueur $u_n$ d'un côté du polygône en fonction de $n$.
+\item Exprimer le périmétre $p_n$ du polygone en fonction de $n$. 
+\item Calculer la limite $l = \lim_{n \to \infty} p_n$
+\item À l'aide des questions précédentes, majorer $\left| p_n - l \right|$
+\item Quelle valeur de $n$ permet d'obtenir une approximation de $l$ exacte à au moins 5 décimales?
+\end{enumerate}
+
+Cette méthode permet d'obtenir une approximation numérique de $\pi$. 
+
+\Pb \textbf{Forme optimale d'une canette, 9 points}
+
+On considère une canette cylindrique de rayon $R$, de hauteur $h$ en aliminium. Pour un volume $V_0$ donne (par exemple $33$ cl), déterminer les dimensions $(R^\star, h^\star)$ qui permettent de miminiser la surface de la canette (et donc la quantité d'aluminium nécessaire pour la produire). 
+
+On exprimera $R^\star$ et $h^\star$ en fonction de $V_0$ et on calculera le ratio $h^\star/R^\star$. 
+
+\end{document}

@@ -139,7 +139,7 @@ Le but du jeu est bien sûr d'identifier la **bonne** fonction $u(x)$ qui permet
 
 ## Exercice (I)
 
-Trouver une primitive des fonctions (de $x$) suivantes:
+Trouver une primitive des fonctions (de $x$) suivantes (avec $a \neq 0$):
 $$
 \begin{align*}
 f(x) = 1 - \frac{x^2}{2} & & f(x) = x^2 / (1+x^3) \\
@@ -251,7 +251,7 @@ $$
 -u e^{u^2} \text{d}u & & 3 \cos(\theta) \sin^2(\theta) \text{d} \theta \\
 \left( v / \sqrt{1 - v^2} \right) \text{d} v & & x^{\alpha} dx \\
 \sin(\alpha \varepsilon) \text{d} \varepsilon & & (y^3 \text{d}y) / (\alpha^4 + y^4)^2 \\
-1 + \tan^2(\alpha) \text{d} \alpha & & \text{d} z / ( 1 + a z) \quad (a \neq 0)
+(1 + \tan^2(\alpha)) \text{d} \alpha & & \text{d} z / ( 1 + a z) \quad (a \neq 0)
 \end{align}
 $$
 
@@ -487,7 +487,7 @@ $$
 <div class = "proposition">
 Soit $f$ continue sur un **segment** $[a,b]$ et $(x, y, z) \in [a, b]$ (quel que soit leur ordre)
 $$
-\int_x^z f(t)dt = \int_x^y f(t)dt + \int_y^z g(t)dt
+\int_x^z f(t)dt = \int_x^y f(t)dt + \int_y^z f(t)dt
 $$
 </div>
 
@@ -749,5 +749,5 @@ En particulier $I(x)$ est <alert>la primitive de $f$ qui s'annule en $x_0$</aler
 
 Un mobile se déplace sur une droite en partant du point $x = 0$. Sa vitesse au temps $t$ est notée $v(t)$. On sait alors que sa position au temps $t$ est donnée par 
 $$
-x(t) = \int_0^t v(t')dt'
+x(t) = \int_0^t v(z)dz
 $$
