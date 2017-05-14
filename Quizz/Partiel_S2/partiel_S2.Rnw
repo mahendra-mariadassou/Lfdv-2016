@@ -2,9 +2,10 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%% ZONE ROUGE : intervention très fortement deconseillee
 \usepackage[utf8]{inputenc} % accent dans la source
-\usepackage[T1]{fontenc}
+% \usepackage[T1]{fontenc}
 \usepackage{times}
 \usepackage[french]{babel}
+\usepackage{CJKutf8}
 \usepackage{amsmath}
 \usepackage{amsfonts}
 \usepackage{amssymb}
@@ -115,12 +116,8 @@ require(patchSynctex)
 %%% CORPS DU SUJET %%%
 %%%%%%%%%%%%%%%%%%%%%%
 
-\textbf{Consignes}
-\begin{itemize}
-\item Le barème est donné à titre indicatif;
-\item L'exercice $1$ est \textbf{obligatoire};
-\item Le sous-total des points sur les exercices est plafonné à $15$ (sur $20$).
-\end{itemize}
+\textbf{Consignes:}
+Le barème est indicatif, l'exercice $1$ est \textbf{obligatoire} et le sous-total des points sur les exercices est plafonné à $14$ (sur $20$).
 
 %% \section*{Test 1}
 
@@ -196,11 +193,7 @@ Soit $x \in [0, \pi/2]$
 
 \begin{enumerate}
 \item Montrer que pour tout $u \in [0, x]$, $0 \leq \sin(u) \leq u$. 
-\item En intégrant deux fois l'inégalité précédente entre $0$ et $x$, en déduire que 
-  \begin{equation*}
-    0 \leq x - \sin(x) \leq x^3/3!
-  \end{equation*}
-  puis que 
+\item En intégrant deux fois l'inégalité précédente entre $0$ et $x$, en déduire que $0 \leq x - \sin(x) \leq x^3/3!$ puis que 
   \begin{equation*}
     \left| x - \sin(x) | \right| \leq x^3/3!
   \end{equation*}
@@ -219,5 +212,18 @@ Cette méthode permet d'obtenir une approximation numérique de $\pi$.
 On considère une canette cylindrique de rayon $R$, de hauteur $h$ en aliminium. Pour un volume $V_0$ donne (par exemple $33$ cl), déterminer les dimensions $(R^\star, h^\star)$ qui permettent de miminiser la surface de la canette (et donc la quantité d'aluminium nécessaire pour la produire). 
 
 On exprimera $R^\star$ et $h^\star$ en fonction de $V_0$ et on calculera le ratio $h^\star/R^\star$. 
+
+\medskip 
+
+{\bf Exercice bonus (pour Louis)}
+
+Sakura (\begin{CJK}{UTF8}{min}桜\end{CJK}) cherche à attraper $N$ cartes de Clow (\begin{CJK}{UTF8}{min}クロウカード\end{CJK}). Il faut un temps $T/N$ pour attraper la première carte, $T/(N-1)$ pour la deuxième, $T/(N-2)$ pour la troisième et ainsi de suite. 
+
+\begin{itemize}
+\item On note $S_N$ le temps nécessaire pour attraper les $N$ cartes. Exprimer $S_N$ en fonction de $N$. 
+\item À l'aide d'une Somme de Riemann, calculer la limite $\lim_{N \to \infty} \frac{S_N}{N}$.
+\end{itemize}
+
+\emph{On peut montrer plus précisément que $S_N = N(\log(N) + \gamma + \mathcal{o}(1))$ où $\gamma$ est une constante appelée constante d'Euler.}
 
 \end{document}
