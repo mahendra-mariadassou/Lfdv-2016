@@ -140,7 +140,7 @@ On dispose de 3 Eppendorfs avec les concentrations suivantes de lactocoques ($lc
 On mesure la vitesse de dégradation du galactose dans chaque Eppendorf et on obtient les résultats suivants: 
 \[ (v_A, v_B, v_C) = (1.7, 2.2, 2.1) \]. 
 
-Quelle est la vitesse de dégradation de chaque bactérie, par unité de $10^8$ UFC / g? On suppose que la vitesse de dégradation est additive. 
+Quelle est la vitesse de dégradation du galactose par chaque bactérie, par unité de $10^8$ UFC / g? On suppose que la vitesse de dégradation est additive. 
 
 \Exo \textbf{4 points}
 
@@ -153,7 +153,7 @@ Quelle est la vitesse de dégradation de chaque bactérie, par unité de $10^8$ 
 On considère la fonction $f(x) = (x+1)e^{-x}$
 
 \begin{enumerate}
-\item Montrer par récurrence que pour tout entier $n \geq 0$, il existe deux réels $a_n$ et $b_n$ tels que $f^{(n)}(x) = (a_n x + b_n)e^{-x}$. On pourra expliciter la relation de récurrence entre $(a{n+1}, b_{n+1})$ et $(a_n, b_n)$. 
+\item Montrer par récurrence que pour tout entier $n \geq 0$, il existe deux réels $a_n$ et $b_n$ tels que $f^{(n)}(x) = (a_n x + b_n)e^{-x}$. On pourra expliciter la relation de récurrence entre $(a_{n+1}, b_{n+1})$ et $(a_n, b_n)$. 
 \item Expliciter $a_n$. 
 \item Vérifier que la suite $c_n = (-1)^n b_n$ est arithmétique. En déduire $b_n$. 
 \end{enumerate}
@@ -162,14 +162,14 @@ On considère la fonction $f(x) = (x+1)e^{-x}$
 
 La formule de Doppler spécifie que la fréquence sonore émise $f_e$ d'un son et sa fréquence reçue $f_r$ sont reliées par la formule 
 \[ f_r = \frac{c + v_e}{c + v_r} f_e\]
-où $c$ est la vitesse de propagation du son dans le milieu ambiant, $v_e$ est la vitesse de déplacement de la source vers l'auditeur (positive si la source se rapproche, négative sinon) et $v_r$ est la vitesse de déplacement de l'auditeur de l'auditeur vers la source (positive si la source se rapproche, négative sinon). 
+où $c$ est la vitesse de propagation du son dans le milieu ambiant, $v_e$ est la vitesse de déplacement de la source vers l'auditeur (positive si la source se rapproche, négative sinon) et $v_r$ est la vitesse de déplacement de l'auditeur vers la source (positive si la source se rapproche, négative sinon). 
 
 En supposant que $v_e \ll c$ et $v_r \ll c$, faites un DL à l'ordre $1$ de $f_r$ en $v_e$ et $v_r$. (le DL doit être affine en $v_e$ et en $v_r$). 
 
 \Exo \textbf{3 pt}
 
 \begin{itemize}
-\item Montrer que pour la fraction $1/(1 - y^2)$ peut se décomposer sous la forme 
+\item Montrer que la fraction $1/(1 - y^2)$ peut se décomposer sous la forme 
 \begin{equation*}
   \frac{1}{1 - y^2} = \frac{a}{1 - y} + \frac{b}{1 + y}
 \end{equation*}
@@ -195,7 +195,7 @@ Soit $x \in [0, \pi/2]$
 \item Montrer que pour tout $u \in [0, x]$, $0 \leq \sin(u) \leq u$. 
 \item En intégrant deux fois l'inégalité précédente entre $0$ et $x$, en déduire que $0 \leq x - \sin(x) \leq x^3/3!$ puis que 
   \begin{equation*}
-    \left| x - \sin(x) | \right| \leq x^3/3!
+    \left| x - \sin(x) \right| \leq x^3/3!
   \end{equation*}
 \item On considère un polygone régulier à $3 \times 2^n$ côtés inscrit dans le cercle de centre $O = (0, 0)$ de rayon $1$ et dont un des sommets a pour coordonnées $(1, 0)$. Faites un dessin pour $n = 1$ (et éventuellement $n = 2$ sur votre brouillon). 
 \item Exprimer la longueur $u_n$ d'un côté du polygône en fonction de $n$.
@@ -217,7 +217,7 @@ On exprimera $R^\star$ et $h^\star$ en fonction de $V_0$ et on calculera le rati
 
 {\bf Exercice bonus (pour Louis)}
 
-Sakura (\begin{CJK}{UTF8}{min}桜\end{CJK}) cherche à attraper $N$ cartes de Clow (\begin{CJK}{UTF8}{min}クロウカード\end{CJK}). Il faut un temps $T/N$ pour attraper la première carte, $T/(N-1)$ pour la deuxième, $T/(N-2)$ pour la troisième et ainsi de suite. 
+Sakura (\begin{CJK}{UTF8}{min}桜\end{CJK}) cherche à attraper $N$ cartes de Clow (\begin{CJK}{UTF8}{min}クロウカード\end{CJK}). Il lui faut un temps $T/N$ pour attraper la première carte, $T/(N-1)$ pour la deuxième, $T/(N-2)$ pour la troisième et ainsi de suite. 
 
 \begin{itemize}
 \item On note $S_N$ le temps nécessaire pour attraper les $N$ cartes. Exprimer $S_N$ en fonction de $N$. 
